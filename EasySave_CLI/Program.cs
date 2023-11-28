@@ -10,8 +10,7 @@ namespace Program
         public static void Main(string[] args)
         {
             //Create the view and the view model
-            mode_v view = new mode_v();
-            mode_vm viewModel = new mode_vm(view);
+            mode_vm viewModel = new mode_vm();
             
             //Run the program
             viewModel.Run();
