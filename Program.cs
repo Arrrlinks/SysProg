@@ -1,8 +1,8 @@
 ﻿// Purpose: Entry point for the program
 
-using EasySave.ViewName;
-using EasySave.ModelName;
-using EasySave.ViewModelName;
+using EasySave.ViewsName;
+using EasySave.ModelsName;
+using EasySave.ViewModelsName;
 
 namespace Program
 {

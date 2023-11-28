@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EasySave.ModelName;
-using EasySave.ViewName;
+using EasySave.ModelsName;
+using EasySave.ViewsName;
 
 
-namespace EasySave.ViewModelName
+namespace EasySave.ViewModelsName
 {
     public class ViewModel
     {
