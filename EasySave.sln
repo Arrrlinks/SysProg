@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySave", "EasySave.csproj", "{64BC4A92-833C-401A-92CB-F2A0A90057A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySave_CLI", "EasySave_CLI\EasySave_CLI.csproj", "{14999C32-1225-4C09-B2D9-62F96830BE48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{64BC4A92-833C-401A-92CB-F2A0A90057A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64BC4A92-833C-401A-92CB-F2A0A90057A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64BC4A92-833C-401A-92CB-F2A0A90057A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64BC4A92-833C-401A-92CB-F2A0A90057A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14999C32-1225-4C09-B2D9-62F96830BE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14999C32-1225-4C09-B2D9-62F96830BE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14999C32-1225-4C09-B2D9-62F96830BE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14999C32-1225-4C09-B2D9-62F96830BE48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
