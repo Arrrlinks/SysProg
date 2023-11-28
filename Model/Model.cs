@@ -8,6 +8,6 @@ namespace EasySave.ModelName
 {
     public class Model
     {
-
+        public Model() { }
     }
 }

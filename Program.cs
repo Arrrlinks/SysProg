@@ -12,24 +12,10 @@ namespace Program
         {
             // Variable Initialisation
             View view = new View();
-            ViewModel viewModel = new ViewModel(view);
-            //Ask the mode the user wants
-            string mode = viewModel.GetMode();
-
-            switch (mode)
-            {
-                case "COPY":
-                    Console.WriteLine("copy");
-                    break;
-
-                case "HISTORY":
-                    Console.WriteLine("HISTORY");
-                    break;
-
-                case "EXIT":
-                    Environment.Exit(1);
-                    break;
-            }
+            Model model = new Model();
+            ViewModel viewModel = new ViewModel(view, model);
+            
+            viewModel.Run();
         }
     }
 }
