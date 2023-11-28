@@ -6,28 +6,29 @@ public class mode_vm
 {
     //Attributes
     private mode_v _view;
+    private register_vm _register;
     
     //Builders
     public mode_vm()
     {
         _view = new mode_v();
+        _register = new register_vm();
     }
     
-    public mode_vm(mode_v view)
+    public mode_vm(mode_v view, register_vm register)
     {
         _view = view;
+        _register = register;
     }
     
     //Methods
     //Get the mode the user want 
     public string GetMode()
     {
-        string? mode = _view.GetMode().ToUpper();
-        while (mode != "COPY" && mode != "HISTORY" && mode != "EXIT")
+        string? mode = _view.GetMode(0).ToUpper();
+        while (mode != "LAUNCH" && mode != "BACKUP" && mode != "EXIT")
         {
-            Console.Clear();
-            Console.WriteLine("You typed a wrong imput. Try again");
-            mode = _view.GetMode().ToUpper();
+            mode = _view.GetMode(1).ToUpper();
         }
         return mode;
     }
@@ -39,10 +40,10 @@ public class mode_vm
 
         switch (mode)
         {
-            case "COPY":
-                Console.WriteLine("copy");
+            case "LAUNCH":
+                _register.RUN();
                 break;
-            case "HISTORY":
+            case "BACKUP":
                 Console.WriteLine("HISTORY");
                 break;
             case "EXIT":
