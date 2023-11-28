@@ -13,8 +13,8 @@ namespace EasySave.ViewName
         public string? GetMode()
         {
             Console.WriteLine("Select the mode \n - Copy \n - History \n - Exit");
-            string? Mode = Console.ReadLine();
-            return Mode;
+            string? mode = Console.ReadLine();
+            return mode;
         }
 
         //Get the path of the file
