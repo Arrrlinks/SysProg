@@ -22,35 +22,58 @@ public class register_vm
     }
     
     //Methods
-    public string GetBackup()
+    public string SetBackup()
     {
-        int backupNumber = _view.GetBackup(0);
+        int backupNumber = _view.SetBackup(0);
         while (backupNumber < 1 || backupNumber > 5)
         {
-            backupNumber = _view.GetBackup(1);
+            backupNumber = _view.SetBackup(1);
         }
         return "Save" + backupNumber;
     }
     
-    public string? GetPath()
+    public string? SetPath(int mode)
     {
-        string? Path = _view.GetPath(0);
-        while (Directory.Exists(@Path) == false && File.Exists(@Path) == false)
+        string? Path = _view.SetPath(0);
+        if (mode ==0)
         {
-            Path = _view.GetPath(1);
+            while (Directory.Exists(@Path) == false && File.Exists(@Path) == false)
+            {
+                Path = _view.SetPath(1);
+            } 
+        }
+        else
+        {
+            while (Directory.Exists(@Path) == false)
+            {
+                Path = _view.SetPath(1);
+            } 
         }
         return Path;
     }
     
+    public void SetSaveName(string name)
+    {
+        _save._name = name;
+    }
     
-
+    public void SetSaveSource(string source)
+    {
+        _save._source = source;
+    }
+    
+    public void SetSaveTarget(string target)
+    {
+        _save._target = target;
+    }
+    
     public void RUN()
     {
-        _save._name = GetBackup();
+        SetSaveName(SetBackup());
         
-        _save._source = GetPath();
+        SetSaveSource(SetPath(0));
         
-        _save._target = GetPath();
+        SetSaveTarget(SetPath(1));
         
     }
 }

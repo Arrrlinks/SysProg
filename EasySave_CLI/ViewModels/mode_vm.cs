@@ -23,12 +23,12 @@ public class mode_vm
     
     //Methods
     //Get the mode the user want 
-    public string GetMode()
+    public string SetMode()
     {
-        string? mode = _view.GetMode(0).ToUpper();
+        string? mode = _view.SetMode(0).ToUpper();
         while (mode != "LAUNCH" && mode != "BACKUP" && mode != "EXIT")
         {
-            mode = _view.GetMode(1).ToUpper();
+            mode = _view.SetMode(1).ToUpper();
         }
         return mode;
     }
@@ -36,7 +36,7 @@ public class mode_vm
     public void Run()
     {
         //Ask the mode the user wants
-        string mode = GetMode();
+        string mode = SetMode();
 
         switch (mode)
         {

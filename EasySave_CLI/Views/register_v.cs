@@ -8,7 +8,7 @@ public class register_v
     public register_v() {}
     
     //Methods
-    public int GetBackup(int error)
+    public int SetBackup(int error)
     {
         Console.Clear();
         if (error == 1)
@@ -28,7 +28,7 @@ public class register_v
         return backup;
     }
 
-    public string? GetPath(int error)
+    public string? SetPath(int error)
     {
         Console.Clear();
         if (error == 1)
