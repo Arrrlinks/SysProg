@@ -35,20 +35,24 @@ public class mode_vm
 
     public void Run()
     {
-        //Ask the mode the user wants
-        string mode = SetMode();
-
-        switch (mode)
+        while (true)
         {
-            case "LAUNCH":
-                _register.RUN();
-                break;
-            case "BACKUP":
-                Console.WriteLine("HISTORY");
-                break;
-            case "EXIT":
-                Environment.Exit(1);
-                break;
+            //Ask the mode the user wants
+            string mode = SetMode();
+            
+            //Execute the mode
+            switch (mode)
+            {
+                case "LAUNCH":
+                    _register.RUN();
+                    break;
+                case "BACKUP":
+                    Console.WriteLine("HISTORY");
+                    break;
+                case "EXIT":
+                    Environment.Exit(1);
+                    break;
+            }   
         }
     }
 }

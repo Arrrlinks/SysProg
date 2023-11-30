@@ -34,20 +34,14 @@ public class register_vm
     
     public string? SetPath(int mode)
     {
-        string? Path = _view.SetPath(0);
-        if (mode ==0)
+        string? Path;
+        if (mode == 0)
         {
-            while (Directory.Exists(@Path) == false && File.Exists(@Path) == false)
-            {
-                Path = _view.SetPath(1);
-            } 
+            Path = _view.SetPath(0);
         }
         else
         {
-            while (Directory.Exists(@Path) == false)
-            {
-                Path = _view.SetPath(1);
-            } 
+            Path = _view.SetPath(1);
         }
         return Path;
     }
