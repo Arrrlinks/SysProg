@@ -8,7 +8,8 @@ public class register_v
     public register_v() {}
     
     //Methods
-    public int SetBackup(int error)
+    //Chose the backup to modify
+    public int SetBackup(int error = 0)
     {
         Console.Clear();
         int backup = 0;
@@ -30,7 +31,8 @@ public class register_v
         return backup;
     }
 
-    public string? SetPath(int mode)
+    //Set the source and target path of the backup
+    public string? SetPath(int mode = 0)
     {
         Console.Clear();
         string? filePath;

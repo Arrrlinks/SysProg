@@ -69,5 +69,7 @@ public class register_vm
         
         SetSaveTarget(SetPath(1));
         
+        _save._weight = _save.GetFileSize(_save._source);
+        
     }
 }

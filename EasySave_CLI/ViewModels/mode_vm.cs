@@ -7,18 +7,21 @@ public class mode_vm
     //Attributes
     private mode_v _view;
     private register_vm _register;
+    private launch_vm _launch;
     
     //Builders
     public mode_vm()
     {
         _view = new mode_v();
         _register = new register_vm();
+        _launch = new launch_vm();
     }
     
-    public mode_vm(mode_v view, register_vm register)
+    public mode_vm(mode_v view, register_vm register, launch_vm launch)
     {
         _view = view;
         _register = register;
+        _launch = launch;
     }
     
     //Methods
@@ -44,10 +47,10 @@ public class mode_vm
             switch (mode)
             {
                 case "LAUNCH":
-                    _register.RUN();
+                    _launch.setBackup();
                     break;
                 case "BACKUP":
-                    Console.WriteLine("HISTORY");
+                    _register.RUN();
                     break;
                 case "EXIT":
                     Environment.Exit(1);
