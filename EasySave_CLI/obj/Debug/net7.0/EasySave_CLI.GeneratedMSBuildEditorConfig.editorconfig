@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EasySave_CLI
-build_property.ProjectDir = C:\Users\matth\OneDrive\Documents\CESI\A3\DS\Projet\EasySave\EasySave_CLI\
+build_property.ProjectDir = C:\Users\Antoine\Documents\GitHub\SysProg\EasySave_CLI\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
