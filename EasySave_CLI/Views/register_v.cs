@@ -26,7 +26,7 @@ public class register_v
         }
         catch (FormatException)
         {
-            backup = 0;
+            backup = SetBackup(1);
         }
         return backup;
     }
