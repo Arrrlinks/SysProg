@@ -8,36 +8,54 @@ public class register_v
     public register_v() {}
     
     //Methods
-    public int GetBackup(int error)
+    //Chose the backup to modify
+    public int SetBackup(int error = 0)
     {
         Console.Clear();
+        int backup = 0;
+
         if (error == 1)
         {
             Console.WriteLine("The backup you entered is not valid, please try again.");
         }
         Console.WriteLine("Select the backup you want to Modify or Create (1-5)");
-        int backup = 0;
+        //Véry the user input an int
         try
         {
             backup = Convert.ToInt32(Console.ReadLine());
         }
         catch (FormatException)
         {
-            backup = 0;
+            backup = SetBackup(1);
         }
         return backup;
     }
 
-    public string? GetPath(int error)
+    //Set the source and target path of the backup
+    public string? SetPath(int mode = 0)
     {
         Console.Clear();
-        if (error == 1)
+        string? filePath;
+        if (mode == 0)
         {
-            Console.WriteLine("The path you entered is not valid, please try again.");
+            Console.WriteLine("Enter the path of the file you want to save");
+            filePath = Console.ReadLine();
+            while (Directory.Exists(@filePath) == false && File.Exists(@filePath) == false)
+            {
+                Console.WriteLine("The path you entered is not valid, please try again.");
+                filePath = Console.ReadLine();
+            }
         }
-        Console.WriteLine("Enter the path of the file you want to save");
-        string? filePath = Console.ReadLine();
+        else
+        {
+            Console.WriteLine("Enter the path of where the file will be save");
+            filePath = Console.ReadLine();
+            while (Directory.Exists(@filePath) == false)
+            {
+                Console.WriteLine("The path you entered is not valid, please try again.");
+                filePath = Console.ReadLine();
+            }
+        }
         return filePath;
     }
-    
 }
