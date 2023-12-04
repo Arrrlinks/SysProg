@@ -33,15 +33,11 @@ The software can be used in two different modes: Backup and Launch
 ### Setup Backup <a name="backup"></a>
 
 To setup a backup, you need to launch the software with the following command:
- - Backup
-then you'll need to select the backup you want to setup with the following command:
- - 1
- - 2
- - 3
- - 4
- - 5
+```Backup ```
 
-at this moment you will define the 
+You'll see this screen:
+
+You'll have to select the bachup you want to setup. You'll be ask to enter the source path and the destination file path
 
 ### Launch Backup <a name="launch"></a>
 
