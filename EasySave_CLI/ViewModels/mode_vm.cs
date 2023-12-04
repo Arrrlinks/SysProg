@@ -6,48 +6,56 @@ public class mode_vm
 {
     //Attributes
     private mode_v _view;
+    private register_vm _register;
+    private launch_vm _launch;
     
     //Builders
     public mode_vm()
     {
         _view = new mode_v();
+        _register = new register_vm();
+        _launch = new launch_vm();
     }
     
-    public mode_vm(mode_v view)
+    public mode_vm(mode_v view, register_vm register, launch_vm launch)
     {
         _view = view;
+        _register = register;
+        _launch = launch;
     }
     
     //Methods
     //Get the mode the user want 
-    public string GetMode()
+    public string SetMode()
     {
-        string? mode = _view.GetMode().ToUpper();
-        while (mode != "COPY" && mode != "HISTORY" && mode != "EXIT")
+        string? mode = _view.SetMode(0).ToUpper();
+        while (mode != "LAUNCH" && mode != "BACKUP" && mode != "EXIT")
         {
-            Console.Clear();
-            Console.WriteLine("You typed a wrong imput. Try again");
-            mode = _view.GetMode().ToUpper();
+            mode = _view.SetMode(1).ToUpper();
         }
         return mode;
     }
 
     public void Run()
     {
-        //Ask the mode the user wants
-        string mode = GetMode();
-
-        switch (mode)
+        while (true)
         {
-            case "COPY":
-                Console.WriteLine("copy");
-                break;
-            case "HISTORY":
-                Console.WriteLine("HISTORY");
-                break;
-            case "EXIT":
-                Environment.Exit(1);
-                break;
+            //Ask the mode the user wants
+            string mode = SetMode();
+            
+            //Execute the mode
+            switch (mode)
+            {
+                case "LAUNCH":
+                    _launch.setBackup();
+                    break;
+                case "BACKUP":
+                    _register.RUN();
+                    break;
+                case "EXIT":
+                    Environment.Exit(1);
+                    break;
+            }   
         }
     }
 }
