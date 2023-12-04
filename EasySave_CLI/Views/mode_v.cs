@@ -1,14 +1,17 @@
-﻿namespace EasySave_CLI.Views;
+﻿namespace EasySave_CLI.Views; // Namespace for the views
 
-public class mode_v
+public class mode_v // View for the mode
 {
-    public mode_v() {}
+    public mode_v() {} // Builder for the mode
     
-    //Get the mode the user want 
-    public string? GetMode()
+    public string? SetMode(int error) // Function to set the mode
     {
-        Console.WriteLine("Select the mode \n - Copy \n - History \n - Exit");
-        string? mode = Console.ReadLine();
-        return mode;
+        if (error == 1) // If the user entered a wrong command
+        {
+            Console.WriteLine("The command you entered is not valid, please try again."); // Display an error message
+        }
+        Console.WriteLine("Select the mode \n - launch \n - backup \n - history \n - exit"); // Display the modes
+        string? mode = Console.ReadLine(); // Get the mode
+        return mode; // Return the mode
     }
 }
