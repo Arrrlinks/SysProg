@@ -10,6 +10,8 @@ public class launch_vm // View model for the launch
     private launch_v _view; // View for the launch
     private save_m _save; // Model for the saves
     private log_m _log; // Model for the history
+    private static readonly language_m _language = new language_m(); // Instance of the language model
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang"); // Get the language chosen
 
     //Builders
     public launch_vm() // Builder for the launch
@@ -33,7 +35,7 @@ public class launch_vm // View model for the launch
         }
         catch (Exception ex) // If an error occured
         {
-            Console.WriteLine($"Error checking directory: {ex.Message}"); // Display an error message
+            Console.WriteLine($"{_language.RetrieveValueFromLanguageFile(lang, "ErrorOccured")} {ex.Message}"); // Display an error message
             return false; // Return false
         }
     }
@@ -67,7 +69,6 @@ public class launch_vm // View model for the launch
     {
         List<string> backups = SetBackup(); // Get the name of the save
         bool mode = SetMode(); // Get the mode
-        Console.WriteLine(mode);
         foreach (string backup in backups) // For each save
         {
             string? name = _log.RetrieveValueFromStateFile(backup, "Name"); // Get the name of the save
@@ -79,7 +80,7 @@ public class launch_vm // View model for the launch
                 SaveBackup(source, target, name, mode); // Save the backup
             }
         }
-        Console.WriteLine("Press any key to continue..."); // Display a message
+        Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "PressAnyKey")); // Ask the user to press any key to continue
         Console.ReadKey(); // Wait for the user to press a key
     }
 }

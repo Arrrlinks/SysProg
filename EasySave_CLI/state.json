@@ -1,18 +1,18 @@
 [
   {
-    "Date": "2023-12-05T19:20:47.6038288Z",
+    "Date": "2023-12-05T20:27:28.6252716Z",
     "Name": "Save1",
-    "SourcePath": "C:\\Users\\Antoine\\Documents\\VM\\debian-12.2.0-amd64-DVD-1.iso",
-    "TargetPath": "C:\\Users\\Antoine\\Documents\\tests",
-    "Size": 3994091520.0,
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "Size": 0.0,
     "TotalFiles": 1.0,
-    "FilesCopied": 0,
-    "FilesRemaining": 1.0,
-    "isComplete": false,
+    "FilesCopied": 5,
+    "FilesRemaining": -4.0,
+    "isComplete": true,
     "Status": "Completed"
   },
   {
-    "Date": "2023-12-05T19:19:19.2216729Z",
+    "Date": "2023-12-05T20:05:27.9481881Z",
     "Name": "Save2",
     "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
     "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
@@ -20,7 +20,7 @@
     "TotalFiles": 1.0,
     "FilesCopied": 5,
     "FilesRemaining": -4.0,
-    "isComplete": false,
+    "isComplete": true,
     "Status": "Completed"
   },
   {

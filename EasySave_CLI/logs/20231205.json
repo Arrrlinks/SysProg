@@ -2266,5 +2266,329 @@
     "FileName": "debian-12.2.0-amd64-DVD-1.iso",
     "FileSize": 3994091520,
     "Time (ms)": 39623
+  },
+  {
+    "Date": "2023-12-05T20:05:27.7300357Z",
+    "Name": "Save2",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (2).txt",
+    "FileSize": 0,
+    "Time (ms)": 101
+  },
+  {
+    "Date": "2023-12-05T20:05:27.7837076Z",
+    "Name": "Save2",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (3).txt",
+    "FileSize": 0,
+    "Time (ms)": 48
+  },
+  {
+    "Date": "2023-12-05T20:05:27.8365694Z",
+    "Name": "Save2",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (4).txt",
+    "FileSize": 0,
+    "Time (ms)": 49
+  },
+  {
+    "Date": "2023-12-05T20:05:27.8893683Z",
+    "Name": "Save2",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (5).txt",
+    "FileSize": 1,
+    "Time (ms)": 48
+  },
+  {
+    "Date": "2023-12-05T20:05:27.9436132Z",
+    "Name": "Save2",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie.txt",
+    "FileSize": 0,
+    "Time (ms)": 48
+  },
+  {
+    "Date": "2023-12-05T20:05:27.9890388Z",
+    "Name": "Save2",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test.txt",
+    "FileSize": 0,
+    "Time (ms)": 42
+  },
+  {
+    "Date": "2023-12-05T20:20:50.4035769Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (2).txt",
+    "FileSize": 0,
+    "Time (ms)": 48
+  },
+  {
+    "Date": "2023-12-05T20:20:50.4555013Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (3).txt",
+    "FileSize": 0,
+    "Time (ms)": 47
+  },
+  {
+    "Date": "2023-12-05T20:20:50.5008989Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (4).txt",
+    "FileSize": 0,
+    "Time (ms)": 41
+  },
+  {
+    "Date": "2023-12-05T20:20:50.5597279Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (5).txt",
+    "FileSize": 1,
+    "Time (ms)": 55
+  },
+  {
+    "Date": "2023-12-05T20:20:50.6228878Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie.txt",
+    "FileSize": 0,
+    "Time (ms)": 58
+  },
+  {
+    "Date": "2023-12-05T20:20:50.6694384Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test.txt",
+    "FileSize": 0,
+    "Time (ms)": 43
+  },
+  {
+    "Date": "2023-12-05T20:21:47.3775352Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (2).txt",
+    "FileSize": 0,
+    "Time (ms)": 97
+  },
+  {
+    "Date": "2023-12-05T20:21:47.4146728Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (3).txt",
+    "FileSize": 0,
+    "Time (ms)": 31
+  },
+  {
+    "Date": "2023-12-05T20:21:47.4605099Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (4).txt",
+    "FileSize": 0,
+    "Time (ms)": 37
+  },
+  {
+    "Date": "2023-12-05T20:21:47.5084825Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (5).txt",
+    "FileSize": 1,
+    "Time (ms)": 42
+  },
+  {
+    "Date": "2023-12-05T20:21:47.5581271Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie.txt",
+    "FileSize": 0,
+    "Time (ms)": 44
+  },
+  {
+    "Date": "2023-12-05T20:21:47.6001381Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test.txt",
+    "FileSize": 0,
+    "Time (ms)": 38
+  },
+  {
+    "Date": "2023-12-05T20:22:23.2434059Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (2).txt",
+    "FileSize": 0,
+    "Time (ms)": 32
+  },
+  {
+    "Date": "2023-12-05T20:22:23.2827251Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (3).txt",
+    "FileSize": 0,
+    "Time (ms)": 32
+  },
+  {
+    "Date": "2023-12-05T20:22:23.3280807Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (4).txt",
+    "FileSize": 0,
+    "Time (ms)": 37
+  },
+  {
+    "Date": "2023-12-05T20:22:23.3729904Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (5).txt",
+    "FileSize": 1,
+    "Time (ms)": 42
+  },
+  {
+    "Date": "2023-12-05T20:22:23.4231551Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie.txt",
+    "FileSize": 0,
+    "Time (ms)": 44
+  },
+  {
+    "Date": "2023-12-05T20:22:23.4630416Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test.txt",
+    "FileSize": 0,
+    "Time (ms)": 36
+  },
+  {
+    "Date": "2023-12-05T20:23:44.0484713Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (2).txt",
+    "FileSize": 0,
+    "Time (ms)": 28
+  },
+  {
+    "Date": "2023-12-05T20:23:44.0879013Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (3).txt",
+    "FileSize": 0,
+    "Time (ms)": 31
+  },
+  {
+    "Date": "2023-12-05T20:23:44.1384792Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (4).txt",
+    "FileSize": 0,
+    "Time (ms)": 43
+  },
+  {
+    "Date": "2023-12-05T20:23:44.1848135Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (5).txt",
+    "FileSize": 1,
+    "Time (ms)": 43
+  },
+  {
+    "Date": "2023-12-05T20:23:44.230721Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie.txt",
+    "FileSize": 0,
+    "Time (ms)": 42
+  },
+  {
+    "Date": "2023-12-05T20:23:44.2705748Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test.txt",
+    "FileSize": 0,
+    "Time (ms)": 35
+  },
+  {
+    "Date": "2023-12-05T20:27:28.4108827Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (2).txt",
+    "FileSize": 0,
+    "Time (ms)": 97
+  },
+  {
+    "Date": "2023-12-05T20:27:28.4647876Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (3).txt",
+    "FileSize": 0,
+    "Time (ms)": 48
+  },
+  {
+    "Date": "2023-12-05T20:27:28.5124011Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (4).txt",
+    "FileSize": 0,
+    "Time (ms)": 43
+  },
+  {
+    "Date": "2023-12-05T20:27:28.5664006Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie (5).txt",
+    "FileSize": 1,
+    "Time (ms)": 48
+  },
+  {
+    "Date": "2023-12-05T20:27:28.6208519Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test - Copie.txt",
+    "FileSize": 0,
+    "Time (ms)": 49
+  },
+  {
+    "Date": "2023-12-05T20:27:28.6675521Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "FileName": "test.txt",
+    "FileSize": 0,
+    "Time (ms)": 43
   }
 ]

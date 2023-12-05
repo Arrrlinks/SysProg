@@ -1,8 +1,11 @@
 ﻿namespace EasySave_CLI.Views; // Namespace for the views
+using EasySave_CLI.Models;
 using Newtonsoft.Json.Linq; // Library for json
 
 public class state_v // View for the state
 {
+    private static readonly language_m _language = new language_m(); // Instance of the language model
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
     public static void DisplayState() // Function to print the json file information
     { 
         try // Try to print the json file information
@@ -34,9 +37,9 @@ public class state_v // View for the state
         }
         catch (Exception ex) // If an error occured
         {
-            Console.WriteLine($"Error reading or parsing the JSON file: {ex.Message}"); // Display an error message
+            Console.WriteLine($"{_language.RetrieveValueFromLanguageFile(lang,"ErrorOccured")} {ex.Message}"); // Display an error message
         }
-        Console.WriteLine("Press any key to continue..."); // Display a message
+        Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang,"PressAnyKey")); // Display a message to press any key
         Console.ReadKey(); // Wait for the user to press a key
     }
 }
