@@ -7,9 +7,9 @@ public class log_m //Model for the history
 
     public log_m() {} // Builder for the history
     
-    public string GetDate() // Function to get the current date in the format iso 8601
+    public string? GetDate() // Function to get the current date in the format iso 8601
     {
-        string date = DateTime.UtcNow.ToString("o"); // Get the current date in the format iso 8601
+        string? date = DateTime.UtcNow.ToString("o"); // Get the current date in the format iso 8601
         return date; // Return the current date in the format iso 8601
     }
     
@@ -40,7 +40,7 @@ public class log_m //Model for the history
         return dateForFile; // Return the date in the format "YYYYMMDD"
     }
 
-    public void ModifyJsonFile(string filePath, string itemName, string key, object newValue) // Function to modify a json file
+    public void ModifyJsonFile(string filePath, string itemName, string key, object? newValue) // Function to modify a json file
     // ModifyJsonFile("../../../state.json", "Save1", "SourcePath", "C:/Users/alexa/Desktop/ESGI/ESGI 3/Projet C#/EasySave_CLI/Files/Save1");
     {
         try // Try to modify the json file
@@ -75,6 +75,7 @@ public class log_m //Model for the history
 
     
     public string? RetrieveValueFromStateFile(string? itemName, string? key) // Function to retrieve a value from a json file
+    // RetrieveValueFromStateFile("Save1", "SourcePath");
     {
         try // Try to retrieve the value from the json file
         {
@@ -161,6 +162,16 @@ public class log_m //Model for the history
         }
     }
     
-    
-
+    public void ModifyStateFile(string name, string? source, string? target, double[] fileSizeList, string? status, int iteration = 0, bool isComplete = false) // Function to modify a save in the history
+    {
+        ModifyJsonFile("../../../state.json", name, "Date", GetDate()); // Modify the date of the save in the history
+        if (source != null) ModifyJsonFile("../../../state.json", name, "SourcePath", @source); // Modify the source path of the save in the history
+        if (target != null) ModifyJsonFile("../../../state.json", name, "TargetPath", @target); // Modify the target path of the save in the history
+        ModifyJsonFile("../../../state.json", name, "Size", fileSizeList[0]); // Modify the size of the save in the history
+        ModifyJsonFile("../../../state.json", name, "TotalFiles", fileSizeList[1]); // Modify the number of files of the save in the history
+        ModifyJsonFile("../../../state.json", name, "FilesCopied", iteration); // Modify the number of files copied of the save in the history
+        ModifyJsonFile("../../../state.json", name, "FilesRemaining", fileSizeList[1] - iteration); // Modify the number of files remaining of the save in the history
+        ModifyJsonFile("../../../state.json", name, "isComplete", isComplete); // Modify the completeness of the save in the history
+        ModifyJsonFile("../../../state.json", name, "Status", status); // Modify the status of the save in the history
+    }
 }
