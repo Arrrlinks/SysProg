@@ -10,7 +10,7 @@ public class mode_v // View for the mode
         {
             Console.WriteLine("The command you entered is not valid, please try again."); // Display an error message
         }
-        Console.WriteLine("Select the mode \n - launch \n - backup \n - history \n - exit"); // Display the modes
+        Console.WriteLine("Select the mode \n 1 - launch \n 2 - backup \n 3 - state \n 4 - history \n 5 - exit"); // Display the modes
         string? mode = Console.ReadLine(); // Get the mode
         return mode; // Return the mode
     }
