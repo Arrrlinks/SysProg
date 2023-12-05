@@ -8,7 +8,7 @@ public class launch_v // View for the launch
 
     public List<string> SetBackup() // Function to set the name of the save
     {
-        Console.clear();
+        Console.Clear();
         List<string> backups = new List<string>(); // Create a list for the saves
         Console.WriteLine("chose the backups to execute \nTo execute a save : 1 (executing Save1) \nTo execute multiple saves at one time : 1-5 (executing Save1 to Save5) or 1;4 (executing Save1 and Save4) `"); // Display the syntax
         string command = Console.ReadLine(); // Get the command
@@ -54,6 +54,30 @@ public class launch_v // View for the launch
         }
         return backups; // Return the saves
     }
+
+    public bool setMode()
+    {
+        Console.Clear();
+        string? mode = String.Empty;
+        while (mode != "1" && mode != "2")
+        {
+            Console.WriteLine("chose the mode you want to execute \n1 : complete \n2 : differential"); // Display the syntax
+            mode = Console.ReadLine(); // Get the mode
+            if(mode != "1" && mode != "2")
+            {
+                Console.WriteLine("The mode you entered is not valid, please try again."); // Display an error message
+            }
+        }
+        if (mode == "1")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     public void DisplaySave(string name, string source, string target) // Function to display the save
     {
         Console.WriteLine("Copying files from " + source + " to " + target + " for the save " + name); // Display the save

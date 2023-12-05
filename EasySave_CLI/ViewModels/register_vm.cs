@@ -74,20 +74,12 @@ public class register_vm // View model for the register
         SetSaveTarget(SetPath("target")); // Set the target path of the save
         
         double[] list = _save.GetFileSize(_save._source); // Get the size of the save
-        _save._weight = list[0]; // Set the weight of the save
-        _save._nbFiles = list[1]; // Set the number of files of the save
         
         if (_log.RetrieveValueFromStateFile(_save._name, "Name") != null) // If the save already exists
         {
-            _log.ModifyJsonFile("../../../state.json", _save._name, "Date", _log.GetDate()); // Modify the date of the save
-
-            if (_save._source != null) _log.ModifyJsonFile("../../../state.json", _save._name, "SourcePath", _save._source); // Modify the source path of the save
-            if (_save._target != null) _log.ModifyJsonFile("../../../state.json", _save._name, "TargetPath", _save._target); // Modify the target path of the save
-            _log.ModifyJsonFile("../../../state.json", _save._name, "Size", _save._weight); // Modify the size of the save
-            _log.ModifyJsonFile("../../../state.json", _save._name, "TotalFiles", _save._nbFiles); // Modify the number of files of the save
-            _log.ModifyJsonFile("../../../state.json", _save._name, "FilesCopied", 0); // Modify the number of files copied of the save
-            _log.ModifyJsonFile("../../../state.json", _save._name, "FilesRemaining", _save._nbFiles); // Modify the number of files remaining of the save
-            _log.ModifyJsonFile("../../../state.json", _save._name, "Status", "Waiting"); // Modify the status of the save
+                if (_save is { _target: not null, _source: not null })
+                    _log.ModifyStateFile(_save._name, _save._source, _save._target, list,
+                        "Waiting"); // Modify the save in the history
         }
         else // If the save doesn't exist
         {
@@ -101,6 +93,7 @@ public class register_vm // View model for the register
                 TotalFiles = _save._nbFiles, // Create the save in the history
                 FilesCopied = 0, // Create the save in the history
                 FilesRemaining = _save._nbFiles, // Create the save in the history
+                isComplete = false, // Create the save in the history
                 Status = "Waiting" // Create the save in the history
             };
             string toAdd = Newtonsoft.Json.JsonConvert.SerializeObject(entryObject); // Create the save in the history

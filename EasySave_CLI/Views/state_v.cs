@@ -11,6 +11,7 @@ public class state_v // View for the state
             JArray jsonArray = JArray.Parse(jsonContent); // Parse the json file
             foreach (var item in jsonArray) // For each item in the json file
             {
+                
                 Console.WriteLine($"Name: {item["Name"]}"); // Display the name of the save
                 Console.WriteLine($"    Date: {item["Date"]}"); // Display the date of the save
                 Console.WriteLine($"    SourcePath: {item["SourcePath"]}"); // Display the source path of the save
@@ -19,6 +20,14 @@ public class state_v // View for the state
                 Console.WriteLine($"    TotalFiles: {item["TotalFiles"]}"); // Display the total files of the save
                 Console.WriteLine($"    FilesCopied: {item["FilesCopied"]}"); // Display the files copied of the save
                 Console.WriteLine($"    FilesRemaining: {item["FilesRemaining"]}"); // Display the files remaining of the save
+                if (item["isComplete"] == (JToken?)true) // If the save is complete
+                {
+                    Console.WriteLine($"SaveType: Complete"); // Display the save type of the save
+                } // Display the save type of the save
+                else
+                {
+                    Console.WriteLine($"SaveType: Differential"); // Display the save type of the save
+                }
                 Console.WriteLine($"    Status: {item["Status"]}"); // Display the status of the save
                 Console.WriteLine(); // Display a blank line
             }
