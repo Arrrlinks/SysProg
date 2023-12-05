@@ -80,6 +80,7 @@ public class register_vm // View model for the register
         if (_log.RetrieveValueFromStateFile(_save._name, "Name") != null) // If the save already exists
         {
             _log.ModifyJsonFile("../../../state.json", _save._name, "Date", _log.GetDate()); // Modify the date of the save
+
             if (_save._source != null) _log.ModifyJsonFile("../../../state.json", _save._name, "SourcePath", _save._source); // Modify the source path of the save
             if (_save._target != null) _log.ModifyJsonFile("../../../state.json", _save._name, "TargetPath", _save._target); // Modify the target path of the save
             _log.ModifyJsonFile("../../../state.json", _save._name, "Size", _save._weight); // Modify the size of the save

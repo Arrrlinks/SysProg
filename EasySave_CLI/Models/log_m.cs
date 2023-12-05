@@ -13,6 +13,7 @@ public class log_m //Model for the history
         return date; // Return the current date in the format iso 8601
     }
     
+
     static void CreateTodayLogFile(string filePath, string fileName) // Function to create the today date log json file
     // CreateTodayLogFile("../../../logs/", $"{fileName}.json");
     {
