@@ -8,6 +8,7 @@ public class launch_v // View for the launch
 
     public List<string> SetBackup() // Function to set the name of the save
     {
+        Console.clear();
         List<string> backups = new List<string>(); // Create a list for the saves
         Console.WriteLine("chose the backups to execute \nTo execute a save : 1 (executing Save1) \nTo execute multiple saves at one time : 1-5 (executing Save1 to Save5) or 1;4 (executing Save1 and Save4) `"); // Display the syntax
         string command = Console.ReadLine(); // Get the command
@@ -53,7 +54,6 @@ public class launch_v // View for the launch
         }
         return backups; // Return the saves
     }
-    
     public void DisplaySave(string name, string source, string target) // Function to display the save
     {
         Console.WriteLine("Copying files from " + source + " to " + target + " for the save " + name); // Display the save

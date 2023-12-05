@@ -28,6 +28,8 @@ public class history_v // View for the history
         {
             Console.WriteLine($"An error occured : {ex.Message}"); // Display an error message
         }
+        Console.WriteLine("Press any key to continue..."); // Ask the user to press a key to continue
+        Console.ReadKey();
     }
     
     public static void DisplayLog() // Function to display the log file
