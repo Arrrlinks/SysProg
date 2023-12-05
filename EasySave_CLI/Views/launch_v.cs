@@ -8,6 +8,7 @@ public class launch_v // View for the launch
 
     public List<string> SetBackup() // Function to set the name of the save
     {
+        Console.clear();
         List<string> backups = new List<string>(); // Create a list for the saves
         Console.WriteLine("chose the backups to execute \n syntax: \n 1-5 `\n 1; 4"); // Display the syntax
         string command = Console.ReadLine(); // Get the command

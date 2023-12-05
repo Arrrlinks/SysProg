@@ -5,10 +5,15 @@ namespace EasySave_CLI.Models; // Namespace for the models
 public class log_m //Model for the history
 {
 
-    public log_m() // Builder
+    public log_m() {} // Builder for the history
+    
+    public string GetDate() // Function to get the current date in the format iso 8601
     {
-        
+        string date = DateTime.UtcNow.ToString("o"); // Get the current date in the format iso 8601
+        return date; // Return the current date in the format iso 8601
     }
+    
+
     static void CreateTodayLogFile(string filePath, string fileName) // Function to create the today date log json file
     // CreateTodayLogFile("../../../logs/", $"{fileName}.json");
     {
