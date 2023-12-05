@@ -94,7 +94,8 @@ public class save_m // Model for the saves
         
         //logJ(_name,source,target,fileSize differenceMS)
         
-        string toAdd2Log = "{\"Name\": \"" + name + "\"," + // Create the log
+        string toAdd2Log = "{\"Date\": \"" + _log.GetDate() + "\"," + // Create the log
+                           "\"Name\": \"" + name + "\"," + // Create the log
                            " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + "\"," + // Create the log
                            " \"TargetPath\": \"" + @target.Replace("\\", "\\\\") + "\"," + // Create the log
                            " \"FileName\": \"" + fileName + "\"," + // Create the log
@@ -107,6 +108,7 @@ public class save_m // Model for the saves
         {
             if (_log.RetrieveValueFromStateFile(name, "Name") != null) // If the save exists in the history
             {
+                _log.ModifyJsonFile("../../../state.json", name, "Date", _log.GetDate()); // Modify the date of the save in the history
                 if (source != null) _log.ModifyJsonFile("../../../state.json", name, "SourcePath", @source); // Modify the source path of the save in the history
                 if (target != null) _log.ModifyJsonFile("../../../state.json", name, "TargetPath", @target); // Modify the target path of the save in the history
                 _log.ModifyJsonFile("../../../state.json", name, "Size", fileSizeList[0]); // Modify the size of the save in the history
@@ -117,7 +119,8 @@ public class save_m // Model for the saves
             }
             else // If the save doesn't exist in the history
             {
-                string toAdd = "{\"Name\": \"" + name + "\"," + // Create the save in the history
+                string toAdd = "{\"Date\": \"" + _log.GetDate() + "\"," + // Create the save in the history
+                               "\"Name\": \"" + name + "\"," + // Create the save in the history
                                " \"SourcePath\": \"" + source + "\"," + // Create the save in the history
                                " \"TargetPath\": \"" + target + "\"," + // Create the save in the history
                                " \"Size\": " + fileSizeList[0] + ", " + // Create the save in the history
