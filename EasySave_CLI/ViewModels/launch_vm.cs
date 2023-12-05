@@ -24,10 +24,30 @@ public class launch_vm // View model for the launch
         _save = save; // Set the model for the saves
         _log = log; // Set the model for the history
     }
+    
+    static bool IsDirectory(string path) // Function to check if a path is a directory
+    {
+        try // Try to check if the path is a directory
+        {
+            return Directory.Exists(path); // Return if the path is a directory
+        }
+        catch (Exception ex) // If an error occured
+        {
+            Console.WriteLine($"Error checking directory: {ex.Message}"); // Display an error message
+            return false; // Return false
+        }
+    }
 
     public void SaveBackup(string? source, string? target, string? name) // Function to save a backup
     {
-        _save.SaveLaunch(source, target, name); // Save the backup
+        if (@source != null && IsDirectory(@source)) // If the source path is a directory
+        {
+            _save.SaveLaunch(source, target, name); // Save the backup
+        }
+        else // If the source path is a file
+        {
+            _save.CopyFile(source, target, source, name); // Save the backup
+        }
     }
     
     //Methods
@@ -45,6 +65,7 @@ public class launch_vm // View model for the launch
             string? name = _log.RetrieveValueFromStateFile(backup, "Name"); // Get the name of the save
             string? source = _log.RetrieveValueFromStateFile( backup, "SourcePath"); // Get the source path of the save
             string? target = _log.RetrieveValueFromStateFile( backup, "TargetPath"); // Get the target path of the save
+            _view.DisplaySave(name, source, target); // Display the save
             SaveBackup(source, target, name); // Save the backup
         }
     }
