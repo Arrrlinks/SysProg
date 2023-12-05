@@ -1,60 +1,56 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions; // Namespace for the regex
 
-namespace EasySave_CLI.Views;
+namespace EasySave_CLI.Views; // Namespace for the views
 
-public class launch_v
+public class launch_v // View for the launch
 {
-    public launch_v() {}
+    public launch_v() {} // Builder for the launch
 
-    public List<string> SetBackup()
+    public List<string> SetBackup() // Function to set the name of the save
     {
-        List<string> backups = new List<string>();
-        Console.WriteLine("chose the backups to execute \n syntax: \n 1-5 `\n 1; 4");
-        string command = Console.ReadLine();
-        
-        //Verify the type of command the user entered
-        //Set regex to check if there is a hyphen, Match for only one answer
-        Match hyphen = Regex.Match(command, @"^(\d)-(\d)$");
-        //Set regex to check if there is a hyphen, MatchCollection for several answers
-        MatchCollection semicolon = Regex.Matches(command, @"\d+");
+        List<string> backups = new List<string>(); // Create a list for the saves
+        Console.WriteLine("chose the backups to execute \n syntax: \n 1-5 `\n 1; 4"); // Display the syntax
+        string command = Console.ReadLine(); // Get the command
+        Match hyphen = Regex.Match(command, @"^(\d)-(\d)$"); // Get the saves with a hyphen
+        MatchCollection semicolon = Regex.Matches(command, @"\d+"); // Get the saves with a semicolon
         
         //-
-        if (hyphen.Success)
-        {
-            int firstBackup = int.Parse(hyphen.Groups[1].Value);
-            int lastBackup = int.Parse(hyphen.Groups[2].Value);
-            if (firstBackup >= 1 && firstBackup <= 5 &&
+        if (hyphen.Success) // If the command is valid
+        { 
+            int firstBackup = int.Parse(hyphen.Groups[1].Value); // Get the first save
+            int lastBackup = int.Parse(hyphen.Groups[2].Value); // Get the last save
+            if (firstBackup >= 1 && firstBackup <= 5 && 
                 lastBackup >= 1 && lastBackup <= 5 &&
-                firstBackup < lastBackup)
+                firstBackup < lastBackup) // If the saves are between 1 and 5 and the first save is before the last save
             {
-                for (int i = firstBackup; i <= lastBackup; i++)
+                for (int i = firstBackup; i <= lastBackup; i++) // For each save
                 {
-                    backups.Add("Save"+i);
+                    backups.Add("Save"+i); // Add the save to the list
                 }
             }
         }
         //;
-        else if (semicolon.Count > 0)
+        else if (semicolon.Count > 0) // If the command is valid
         {
-            foreach (Match match in semicolon)
+            foreach (Match match in semicolon) // For each save
             {
-                int backup = int.Parse(match.Value);
-                if (backup >= 1 && backup <= 5)
+                int backup = int.Parse(match.Value); // Get the save
+                if (backup >= 1 && backup <= 5) // If the save is between 1 and 5
                 {
-                    backups.Add("Save"+backup);
+                    backups.Add("Save"+backup); // Add the save to the list
                 }
             }
         }
         //1
-        else if (int.TryParse(command, out int number) && number >= 1 && number <= 5)
+        else if (int.TryParse(command, out int number) && number >= 1 && number <= 5) // If the command is valid
         {
-            backups.Add("Save"+number);
+            backups.Add("Save"+number); // Add the save to the list
         }
-        else
+        else // If the command is not valid
         {
-            Console.WriteLine("The command you entered is not valid, please try again.");
-            backups.AddRange(SetBackup());
+            Console.WriteLine("The command you entered is not valid, please try again."); // Display an error message
+            backups.AddRange(SetBackup()); // Get the saves
         }
-        return backups;
+        return backups; // Return the saves
     }
 }
