@@ -1,15 +1,19 @@
 ﻿using System.Text.RegularExpressions; // Namespace for the regex
+using EasySave_CLI.Models; // Namespace for the models
 
 namespace EasySave_CLI.Views; // Namespace for the views
 
 public class launch_v // View for the launch
 {
+    private static readonly language_m _language = new language_m(); // Instance of the language model
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang"); // Get the language chosen
     public launch_v() {} // Builder for the launch
 
     public List<string> SetBackup() // Function to set the name of the save
     {
+        Console.Clear();
         List<string> backups = new List<string>(); // Create a list for the saves
-        Console.WriteLine("chose the backups to execute \n syntax: \n 1-5 `\n 1; 4"); // Display the syntax
+        Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "ChooseBackups")); // Ask the user to enter the saves
         string command = Console.ReadLine(); // Get the command
         Match hyphen = Regex.Match(command, @"^(\d)-(\d)$"); // Get the saves with a hyphen
         MatchCollection semicolon = Regex.Matches(command, @"\d+"); // Get the saves with a semicolon
@@ -48,9 +52,37 @@ public class launch_v // View for the launch
         }
         else // If the command is not valid
         {
-            Console.WriteLine("The command you entered is not valid, please try again."); // Display an error message
+            Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "CommandNotValid")); // Display an error message
             backups.AddRange(SetBackup()); // Get the saves
         }
         return backups; // Return the saves
+    }
+
+    public bool setMode()
+    {
+        Console.Clear();
+        string? mode = String.Empty;
+        while (mode != "1" && mode != "2")
+        {
+            Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "ChooseMode")); // Ask the user to choose the mode
+            mode = Console.ReadLine(); // Get the mode
+            if(mode != "1" && mode != "2")
+            {
+                Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "InvalidMode")); // Display an error message
+            }
+        }
+        if (mode == "1")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public void DisplaySave(string name, string source, string target) // Function to display the save
+    {
+        Console.WriteLine($"{_language.RetrieveValueFromLanguageFile(lang, "CopyingFilesFrom")} {source} {_language.RetrieveValueFromLanguageFile(lang, "To")} {target} {_language.RetrieveValueFromLanguageFile(lang, "ForTheSave")} {name}"); // Display the save
     }
 }

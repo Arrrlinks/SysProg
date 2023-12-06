@@ -1,4 +1,4 @@
-﻿# User Manual
+# User Manual
 
 ---
 
@@ -8,6 +8,7 @@
 3. [Mode](#mode)
    1. [Setup Backup](#backup)
    2. [Launch Backup](#launch)
+   3. [History](#history)
 
 ---
 
@@ -26,7 +27,7 @@ To install EasySave, you need to download the latest release of the software. Yo
 
 When you launch the software, a screen will appear and ask you to choose a mode.
 
-The software can be used in two different modes: Backup and Launch
+The software can be used in three different modes: Backup, Launch and History.
 
 ![menu screen](./Pictures/mode.png "Menu Screen display the two modes")
 
@@ -36,6 +37,8 @@ To setup a backup, you need to launch the software with the following command:
 ```Backup ```
 
 You'll see this screen:
+
+![Setup screen](./Pictures/setup.png "Setup Screen display the backups")
 
 You'll have to select the bachup you want to setup. You'll be ask to enter the source path and the destination file path
 
@@ -50,3 +53,8 @@ You can launch one or several backups with the following commands:
 - ``` 5 ``` : Launch the backup 5
 - ``` 1;2;3 ``` : Launch the backups 1, 2 and 3
 - ``` 1-4 ``` : Launch the backups from 1 to 4
+
+### History <a name="history"></a>
+
+This mode allows you to see the history of the backups. You can see the history depending on the date.
+![History screen](./Pictures/history.png "History Screen display the backups history")
