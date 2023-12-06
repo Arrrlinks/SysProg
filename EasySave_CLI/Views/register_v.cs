@@ -1,61 +1,62 @@
-﻿namespace EasySave_CLI.Views;
+﻿using EasySave_CLI.Models;
 
-public class register_v
+namespace EasySave_CLI.Views; // Namespace for the views
+
+public class register_v // View for the register
 {
-    //Attributes
+    private static readonly language_m _language = new language_m(); // Instance of the language model
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
     
     //Builder
-    public register_v() {}
+    public register_v() {} // Builder for the register
     
     //Methods
     //Chose the backup to modify
-    public int SetBackup(int error = 0)
+    public int SetBackup(int error = 0) // Function to set the name of the save
     {
-        Console.Clear();
-        int backup = 0;
+        Console.Clear(); // Clear the console
+        int backup = 0; // Create a string for the name of the save
 
-        if (error == 1)
+        if (error == 1) // If the user entered a wrong command
         {
-            Console.WriteLine("The backup you entered is not valid, please try again.");
+            Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "BackupNotValid")); // Display an error message
         }
-        Console.WriteLine("Select the backup you want to Modify or Create (1-5)");
-        //Véry the user input an int
-        try
+        Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "SelectBackup")); // Ask the user to enter the name of the save
+        try // Try to get the backup
         {
-            backup = Convert.ToInt32(Console.ReadLine());
+            backup = Convert.ToInt32(Console.ReadLine()); // Get the backup
         }
-        catch (FormatException)
+        catch (FormatException) // If the backup is not a number
         {
-            backup = SetBackup(1);
+            backup = SetBackup(1); // Get the backup
         }
-        return backup;
+        return backup; // Return the backup
     }
 
-    //Set the source and target path of the backup
-    public string? SetPath(int mode = 0)
+    public string? SetPath(int mode = 0) // Function to set the path of the save
     {
-        Console.Clear();
-        string? filePath;
-        if (mode == 0)
+        Console.Clear(); // Clear the console
+        string? filePath; // Create a string for the path of the save
+        if (mode == 0) // If the mode is "source"
         {
-            Console.WriteLine("Enter the path of the file you want to save");
-            filePath = Console.ReadLine();
-            while (Directory.Exists(@filePath) == false && File.Exists(@filePath) == false)
+            Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "EnterPath")); // Display the syntax
+            filePath = Console.ReadLine(); // Get the path of the save
+            while (Directory.Exists(@filePath) == false && File.Exists(@filePath) == false) // While the path is not valid
             {
-                Console.WriteLine("The path you entered is not valid, please try again.");
-                filePath = Console.ReadLine();
+                Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "PathNotValid")); // Display an error message
+                filePath = Console.ReadLine(); // Get the path of the save
             }
         }
-        else
+        else // If the mode is "target"
         {
-            Console.WriteLine("Enter the path of where the file will be save");
-            filePath = Console.ReadLine();
-            while (Directory.Exists(@filePath) == false)
+            Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "EnterSavePath")); // Display the syntax
+            filePath = Console.ReadLine(); // Get the path of the save
+            while (Directory.Exists(@filePath) == false) // While the path is not valid
             {
-                Console.WriteLine("The path you entered is not valid, please try again.");
-                filePath = Console.ReadLine();
+                Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "PathNotValid")); // Display an error message
+                filePath = Console.ReadLine(); // Get the path of the save
             }
         }
-        return filePath;
+        return filePath; // Return the path of the save
     }
 }

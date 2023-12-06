@@ -61,11 +61,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matth\\OneDrive\\Documents\\CESI\\A3\\DS\\Projet\\SysProg\\EasySave_CLI\\EasySave_CLI.csproj",
+      "projectUniqueName": "C:\\Users\\Antoine\\Documents\\GitHub\\SysProg\\EasySave_CLI\\EasySave_CLI.csproj",
       "projectName": "EasySave_CLI",
-      "projectPath": "C:\\Users\\matth\\OneDrive\\Documents\\CESI\\A3\\DS\\Projet\\SysProg\\EasySave_CLI\\EasySave_CLI.csproj",
-      "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\matth\\OneDrive\\Documents\\CESI\\A3\\DS\\Projet\\SysProg\\EasySave_CLI\\obj\\",
+      "projectPath": "C:\\Users\\Antoine\\Documents\\GitHub\\SysProg\\EasySave_CLI\\EasySave_CLI.csproj",
+      "packagesPath": "C:\\Users\\Antoine\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Antoine\\Documents\\GitHub\\SysProg\\EasySave_CLI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

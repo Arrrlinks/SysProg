@@ -1,18 +1,24 @@
-﻿namespace EasySave_CLI.Views;
+﻿using EasySave_CLI.Models; // Namespace for the models
+namespace EasySave_CLI.Views; // Namespace for the views
 
-public class mode_v
+public class mode_v // View for the mode
 {
-    public mode_v() {}
+    public mode_v() {} // Builder for the mode
     
-    //Get the mode the user want 
-    public string? SetMode(int error)
+    private static readonly language_m _language = new language_m(); // Instance of the language model
+    private static string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang"); // Get the language
+    public string? SetMode(int error) // Function to set the mode
     {
-        if (error == 1)
+        if (error == 1) // If the user entered a wrong command
         {
-            Console.WriteLine("The command you entered is not valid, please try again.");
+            Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "CommandNotValid")); // Display an error message
+            Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "PressAnyKey")); // Display a message
+            Console.ReadKey(); // Wait for the user to press a key
         }
-        Console.WriteLine("Select the mode \n - Launch \n - Backup \n - Exit");
-        string? mode = Console.ReadLine();
-        return mode;
+        Console.Clear(); // Clear the console
+        lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang"); // Get the language
+        Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "ModeSelect")); // Display the modes
+        string? mode = Console.ReadLine(); // Get the mode
+        return mode; // Return the mode
     }
 }
