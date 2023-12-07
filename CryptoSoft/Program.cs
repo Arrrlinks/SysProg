@@ -8,45 +8,38 @@ namespace CryptoSoft
     {
         static void Main(string[] args)
         {
-            string data;
+            
+            //initialise variables
+            string path = args[0];
+            string key = args[1];;
+            string text = "";
             //if not the good number of arguments, quit
             if (args.Length != 2)
             {
                 throw new ArgumentNullException("Not enough arguments");
             }
-            //if the key is not 8 bits long, quit
-            if (args[1].Length != 8)
+            //if the key is more than 64 bytes or null, quit
+            if (key.Length == 0 | key.Length >32)
             {
                 throw new ArgumentException("Byte must be 8 bits long");
             }
-            //string to byte
-            byte key = Convert.ToByte(args[1], 2);
-            //check if the file exists
-            if (File.Exists(args[0]))
+            
+            int Index = 0;
+            if (File.Exists(path))
             {
-                //read the file
-                data = File.ReadAllText(args[0]);
+                //for each character in the file
+                foreach (char character in File.ReadAllText(path))
+                {
+                    text += (char) (character^key[Index]);
+                    Index = (Index+1) % key.Length;
+                }
             }
             else
             {
                 //if not, quit
                 throw new FileNotFoundException("File not found");
             }
-            //stringbuilder to store the binary string
-            StringBuilder sb = new StringBuilder();
-            
-            //convert the string to binary
-            foreach (char c in data.ToCharArray())
-            {
-                sb.Append(Convert.ToString(c, 2).PadLeft(8, '0'));
-            }
-
-            //xor avec la clé qui est un byte
-            for (int i = 0; i < sb.Length; i++)
-            {
-                sb[i] = (char)(int)(sb[i] ^ key);
-            }
-            Console.WriteLine(sb.ToString());
+            File.WriteAllText(path, text);
         }
     }
 }

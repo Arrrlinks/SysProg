@@ -35,12 +35,8 @@ namespace EasySave_Graphique
             Windowsform.DialogResult result = openfile.ShowDialog();
             if (result == Windowsform.DialogResult.OK)
             {
-                if (!(text2.Text == ""))
-                {
-                    text2.Text = "";
-                }
                 string foldername = openfile.SelectedPath;
-                text1.Text = foldername;
+                text.Text = foldername;
             }
             // Show the dialog and get the result
         }
@@ -51,12 +47,8 @@ namespace EasySave_Graphique
             Windowsform.DialogResult result = openfile.ShowDialog();
             if (result == Windowsform.DialogResult.OK)
             {
-                if (!(text1.Text == ""))
-                {
-                    text1.Text = "";
-                }
                 string filename = openfile.FileName;
-                text2.Text = filename;
+                text.Text = filename;
             }
         }
     }
