@@ -1,0 +1,5 @@
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\publish\CryptoSoft.exe
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\publish\CryptoSoft.dll
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\publish\CryptoSoft.deps.json
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\publish\CryptoSoft.runtimeconfig.json
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\publish\CryptoSoft.pdb
