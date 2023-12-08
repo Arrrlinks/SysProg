@@ -6,7 +6,7 @@ public class mode_v // View for the mode
     public mode_v() {} // Builder for the mode
     
     private static readonly language_m _language = new language_m(); // Instance of the language model
-    private static string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang"); // Get the language
+    private static string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true); // Get the language
     public string? SetMode(int error) // Function to set the mode
     {
         if (error == 1) // If the user entered a wrong command
@@ -16,7 +16,7 @@ public class mode_v // View for the mode
             Console.ReadKey(); // Wait for the user to press a key
         }
         Console.Clear(); // Clear the console
-        lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang"); // Get the language
+        lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true); // Get the language
         Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "ModeSelect")); // Display the modes
         string? mode = Console.ReadLine(); // Get the mode
         return mode; // Return the mode

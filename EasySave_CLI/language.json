@@ -1,11 +1,7 @@
 [
   {
-    "Name": "LanguageChosen",
-    "Lang": "en"
-  },
-  {
     "Name": "en",
-    "ModeSelect": "Select the mode (1,2,3,4,5,6) \n 1 - launch save(s) \n 2 - save a backup \n 3 - state of the backups \n 4 - logs \n 5 - change the language \n 6 - exit",
+    "ModeSelect": "Select the mode (1,2,3,4,5,6,7) \n 1 - launch save(s) \n 2 - save a backup \n 3 - state of the backups \n 4 - logs \n 5 - change the language \n 6 - change logs' format \n 7 - exit",
     "CommandNotValid": "The command you entered is not valid, please try again.",
     "PressAnyKey": "Press any key to continue...",
     "LogsFrom": "Logs from",
@@ -27,11 +23,14 @@
     "PathNotValid": "The path you entered is not valid, please try again.",
     "ChooseLanguage": "Choose the language you want to use (en/fr) :",
     "InvalidLanguage": "The language you entered is not valid, please try again.",
-    "LanguageChanged": "The language has been successfully changed to english."
+    "LanguageChanged": "The language has been successfully changed to english.",
+    "ChooseFormat": "Choose the format you want to use for the logs (json,xml) :",
+    "InvalidFormat": "The format you entered is not valid, please try again.",
+    "FormatChanged": "The format has been successfully changed to "
   },
   {
     "Name": "fr",
-    "ModeSelect": "Sélectionnez le mode (1,2,3,4,5) \n 1 - lancer une/des sauvegardes \n 2 - stocker une sauvegarde \n 3 - état des sauvegardes \n 4 - journal \n 5 - changer la langue \n 6 - quitter",
+    "ModeSelect": "Sélectionnez le mode (1,2,3,4,5,6,7) \n 1 - lancer une/des sauvegardes \n 2 - stocker une sauvegarde \n 3 - état des sauvegardes \n 4 - journal \n 5 - changer la langue \n 6 - changer format journal\n 7 - quitter",
     "CommandNotValid": "La commande que vous avez entrée n'est pas valide, veuillez réessayer.",
     "PressAnyKey": "Appuyez sur une touche pour continuer...",
     "LogsFrom": "Journal du",
@@ -53,6 +52,9 @@
     "PathNotValid": "Le chemin que vous avez entré n'est pas valide, veuillez réessayer.",
     "ChooseLanguage": "Choisissez la langue que vous souhaitez utiliser (en/fr) :",
     "InvalidLanguage": "La langue que vous avez entrée n'est pas valide, veuillez réessayer.",
-    "LanguageChanged": "La langue a été changée avec succès en français."
+    "LanguageChanged": "La langue a été changée avec succès en français.",
+    "ChooseFormat": "Sélectionnez le format que vous souhaitez utiliser pour le journal(json,xml) :",
+    "InvalidFormat": "Le format que vous avez entré n'est pas valide, veuillez réessayer.",
+    "FormatChanged": "Le format a été changé avec succès en "
   }
 ]
