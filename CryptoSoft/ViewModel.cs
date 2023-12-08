@@ -51,6 +51,11 @@ public class ViewModel
         {
             _key = _view.GetKey();
         }
+        if (File.Exists(_path) == false || _key.Length > 64 || _key.Length == 0)
+        {
+            _view.ShowError();
+            return;
+        }
         Encrypt();
     }
     
