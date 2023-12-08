@@ -3,6 +3,11 @@
 public class View
 {
     public View(){}
+
+    public void ShowError()
+    {
+        Console.WriteLine("Error");
+    }
     
     public string GetPath()
     {
