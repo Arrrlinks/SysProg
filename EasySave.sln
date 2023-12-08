@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySave_CLI", "EasySave_CLI\EasySave_CLI.csproj", "{14999C32-1225-4C09-B2D9-62F96830BE48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySave_Graphique", "EasySave_Graphique\EasySave_Graphique.csproj", "{533287A1-9F7D-4F2D-B909-D8E677006BF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoSoft", "CryptoSoft\CryptoSoft.csproj", "{D12CF4E9-B18B-4835-90EA-F2A0F84A0300}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{14999C32-1225-4C09-B2D9-62F96830BE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14999C32-1225-4C09-B2D9-62F96830BE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14999C32-1225-4C09-B2D9-62F96830BE48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{533287A1-9F7D-4F2D-B909-D8E677006BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{533287A1-9F7D-4F2D-B909-D8E677006BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{533287A1-9F7D-4F2D-B909-D8E677006BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{533287A1-9F7D-4F2D-B909-D8E677006BF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D12CF4E9-B18B-4835-90EA-F2A0F84A0300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12CF4E9-B18B-4835-90EA-F2A0F84A0300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12CF4E9-B18B-4835-90EA-F2A0F84A0300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12CF4E9-B18B-4835-90EA-F2A0F84A0300}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

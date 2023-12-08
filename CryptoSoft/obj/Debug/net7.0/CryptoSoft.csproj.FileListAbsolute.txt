@@ -1,0 +1,14 @@
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\CryptoSoft.exe
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\CryptoSoft.deps.json
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\CryptoSoft.runtimeconfig.json
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\CryptoSoft.dll
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\bin\Debug\net7.0\CryptoSoft.pdb
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\CryptoSoft.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\CryptoSoft.AssemblyInfoInputs.cache
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\CryptoSoft.AssemblyInfo.cs
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\CryptoSoft.csproj.CoreCompileInputs.cache
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\CryptoSoft.dll
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\refint\CryptoSoft.dll
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\CryptoSoft.pdb
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\CryptoSoft.genruntimeconfig.cache
+C:\Users\matth\Documents\CESI\A3\DS\Projet\SysProg\CryptoSoft\obj\Debug\net7.0\ref\CryptoSoft.dll
