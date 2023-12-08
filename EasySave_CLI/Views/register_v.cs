@@ -5,7 +5,7 @@ namespace EasySave_CLI.Views; // Namespace for the views
 public class register_v // View for the register
 {
     private static readonly language_m _language = new language_m(); // Instance of the language model
-    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true);
     
     //Builder
     public register_v() {} // Builder for the register

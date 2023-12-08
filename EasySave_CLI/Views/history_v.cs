@@ -5,7 +5,7 @@ namespace EasySave_CLI.Views; // Namespace for the views
 public class history_v // View for the history
 {
     private static readonly language_m _language = new language_m(); // Instance of the language model
-    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true);
 
     static void DisplayLogFile(string? inputDate) // Function to display the log file 
     {
@@ -18,6 +18,13 @@ public class history_v // View for the history
                 {
                     string fileContent = File.ReadAllText(filePath); // Read the file
                     Console.WriteLine($"{_language.RetrieveValueFromLanguageFile(lang, "LogsFrom")} {selectedDate.ToString("dd/MM/yyyy")} :\n{fileContent}"); // Display the file content
+                }
+
+                filePath = $"../../../logs/{selectedDate.ToString("yyyyMMdd")}.xml"; // Get the file path
+                if (File.Exists(filePath)) // If the file exists
+                {
+                    string fileContent = File.ReadAllText(filePath); // Read the file
+                    Console.WriteLine(fileContent); // Display the file content
                 }
                 else // If the file doesn't exist
                 {

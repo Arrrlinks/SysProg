@@ -1,9 +1,13 @@
 ﻿using Newtonsoft.Json.Linq; // Library for json
+using System.Xml;
+using System.Xml.Linq; // Library for xml
 
 namespace EasySave_CLI.Models; // Namespace for the models
 
 public class log_m //Model for the history
 {
+    private static readonly format_m _format = new format_m(); // Instance of the format model
+    private static readonly string? format = _format.RetrieveValueFromConfigFile("Format", "Format");
 
     public log_m() {} // Builder for the history
     
@@ -14,7 +18,7 @@ public class log_m //Model for the history
     }
     
 
-    static void CreateTodayLogFile(string filePath, string fileName) // Function to create the today date log json file
+    static void CreateTodayLogFile(string filePath, string fileName, string format = "json") // Function to create the today date log json file
     // CreateTodayLogFile("../../../logs/", $"{fileName}.json");
     {
         try // Try to create the json file
@@ -22,7 +26,15 @@ public class log_m //Model for the history
             string fullPath = Path.Combine(filePath, fileName); // Get the full path of the json file
             if (!File.Exists(fullPath)) // If the json file doesn't exist
             {
-                File.WriteAllText(fullPath, "[]"); // Create the json file
+                if (format == "json")
+                {
+                    File.WriteAllText(fullPath, "[]"); // Create the json file
+                }
+                else
+                {
+                    File.WriteAllText(fullPath, "<Root></Root>"); // Create the json file
+                }
+                
             }
         }
         catch (Exception ex) // If an error occured
@@ -45,8 +57,6 @@ public class log_m //Model for the history
     {
         try // Try to modify the json file
         {
-            string fileName = DateFileNameFormat(); // Get the date in the format "YYYYMMDD"
-            CreateTodayLogFile("../../../logs/", $"{fileName}.json"); // Create the today date log json file
 
             string jsonContent = File.ReadAllText(filePath); // Get the content of the json file
             JArray jsonArray = JArray.Parse(jsonContent); // Parse the content of the json file
@@ -110,21 +120,39 @@ public class log_m //Model for the history
     }
 
     public void AddEntryToLogFile(string inputEntry) // Function to add an entry to the today date log json file
-    // AddEntryToLogFile("{ \"Name\": \"Save1\", \"SourcePath\": \"C:/Users/alexa/Desktop/ESGI/ESGI 3/Projet C#/EasySave_CLI/Files/Save1\", \"TargetPath\": \"C:/Users/alexa/Desktop/ESGI/ESGI 3/Projet C#/EasySave_CLI/Files/Save1\", \"FileSize\": 0, \"NbFiles\": 0, \"Date\": \"2021-10-13T15:00:00.0000000Z\", \"Duration\": 0 }");
     {
         try // Try to add the entry to the today date log json file
         {
             string fileName = DateFileNameFormat(); // Get the date in the format "YYYYMMDD"
-            string filePath = $"../../../logs/{fileName}.json"; // Get the path of the today date log json file
-            CreateTodayLogFile("../../../logs/", $"{fileName}.json"); // Create the today date log json file
+            string filePath = $"../../../logs/{fileName}.{format}"; // Get the path of the today date log json file
+            CreateTodayLogFile("../../../logs/", $"{fileName}.{format}", format); // Create the today date log json file
             if (File.Exists(filePath)) // If the today date log json file exists
             {
+                if (format == "json") // If the format is json
+                {
                 string jsonContent = File.ReadAllText(filePath); // Get the content of the today date log json file
                 JArray jsonArray = JArray.Parse(jsonContent); // Parse the content of the today date log json file
                 JObject newEntry = JObject.Parse(inputEntry); // Get the new entry
                 jsonArray.Add(newEntry); // Add the new entry to the today date log json file
                 string updatedJsonContent = jsonArray.ToString(); // Get the updated content of the today date log json file
                 File.WriteAllText(filePath, updatedJsonContent); // Write the updated content of the today date log json file
+                }
+                else // If the format is xml
+                {
+                    XmlDocument xmlDoc = new XmlDocument(); // Create a new xml document
+                    xmlDoc.Load(filePath); // Load the xml document
+                    XmlElement entryElement = xmlDoc.CreateElement("LogEntry"); // Create a new xml element
+                    JObject entryObject = JObject.Parse(inputEntry); // Get the new entry
+                    foreach (var property in entryObject.Properties()) // For each property of the new entry
+                    {
+                        XmlElement propertyElement = xmlDoc.CreateElement(property.Name); // Create a new xml element
+                        propertyElement.InnerText = property.Value.ToString(); // Set the value of the xml element
+                        entryElement.AppendChild(propertyElement); // Add the xml element to the xml document
+                    }
+                    xmlDoc.DocumentElement.AppendChild(entryElement);
+                    xmlDoc.Save(filePath);
+                }
+
             }
             else // If the today date log json file doesn't exist
             {
