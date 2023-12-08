@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace EasySave_Graphique
 {
@@ -51,5 +52,17 @@ namespace EasySave_Graphique
                 text.Text = filename;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
+    
 }
+
