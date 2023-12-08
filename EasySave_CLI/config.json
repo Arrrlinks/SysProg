@@ -1,5 +1,9 @@
 [
   {
+    "Name": "ChosenLanguage",
+    "Lang": "en"
+  },
+  {
     "Name": "Format",
     "Format": "json"
   }

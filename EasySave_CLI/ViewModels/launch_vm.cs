@@ -11,7 +11,7 @@ public class launch_vm // View model for the launch
     private save_m _save; // Model for the saves
     private log_m _log; // Model for the history
     private static readonly language_m _language = new language_m(); // Instance of the language model
-    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang"); // Get the language chosen
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true); // Get the language chosen
 
     //Builders
     public launch_vm() // Builder for the launch

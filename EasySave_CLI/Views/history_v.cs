@@ -5,7 +5,7 @@ namespace EasySave_CLI.Views; // Namespace for the views
 public class history_v // View for the history
 {
     private static readonly language_m _language = new language_m(); // Instance of the language model
-    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true);
 
     static void DisplayLogFile(string? inputDate) // Function to display the log file 
     {

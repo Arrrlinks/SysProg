@@ -6,7 +6,7 @@ namespace EasySave_CLI.Views; // Namespace for the views
 public class launch_v // View for the launch
 {
     private static readonly language_m _language = new language_m(); // Instance of the language model
-    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang"); // Get the language chosen
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true); // Get the language chosen
     public launch_v() {} // Builder for the launch
 
     public List<string> SetBackup() // Function to set the name of the save

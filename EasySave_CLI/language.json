@@ -1,11 +1,7 @@
 [
   {
-    "Name": "LanguageChosen",
-    "Lang": "en"
-  },
-  {
     "Name": "en",
-    "ModeSelect": "Select the mode (1,2,3,4,5,6) \n 1 - launch save(s) \n 2 - save a backup \n 3 - state of the backups \n 4 - logs \n 5 - change the language \n 6 - change logs' format \n 7 - exit",
+    "ModeSelect": "Select the mode (1,2,3,4,5,6,7) \n 1 - launch save(s) \n 2 - save a backup \n 3 - state of the backups \n 4 - logs \n 5 - change the language \n 6 - change logs' format \n 7 - exit",
     "CommandNotValid": "The command you entered is not valid, please try again.",
     "PressAnyKey": "Press any key to continue...",
     "LogsFrom": "Logs from",
@@ -34,7 +30,7 @@
   },
   {
     "Name": "fr",
-    "ModeSelect": "Sélectionnez le mode (1,2,3,4,5) \n 1 - lancer une/des sauvegardes \n 2 - stocker une sauvegarde \n 3 - état des sauvegardes \n 4 - journal \n 5 - changer la langue \n 6 - changer format journal\n 7 - quitter",
+    "ModeSelect": "Sélectionnez le mode (1,2,3,4,5,6,7) \n 1 - lancer une/des sauvegardes \n 2 - stocker une sauvegarde \n 3 - état des sauvegardes \n 4 - journal \n 5 - changer la langue \n 6 - changer format journal\n 7 - quitter",
     "CommandNotValid": "La commande que vous avez entrée n'est pas valide, veuillez réessayer.",
     "PressAnyKey": "Appuyez sur une touche pour continuer...",
     "LogsFrom": "Journal du",

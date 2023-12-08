@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq; // Library for json
 public class state_v // View for the state
 {
     private static readonly language_m _language = new language_m(); // Instance of the language model
-    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
+    private static readonly string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true);
     public static void DisplayState() // Function to print the json file information
     { 
         try // Try to print the json file information

@@ -4,12 +4,13 @@ namespace EasySave_CLI.Models;
 
 public class language_m
 {
-    public string? RetrieveValueFromLanguageFile(string? itemName, string? key) // Function to retrieve a value from a json file
+    public string? RetrieveValueFromLanguageFile(string? itemName, string? key, bool isConfig = false) // Function to retrieve a value from a json file
         // RetrieveValueFromStateFile("Save1", "SourcePath");
     {
         try // Try to retrieve the value from the json file
         {
             string jsonContent = File.ReadAllText("../../../language.json"); // Get the content of the json file
+            if (isConfig) jsonContent = File.ReadAllText("../../../config.json"); // Get the content of the json file
             JArray jsonArray = JArray.Parse(jsonContent); // Parse the content of the json file
 
             JObject jsonObject = jsonArray.Children<JObject>() // Get the json object
@@ -44,12 +45,12 @@ public class language_m
     {
         try // Try to modify the json file
         {
-            string filePath = "../../../language.json"; // Get the path of the json file
+            string filePath = "../../../config.json"; // Get the path of the json file
             string jsonContent = File.ReadAllText(filePath); // Get the content of the json file
             JArray jsonArray = JArray.Parse(jsonContent); // Parse the content of the json file
 
             JObject jsonObject = jsonArray.Children<JObject>() // Get the json object
-                .FirstOrDefault(item => item["Name"] != null && item["Name"].ToString() == "LanguageChosen"); // Get the json object
+                .FirstOrDefault(item => item["Name"] != null && item["Name"].ToString() == "ChosenLanguage"); // Get the json object
 
             if (jsonObject != null) // If the json object exists
             {
