@@ -1,16 +1,11 @@
 ﻿using EasySave_CLI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EasySave_CLI.Views
 {
     internal class format_v
     {
         private static readonly language_m _language = new language_m(); // Instance of the language model
-        private static string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
+        private static string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true);
 
         public void Display()
         {

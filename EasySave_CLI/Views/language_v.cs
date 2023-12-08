@@ -4,7 +4,7 @@ namespace EasySave_CLI.Views;
 public class language_v
 {
     private static readonly language_m _language = new language_m(); // Instance of the language model
-    private static string? lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
+    private static string? lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true);
     public void Display()
     {
         Console.Clear();
@@ -13,7 +13,7 @@ public class language_v
     
     public void ChangedLanguage()
     {
-        lang = _language.RetrieveValueFromLanguageFile("LanguageChosen", "Lang");
+        lang = _language.RetrieveValueFromLanguageFile("ChosenLanguage", "Lang", true);
         Console.Clear();
         Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "LanguageChanged"));
         Console.WriteLine(_language.RetrieveValueFromLanguageFile(lang, "PressAnyKey"));
