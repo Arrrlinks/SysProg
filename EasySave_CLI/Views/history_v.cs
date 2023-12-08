@@ -19,6 +19,13 @@ public class history_v // View for the history
                     string fileContent = File.ReadAllText(filePath); // Read the file
                     Console.WriteLine($"{_language.RetrieveValueFromLanguageFile(lang, "LogsFrom")} {selectedDate.ToString("dd/MM/yyyy")} :\n{fileContent}"); // Display the file content
                 }
+
+                filePath = $"../../../logs/{selectedDate.ToString("yyyyMMdd")}.xml"; // Get the file path
+                if (File.Exists(filePath)) // If the file exists
+                {
+                    string fileContent = File.ReadAllText(filePath); // Read the file
+                    Console.WriteLine(fileContent); // Display the file content
+                }
                 else // If the file doesn't exist
                 {
                     Console.WriteLine($"{_language.RetrieveValueFromLanguageFile(lang, "FileForTheDate")} {selectedDate.ToString("dd/MM/yyyy")} {_language.RetrieveValueFromLanguageFile(lang, "DoesntExists")}"); // Display an error message

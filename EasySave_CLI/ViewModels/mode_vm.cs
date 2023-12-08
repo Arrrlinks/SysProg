@@ -11,6 +11,7 @@ public class mode_vm // View model for the mode
     private history_vm _history; // View model for the history
     private state_vm _state = new state_vm(); // View model for the state
     private language_vm _lang = new language_vm(); // View model for the state
+    private format_vm _format = new format_vm(); // View model for the state
     
     //Builders
     public mode_vm() // Builder for the mode
@@ -21,9 +22,10 @@ public class mode_vm // View model for the mode
         _history = new history_vm(); // Create a new view model for the history
         _state = new state_vm(); // Create a new view model for the state
         _lang = new language_vm(); // Create a new view model for the state
+        _format = new format_vm(); // Create a new view model for the state 
     }
     
-    public mode_vm(mode_v view, register_vm register, launch_vm launch, history_vm history, state_vm state, language_vm lang) // Builder for the mode
+    public mode_vm(mode_v view, register_vm register, launch_vm launch, history_vm history, state_vm state, language_vm lang, format_vm format) // Builder for the mode
     {
         _view = view; // Set the view for the mode
         _register = register; // Set the view model for the register
@@ -31,13 +33,14 @@ public class mode_vm // View model for the mode
         _history = history; // Set the view model for the history
         _state = state; // Set the view model for the state
         _lang = lang; // Set the view model for the state
+        _format = format; // Create a new view model for the state
     }
     
     //Methods
     public string SetMode() // Function to set the mode
     {
         string? mode = _view.SetMode(0).ToUpper(); // Get the mode
-        while (mode != "LAUNCH" && mode != "BACKUP" && mode != "EXIT" && mode != "HISTORY" && mode != "STATE" && mode != "LANGUAGE" && mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6") // While the mode is not valid
+        while (mode != "LAUNCH" && mode != "BACKUP" && mode != "EXIT" && mode != "HISTORY" && mode != "STATE" && mode != "LANGUAGE" && mode != "FORMAT" && mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7" ) // While the mode is not valid
         {
             mode = _view.SetMode(1).ToUpper(); // Get the mode
         }
@@ -49,16 +52,19 @@ public class mode_vm // View model for the mode
             case "2": // If the mode is "backup"
                 mode = "BACKUP"; // Set the mode to "backup"
                 break; // Break the switch
-            case "3": // If the mode is "backup"
-                mode = "STATE"; // Set the mode to "backup"
+            case "3": // If the mode is "state"
+                mode = "STATE"; // Set the mode to "state"
                 break; // Break the switch
             case "4": // If the mode is "history"
                 mode = "HISTORY"; // Set the mode to "history"
                 break; // Break the switch
-            case "5": // If the mode is "exit"
-                mode = "LANGUAGE"; // Set the mode to "exit"
+            case "5": // If the mode is "language"
+                mode = "LANGUAGE"; // Set the mode to "language"
                 break; // Break the switch
-            case "6": // If the mode is "exit"
+            case "6": // If the mode is "format"
+                mode = "FORMAT"; // Set the mode to "format"
+                break; // Break the switch
+            case "7":
                 mode = "EXIT"; // Set the mode to "exit"
                 break; // Break the switch
         }
@@ -86,6 +92,9 @@ public class mode_vm // View model for the mode
                     break; // Break the switch
                 case "LANGUAGE": // If the mode is "language"
                     _lang.Run();
+                    break;
+                case "FORMAT": // If the mode is "format"
+                    _format.Run();
                     break;
                 case "EXIT": // If the mode is "exit"
                     Environment.Exit(1); // Exit the program
