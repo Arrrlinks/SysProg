@@ -52,6 +52,23 @@ namespace EasySave_Graphique
                 //text.Text = filename;
             }
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void UIElement_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource is CheckBox)
+            {
+                // Laisser la sélection se produire
+            }
+            else
+            {
+                // Annuler la sélection en empêchant la propagation de l'événement
+                e.Handled = true;
+            }
+        }
     }
     
 }

@@ -14,7 +14,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="EasySave" MinHeight="450" MinWidth="950">
+        Title="EasySave" MinHeight="450" MinWidth="1050">
     <Grid>
         <!-- NavBar -->
         <materialDesign:Card>
@@ -53,14 +53,71 @@
           <ListView.View>
             <GridView>
               <GridViewColumn
+                DisplayMemberBinding="{Binding Save}"
+                Header="Save Number" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Name}"
+                Header="Name" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Source}"
+                Header="Source Path" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Target}"
+                Header="Target Path" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Number}"
+                Header="Files Number" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Size}"
+                Header="Size" />
+            </GridView>
+          </ListView.View>
+        </ListView>
+        
+      </Grid>
+      
+    </TabItem>
+    
+    <!-- Tab 2save -->
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ContentSaveMove" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="Save" />
+        </StackPanel>
+        
+        <!-- list tab 2 save -->
+      </TabItem.Header>
+      
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <!-- list mettre une list -->
+        
+        <ListView Grid.Row="1" Grid.RowSpan="2"
+                  ItemsSource="{Binding Items1}"
+                  PreviewMouseDown="UIElement_OnPreviewMouseDown">
+          <ListView.View>
+            <GridView>
+              <GridViewColumn
                 Header="opt">
                 <GridViewColumn.CellTemplate>
                   <DataTemplate>
-                    <CheckBox
-                      VerticalAlignment="Center"
-                      IsChecked="{Binding IsSelected}"/>
+                    <CheckBox Click="ButtonBase_OnClick"  IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListViewItem}, Mode=TwoWay}" />
                   </DataTemplate>
-                    </GridViewColumn.CellTemplate>
+                </GridViewColumn.CellTemplate>
               </GridViewColumn>
               <GridViewColumn
                 DisplayMemberBinding="{Binding Save}"
@@ -78,7 +135,10 @@
                 DisplayMemberBinding="{Binding Number}"
                 Header="Files Number" />
               <GridViewColumn
-                Header="progress">
+                DisplayMemberBinding="{Binding Size}"
+                Header="Size" />
+              <GridViewColumn
+                Header="Progress">
                 <GridViewColumn.CellTemplate>
                   <DataTemplate>
                     <ProgressBar
@@ -92,41 +152,6 @@
         </ListView>
         
       </Grid>
-      
-    </TabItem>
-    
-    <!-- Tab 2 -->
-    <TabItem>
-      <TabItem.Header>
-        <StackPanel
-          Width="auto"
-          Height="auto">
-          <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="ContentSaveMove" />
-          <TextBlock
-            HorizontalAlignment="Center"
-            Text="Save" />
-        </StackPanel>
-        
-        <!-- list tab 2 -->
-      </TabItem.Header>
-      
-      <Grid>
-        <Grid.RowDefinitions>
-          <RowDefinition></RowDefinition>
-          <RowDefinition></RowDefinition>
-          <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        
-        <ListBox Grid.Row="1" Grid.RowSpan="2"></ListBox>
-      </Grid>
-      
-      
-      
-      
       
       
     </TabItem>
