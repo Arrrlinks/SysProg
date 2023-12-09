@@ -1,0 +1,115 @@
+﻿<Window x:Class="EasySave_Graphique.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySave_Graphique"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:saveView="clr-namespace:EasySave_Graphique.View.SaveView"
+        xmlns:modifyView="clr-namespace:EasySave_Graphique.View.ModifyView"
+        xmlns:historryView="clr-namespace:EasySave_Graphique.View.HistorryView"
+        xmlns:settingsView="clr-namespace:EasySave_Graphique.View.SettingsView"
+        mc:Ignorable="d"
+        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="EasySave" MinHeight="450" MinWidth="1050">
+    <Grid>
+        <!-- NavBar -->
+        <materialDesign:Card>
+  <TabControl
+    VerticalContentAlignment="Stretch"
+    materialDesign:ColorZoneAssist.Mode= "PrimaryMid"
+    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+    
+    <!-- Tab 1 -->
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ContentSaveCog" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="Modify" />
+        </StackPanel>
+      </TabItem.Header>
+      
+      <modifyView:Modify/>
+      
+    </TabItem>
+    
+    <!-- Tab 2 save -->
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ContentSaveMove" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="Save" />
+        </StackPanel>
+        
+      </TabItem.Header>
+      
+      <!-- list tab 2 save -->
+      <saveView:Save/>
+      
+    </TabItem>
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ClipboardTextClock" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="History" />
+        </StackPanel>
+      </TabItem.Header>
+      
+      <historryView:History/>
+      
+    </TabItem>
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="Cogs" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="Settings" />
+        </StackPanel>
+      </TabItem.Header>
+
+      <settingsView:Settings/>
+      
+    </TabItem>
+  </TabControl>
+</materialDesign:Card>
+        
+    </Grid>
+</Window>
