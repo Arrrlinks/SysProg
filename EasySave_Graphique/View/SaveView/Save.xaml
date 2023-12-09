@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="EasySave_Graphique.View.SaveView.Save"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:EasySave_Graphique.View.SaveView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+        <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <!-- list mettre une list -->
+        
+        <TextBlock
+          Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+          Text="Save"
+          FontWeight="SemiBold"
+          VerticalAlignment="Center"
+          />
+        
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+          </Grid.ColumnDefinitions>
+          
+          <ComboBox
+            Width="256"
+            materialDesign:HintAssist.Hint="Save Mode"
+            materialDesign:TextFieldAssist.HasClearButton="True"
+            ItemsSource="{Binding ShortStringList}"
+            Style="{StaticResource MaterialDesignOutlinedComboBox}">
+            <ComboBox.SelectedItem>
+              <Binding
+                Mode="TwoWay"
+                Path="SelectedValidationOutlined"
+                UpdateSourceTrigger="PropertyChanged">
+              </Binding>
+            </ComboBox.SelectedItem>
+          </ComboBox>
+          
+        </Grid>
+        
+        <ListView Grid.Row="2" Grid.RowSpan="2"
+                  ItemsSource="{Binding Items1}"
+                  PreviewMouseDown="UIElement_OnPreviewMouseDown">
+          <ListView.View>
+            <GridView>
+              <GridViewColumn
+                Header="opt">
+                <GridViewColumn.CellTemplate>
+                  <DataTemplate>
+                    <CheckBox Click="ButtonBase_OnClick" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListViewItem}, Mode=TwoWay}" />
+                  </DataTemplate>
+                </GridViewColumn.CellTemplate>
+              </GridViewColumn>
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Save}"
+                Header="Save Number" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Name}"
+                Header="Name" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Source}"
+                Header="Source Path" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Target}"
+                Header="Target Path" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Number}"
+                Header="Files Number" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Size}"
+                Header="Size" />
+              <GridViewColumn
+                Header="Progress">
+                <GridViewColumn.CellTemplate>
+                  <DataTemplate>
+                    <ProgressBar
+                      x:Name="DeterminateCircularProgress"
+                      Style="{StaticResource MaterialDesignCircularProgressBar}" />
+                  </DataTemplate>
+                </GridViewColumn.CellTemplate>
+              </GridViewColumn>
+            </GridView>
+          </ListView.View>
+        </ListView>
+        
+      </Grid>
+</UserControl>
