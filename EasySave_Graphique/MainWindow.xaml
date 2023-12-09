@@ -4,81 +4,186 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave_Graphique"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="EasySave" Height="450" Width="800">
-
-    <!-- Cut the screen in three parts -->
-    <Grid Background="#EBF2FA">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="EasySave" MinHeight="450" MinWidth="950">
+    <Grid>
+        <!-- NavBar -->
+        <materialDesign:Card>
+  <TabControl
+    VerticalContentAlignment="Stretch"
+    materialDesign:ColorZoneAssist.Mode= "PrimaryMid"
+    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+    
+    <!-- Tab 1 -->
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ContentSaveCog" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="Modify" />
+        </StackPanel>
+      </TabItem.Header>
+      <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height="0*"/>
-            <RowDefinition/>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
-        <!-- menu -->
-        <Grid Background="#06668C" Grid.RowSpan="4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid VerticalAlignment="Stretch">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="FrenchButton" BorderThickness="0" Grid.Column="0" Background="#427AA1">
-                    <Image Source="/Pictures/french.png"></Image>
-                </Button>
-                <Button x:Name="EnglishButton" BorderThickness="0" Grid.Column="1" Background="#427AA1">
-                    <Image Source="/Pictures/english.png"></Image>
-                </Button>
-            </Grid>
-
-
-            <Button Content="Modify" Margin="14,37,14,52" Grid.RowSpan="2" Grid.Row="1" Click="Button_Click_1">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" Background="#FF427AA1" Padding="10">
-                            <ContentPresenter/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Content="Save" Margin="14,72,14,16" Grid.RowSpan="2" Grid.Row="2" Click="Button_Click_1">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" Background="#FF427AA1" Padding="10">
-                            <ContentPresenter/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Content="Logs" Margin="14,27,14,62" Grid.RowSpan="2" Grid.Row="4" Click="Button_Click_1">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" Background="#FF427AA1" Padding="10">
-                            <ContentPresenter/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-
-        </Grid>
-        <Button Grid.Column="1" Grid.Row="0" Click="FolderButton_OnClick" Margin="0,0,0,4">button</Button>
-        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" x:Name="text" Margin="0,0,0,10"/>
-
-        <Button Grid.Column="2" Grid.Row="0" Click="FileButton_OnClick" Margin="0,0,0,4">button</Button>
-
+        
+        <!-- list tab 1 -->
+        
+        <ListView Grid.Row="1" Grid.RowSpan="2"
+          ItemsSource="{Binding Items1}">
+          <ListView.View>
+            <GridView>
+              <GridViewColumn
+                Header="opt">
+                <GridViewColumn.CellTemplate>
+                  <DataTemplate>
+                    <CheckBox
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding IsSelected}"/>
+                  </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+              </GridViewColumn>
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Save}"
+                Header="Save Number" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Name}"
+                Header="Name" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Source}"
+                Header="Source Path" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Target}"
+                Header="Target Path" />
+              <GridViewColumn
+                DisplayMemberBinding="{Binding Number}"
+                Header="Files Number" />
+              <GridViewColumn
+                Header="progress">
+                <GridViewColumn.CellTemplate>
+                  <DataTemplate>
+                    <ProgressBar
+                      x:Name="DeterminateCircularProgress"
+                      Style="{StaticResource MaterialDesignCircularProgressBar}" />
+                  </DataTemplate>
+                </GridViewColumn.CellTemplate>
+              </GridViewColumn>
+            </GridView>
+          </ListView.View>
+        </ListView>
+        
+      </Grid>
+      
+    </TabItem>
+    
+    <!-- Tab 2 -->
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ContentSaveMove" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="Save" />
+        </StackPanel>
+        
+        <!-- list tab 2 -->
+      </TabItem.Header>
+      
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <ListBox Grid.Row="1" Grid.RowSpan="2"></ListBox>
+      </Grid>
+      
+      
+      
+      
+      
+      
+    </TabItem>
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ClipboardTextClock" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="History" />
+        </StackPanel>
+      </TabItem.Header>
+      
+      
+      
+      <TextBlock>
+        <Run
+          Text="tab 3 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+      </TextBlock>
+      
+      
+      
+      
+      
+    </TabItem>
+    <TabItem>
+      <TabItem.Header>
+        <StackPanel
+          Width="auto"
+          Height="auto">
+          <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="Cogs" />
+          <TextBlock
+            HorizontalAlignment="Center"
+            Text="Settings" />
+        </StackPanel>
+      </TabItem.Header>
+      <TextBlock>
+        <Run
+          Text="tab 4 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+      </TextBlock>
+    </TabItem>
+  </TabControl>
+</materialDesign:Card>
+        
     </Grid>
 </Window>
