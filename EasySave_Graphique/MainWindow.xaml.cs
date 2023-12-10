@@ -1,5 +1,5 @@
 ﻿using System;
-using Windowsform = System.Windows.Forms;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,40 +16,46 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 
-namespace EasySave_Graphique
+namespace EasySave_Graphique // Namespace of the project
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window // Class of the main window
     {
-        public MainWindow()
+        public MainWindow() // Constructor of the main window
         {
-            InitializeComponent();
+            InitializeComponent(); // Initialize the main window
+        }
+        private void PathChooseMenu(object sender, RoutedEventArgs e) // Method to open the path choose window
+        {
+            PathChoose pathChoosePage = new PathChoose(); // Create a new path choose page
+            pathChoosePage.PathSelected += PathChoosePage_PathSelected; // Add an event handler to the path choose page
+            Window newWindow = new Window // Create a new window
+            {
+                Title = "Choose File Type", // Set the title of the window
+                Content = pathChoosePage, // Set the content of the window
+                SizeToContent = SizeToContent.WidthAndHeight // Set the size of the window
+            };
+            newWindow.Show(); // Show the window
         }
 
-        private void FolderButton_OnClick(object sender, RoutedEventArgs e)
+        private void PathChoosePage_PathSelected(object sender, PathSelectedEventArgs e) // Method to handle the path selected event
         {
-            
-            Windowsform.FolderBrowserDialog openfile = new Windowsform.FolderBrowserDialog();
-            Windowsform.DialogResult result = openfile.ShowDialog();
-            if (result == Windowsform.DialogResult.OK)
-            {
-                string foldername = openfile.SelectedPath;
-                text.Text = foldername;
-            }
-            // Show the dialog and get the result
+            TextBox.Text = e.SelectedPath; // Set the text of the text box to the selected path
         }
-
-        private void FileButton_OnClick(object sender, RoutedEventArgs e)
+        
+        private void SettingsMenu_Click(object sender, RoutedEventArgs e)
         {
-            Windowsform.OpenFileDialog openfile = new Windowsform.OpenFileDialog();
-            Windowsform.DialogResult result = openfile.ShowDialog();
-            if (result == Windowsform.DialogResult.OK)
+            Settings settingsPage = new Settings();
+            Window newWindow = new Window
             {
-                string filename = openfile.FileName;
-                text.Text = filename;
-            }
+                Title = "Settings",
+                Content = settingsPage,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize
+            };
+            newWindow.Show();
         }
     }
 }

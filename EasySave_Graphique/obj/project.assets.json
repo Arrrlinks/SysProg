@@ -8,19 +8,24 @@
     "net7.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\matth\\.nuget\\packages\\": {}
+    "C:\\Users\\Antoine\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matth\\Documents\\CESI\\A3\\DS\\Projet\\SysProg\\EasySave_Graphique\\EasySave_Graphique.csproj",
+      "projectUniqueName": "C:\\Users\\Antoine\\Documents\\GitHub\\SysProg\\EasySave_Graphique\\EasySave_Graphique.csproj",
       "projectName": "EasySave_Graphique",
-      "projectPath": "C:\\Users\\matth\\Documents\\CESI\\A3\\DS\\Projet\\SysProg\\EasySave_Graphique\\EasySave_Graphique.csproj",
-      "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\matth\\Documents\\CESI\\A3\\DS\\Projet\\SysProg\\EasySave_Graphique\\obj\\",
+      "projectPath": "C:\\Users\\Antoine\\Documents\\GitHub\\SysProg\\EasySave_Graphique\\EasySave_Graphique.csproj",
+      "packagesPath": "C:\\Users\\Antoine\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Antoine\\Documents\\GitHub\\SysProg\\EasySave_Graphique\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Antoine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,11 +65,11 @@
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           },
-          "Microsoft.WindowsDesktop.App.WPF": {
+          "Microsoft.WindowsDesktop.App": {
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

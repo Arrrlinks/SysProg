@@ -12,4 +12,8 @@
       <Folder Include="Pictures\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="bin\Debug\net7.0-windows\config.json" />
+    </ItemGroup>
+
 </Project>
