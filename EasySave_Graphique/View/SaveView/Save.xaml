@@ -15,8 +15,6 @@
           <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         
-        <!-- list mettre une list -->
-        
         <TextBlock
           Style="{StaticResource MaterialDesignHeadline2TextBlock}"
           Text="Save"

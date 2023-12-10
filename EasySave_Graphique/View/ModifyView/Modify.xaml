@@ -32,15 +32,15 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <Label> Name </Label>
-                <TextBox Text="{Binding SelectedBackup.Name, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+                <TextBox Text="{Binding SelectedBackupM.Name, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Label> Source </Label>
-                <TextBox Text="{Binding SelectedBackup.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+                <TextBox Text="{Binding SelectedBackupM.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
             </StackPanel>
             <StackPanel Grid.Column="2">
                 <Label> Target </Label>
-                <TextBox Text="{Binding SelectedBackup.Target, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+                <TextBox Text="{Binding SelectedBackupM.Target, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
             </StackPanel>
             <StackPanel Grid.Column="3">
                 <Button x:Name="addBtn" Command="{Binding AddCommand}" Margin="12,0,12,12" Background="#5BB450" Content="Send"></Button>
@@ -49,8 +49,8 @@
         </Grid>
         
         <DataGrid Grid.Row="2" Grid.RowSpan="2"
-                  ItemsSource="{Binding Backups}"
-                  SelectedItem="{Binding SelectedBackup}"
+                  ItemsSource="{Binding Backups }"
+                  SelectedItem="{Binding SelectedBackupM}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
                     AutoGenerateColumns="False"
                   IsReadOnly="True"
