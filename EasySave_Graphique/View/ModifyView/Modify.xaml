@@ -43,13 +43,13 @@
                 <TextBox Text="{Binding SelectedBackup.Target, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
             </StackPanel>
             <StackPanel Grid.Column="3">
-                <Button Margin="12,0,12,12" Background="#679436" Content="Send"></Button>
-                <Button Margin="12,0,12,12" Background="#BD3100" Content="Delete"></Button>
+                <Button x:Name="addBtn" Command="{Binding AddCommand}" Margin="12,0,12,12" Background="#5BB450" Content="Send"></Button>
+                <Button x:Name="deleteBtn" Command="{Binding RemoveCommand}" Margin="12,0,12,12" Background="#ED4437" Content="Delete"></Button>
             </StackPanel>
         </Grid>
         
         <DataGrid Grid.Row="2" Grid.RowSpan="2"
-                  ItemsSource="{Binding Backups }"
+                  ItemsSource="{Binding Backups}"
                   SelectedItem="{Binding SelectedBackup}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
                     AutoGenerateColumns="False"
