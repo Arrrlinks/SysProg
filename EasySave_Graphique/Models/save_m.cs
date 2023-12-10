@@ -13,11 +13,13 @@ public class save_m // Model for the saves
     public double _weight { get; set; } // Weight of the save
     public double _nbFiles { get; set; } // Number of files of the save
     private log_m _log; // Model for the history
+    private state_m _state; // Model for the state
     
     //Builders
     public save_m() // Builder for the save
     {
         _log = new log_m(); // Create a new history model
+        _state = new state_m(); // Create a new state model
     }
     public save_m(string name, string? source, string? target) // Builder for the save
     {
@@ -158,14 +160,14 @@ public class save_m // Model for the saves
         
         if (name != null) // If the name of the save is valid
         {
-            if (_log.RetrieveValueFromStateFile(name, "Name") != null) // If the save exists in the history
+            if (_state.RetrieveValueFromStateFile(name, "Name") != null) // If the save exists in the history
             {
                     if (target != null && source != null)
-                        _log.ModifyStateFile(name, source, target, fileSizeList, "Active", iteration, isComplete); // Modify the save in the history
+                        _state.ModifyStateFile(name, source, target, fileSizeList, "Active", iteration, isComplete); // Modify the save in the history
             }
             else // If the save doesn't exist in the history
             {
-                string toAdd = "{\"Date\": \"" + _log.GetDate() + "\"," + // Create the save in the history
+                string toAdd = "{\"Date\": \"" + _state.GetDate() + "\"," + // Create the save in the history
                                "\"Name\": \"" + name + "\"," + // Create the save in the history
                                " \"SourcePath\": \"" + source + "\"," + // Create the save in the history
                                " \"TargetPath\": \"" + target + "\"," + // Create the save in the history
@@ -175,12 +177,12 @@ public class save_m // Model for the saves
                                " \"FilesRemaining\": " + (fileSizeList[1] - iteration) + ", " + // Create the save in the history
                                " \"isComplete\": \"" + isComplete + "\", " + // Create the save in the history
                                " \"Status\": \"Active\"}"; // Create the save in the history
-                _log.AddEntryToStateFile(toAdd); // Add the save to the history
+                _state.AddEntryToStateFile(toAdd); // Add the save to the history
             }
 
             if (fileSizeList[1] - iteration <= 0 || isFile == true) // If the save is finished
             {
-                _log.ModifyJsonFile("../../../state.json", name, "Status", "Completed"); // Modify the status of the save in the history
+                _state.ModifyJsonFile("../../../state.json", name, "Status", "Completed"); // Modify the status of the save in the history
             }
         }
         
@@ -198,7 +200,7 @@ public class save_m // Model for the saves
         
         //logJ(_name,source,target,fileSize differenceMS)
         
-        string toAdd2Log = "{\"Date\": \"" + _log.GetDate() + "\"," + // Create the log
+        string toAdd2Log = "{\"Date\": \"" + _state.GetDate() + "\"," + // Create the log
                            "\"Name\": \"" + name + "\"," + // Create the log
                            " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + "\"," + // Create the log
                            " \"TargetPath\": \"" + @target.Replace("\\", "\\\\") + "\"," + // Create the log
@@ -227,7 +229,7 @@ public class save_m // Model for the saves
             {
                 CopyFile(file, target, source, name, i, isComplete); // Copy the file
                 if (name != null)
-                    _log.ModifyJsonFile("../../../state.json", name, "isComplete",
+                    _state.ModifyJsonFile("../../../state.json", name, "isComplete",
                         isComplete); // Modify the status of the save in the history
                 i++; // Increment the number of files copied
             }

@@ -9,6 +9,7 @@
         xmlns:modifyView="clr-namespace:EasySave_Graphique.View.ModifyView"
         xmlns:historryView="clr-namespace:EasySave_Graphique.View.HistorryView"
         xmlns:settingsView="clr-namespace:EasySave_Graphique.View.SettingsView"
+        xmlns:lang="clr-namespace:EasySave_Graphique.language"
         mc:Ignorable="d"
 
         
@@ -85,7 +86,7 @@
                     Kind="ClipboardTextClock" />
           <TextBlock
               HorizontalAlignment="Center"
-              Text="History" />
+              Text="{x:Static lang:Resources.Logs}" />
         </StackPanel>
       </TabItem.Header>
       

@@ -8,31 +8,24 @@ namespace EasySave_Graphique.ViewModels;
 public class Modify_vm : Base_vm
 {
     //attributs
-    public ObservableCollection<backup> Backups { get; set; } //list of backups that update UI
+    private state_m _state; // Model for the state
     
-    private backup _selectedBackup;
+    public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
+    
+    private backup_m _selectedBackupM;
     //builder
     public Modify_vm()
     {
-        Backups = new ObservableCollection<backup>();
-        Backups.Add(new backup()
-        {
-            Name = "save1",
-            Source = "C:/Users/Utilisateur/Desktop/Source",
-            Target = "C:/Users/Utilisateur/Desktop/Target",
-            Date = "01/01/2021",
-            Size = "100Mo",
-            filesNB = "10", 
-            State = "Success"
-        });
+        _state = new state_m(); // Create a new state model
+        Backups = _state.GetBackupsFromStateFile(); // Get the backups from the state file
     }
     //methods
-    public backup SelectedBackup
+    public backup_m SelectedBackupM
     {
-        get { return _selectedBackup; }
+        get { return _selectedBackupM; }
         set
         {
-            _selectedBackup = value; 
+            _selectedBackupM = value; 
             OnPropertyChanged();
         }
     }

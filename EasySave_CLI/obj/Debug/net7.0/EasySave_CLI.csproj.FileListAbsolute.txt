@@ -16,3 +16,20 @@ C:\Users\Antoine\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\refint\E
 C:\Users\Antoine\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.pdb
 C:\Users\Antoine\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.genruntimeconfig.cache
 C:\Users\Antoine\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\ref\EasySave_CLI.dll
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\bin\Debug\net7.0\EasySave_CLI.exe
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\bin\Debug\net7.0\EasySave_CLI.deps.json
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\bin\Debug\net7.0\EasySave_CLI.runtimeconfig.json
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\bin\Debug\net7.0\EasySave_CLI.dll
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\bin\Debug\net7.0\EasySave_CLI.pdb
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.csproj.AssemblyReference.cache
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.AssemblyInfoInputs.cache
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.AssemblyInfo.cs
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.csproj.CoreCompileInputs.cache
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.csproj.CopyComplete
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.dll
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\refint\EasySave_CLI.dll
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.pdb
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\EasySave_CLI.genruntimeconfig.cache
+C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\GitHub\SysProg\EasySave_CLI\obj\Debug\net7.0\ref\EasySave_CLI.dll
