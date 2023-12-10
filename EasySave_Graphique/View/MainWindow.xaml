@@ -10,6 +10,7 @@
         xmlns:historryView="clr-namespace:EasySave_Graphique.View.HistorryView"
         xmlns:settingsView="clr-namespace:EasySave_Graphique.View.SettingsView"
         mc:Ignorable="d"
+
         
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -19,34 +20,35 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="EasySave" MinHeight="450" MinWidth="1050">
-    <Grid>
+  
+  <!-- MainPage -->
+  <Grid>
         <!-- NavBar -->
         <materialDesign:Card>
-  <TabControl
-    VerticalContentAlignment="Stretch"
-    materialDesign:ColorZoneAssist.Mode= "PrimaryMid"
-    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
-    
-    <!-- Tab 1 -->
-    <TabItem>
-      <TabItem.Header>
-        <StackPanel
-          Width="auto"
-          Height="auto">
-          <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="ContentSaveCog" />
-          <TextBlock
-            HorizontalAlignment="Center"
-            Text="Modify" />
-        </StackPanel>
-      </TabItem.Header>
+          <TabControl
+                    VerticalContentAlignment="Stretch"
+                    materialDesign:ColorZoneAssist.Mode= "PrimaryMid"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+            
+            <!-- tab 1 modify -->
+            <TabItem>
+              <TabItem.Header>
+                <StackPanel
+                          Width="auto"
+                          Height="auto">
+                  <materialDesign:PackIcon
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            Kind="ContentSaveCog" />
+                  <TextBlock
+                    HorizontalAlignment="Center"
+                    Text="Modify" />
+                </StackPanel>
+              </TabItem.Header>
       
       <modifyView:Modify/>
-      
-    </TabItem>
+      </TabItem>
     
     <!-- Tab 2 save -->
     <TabItem>
@@ -70,46 +72,48 @@
       <saveView:Save/>
       
     </TabItem>
+            
     <TabItem>
       <TabItem.Header>
         <StackPanel
-          Width="auto"
-          Height="auto">
+                  Width="auto"
+                  Height="auto">
           <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="ClipboardTextClock" />
+                    Width="24"
+                    Height="24"
+                    HorizontalAlignment="Center"
+                    Kind="ClipboardTextClock" />
           <TextBlock
-            HorizontalAlignment="Center"
-            Text="History" />
+              HorizontalAlignment="Center"
+              Text="History" />
         </StackPanel>
       </TabItem.Header>
       
-      <historryView:History/>
       
+        <historryView:History/>
+        
     </TabItem>
-    <TabItem>
-      <TabItem.Header>
-        <StackPanel
-          Width="auto"
-          Height="auto">
-          <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="Cogs" />
-          <TextBlock
-            HorizontalAlignment="Center"
-            Text="Settings" />
-        </StackPanel>
-      </TabItem.Header>
+            <TabItem>
+        <TabItem.Header>
+          <StackPanel
+            Width="auto"
+            Height="auto">
+            <materialDesign:PackIcon
+              Width="24"
+              Height="24"
+              HorizontalAlignment="Center"
+              Kind="Cogs" />
+            <TextBlock
+              HorizontalAlignment="Center"
+              Text="Settings" />
+          </StackPanel>
+        </TabItem.Header>
 
-      <settingsView:Settings/>
-      
-    </TabItem>
-  </TabControl>
-</materialDesign:Card>
+        <settingsView:Settings/>
+        
+      </TabItem>
+    </TabControl>
+  </materialDesign:Card>
         
     </Grid>
 </Window>
