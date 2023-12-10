@@ -11,7 +11,7 @@ public class Modify_vm : Base_vm
     //attributs
     public ObservableCollection<backup> Backups { get; set; } //list of backups that update UI
     
-    public RelayCommand AddCommand => new RelayCommand(execute => AddBackup());
+    public RelayCommand AddCommand {get; set;}
     
     private backup _selectedBackup;
     
@@ -19,6 +19,7 @@ public class Modify_vm : Base_vm
     public Modify_vm()
     {
         Backups = new ObservableCollection<backup>();
+        AddCommand = new RelayCommand(execute => AddBackup());
         Backups.Add(new backup
         {
             Name = "save1",
