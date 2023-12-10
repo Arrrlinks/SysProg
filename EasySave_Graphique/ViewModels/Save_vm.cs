@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.ObjectModel;
 using EasySave_Graphique.Models;
 
 namespace EasySave_Graphique.ViewModels;
 
-public class Modify_vm : Base_vm
+public class Save_vm : Base_vm
 {
-    //attributs
     public ObservableCollection<backup> Backups { get; set; } //list of backups that update UI
     
-    public RelayCommand AddCommand => new RelayCommand(execute => AddBackup());
-    
     private backup _selectedBackup;
-    
     //builder
-    public Modify_vm()
+    public Save_vm()
     {
         Backups = new ObservableCollection<backup>();
-        Backups.Add(new backup
+        Backups.Add(new backup()
         {
             Name = "save1",
             Source = "C:/Users/Utilisateur/Desktop/Source",
@@ -36,22 +29,8 @@ public class Modify_vm : Base_vm
         get { return _selectedBackup; }
         set
         {
-            _selectedBackup = value; 
+            _selectedBackup = value;
             OnPropertyChanged();
         }
-    }
-
-    private void AddBackup()
-    {
-        Backups.Add(new backup
-        {
-            Name = "save1",
-            Source = "C:/Users/Utilisateur/Desktop/Source",
-            Target = "C:/Users/Utilisateur/Desktop/Target",
-            Date = "01/01/2021",
-            Size = "100Mo",
-            filesNB = "10", 
-            State = "Success"
-        });
     }
 }
