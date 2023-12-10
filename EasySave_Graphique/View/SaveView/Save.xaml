@@ -45,51 +45,36 @@
           </ComboBox>
           
         </Grid>
-        
-        <ListView Grid.Row="2" Grid.RowSpan="2"
-                  ItemsSource="{Binding Items1}"
-                  PreviewMouseDown="UIElement_OnPreviewMouseDown">
-          <ListView.View>
-            <GridView>
-              <GridViewColumn
-                Header="opt">
-                <GridViewColumn.CellTemplate>
-                  <DataTemplate>
-                    <CheckBox Click="ButtonBase_OnClick" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListViewItem}, Mode=TwoWay}" />
-                  </DataTemplate>
-                </GridViewColumn.CellTemplate>
-              </GridViewColumn>
-              <GridViewColumn
-                DisplayMemberBinding="{Binding Save}"
-                Header="Save Number" />
-              <GridViewColumn
-                DisplayMemberBinding="{Binding Name}"
-                Header="Name" />
-              <GridViewColumn
-                DisplayMemberBinding="{Binding Source}"
-                Header="Source Path" />
-              <GridViewColumn
-                DisplayMemberBinding="{Binding Target}"
-                Header="Target Path" />
-              <GridViewColumn
-                DisplayMemberBinding="{Binding Number}"
-                Header="Files Number" />
-              <GridViewColumn
-                DisplayMemberBinding="{Binding Size}"
-                Header="Size" />
-              <GridViewColumn
-                Header="Progress">
-                <GridViewColumn.CellTemplate>
-                  <DataTemplate>
-                    <ProgressBar
-                      x:Name="DeterminateCircularProgress"
-                      Style="{StaticResource MaterialDesignCircularProgressBar}" />
-                  </DataTemplate>
-                </GridViewColumn.CellTemplate>
-              </GridViewColumn>
-            </GridView>
-          </ListView.View>
-        </ListView>
+        <DataGrid Grid.Row="2" Grid.RowSpan="2"
+                  ItemsSource="{Binding Backups }"
+                  SelectedItem="{Binding SelectedBackup}"
+                  CanUserAddRows="False" CanUserDeleteRows="False"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+        >
+          <DataGrid.Columns>
+            
+            <DataGridCheckBoxColumn
+              Header="Select">
+            </DataGridCheckBoxColumn>
+            
+            <DataGridTextColumn
+              Binding="{Binding Name}"
+              Header="Name" />
+            <DataGridTextColumn
+              Binding="{Binding Source}"
+              Header="Source Path" />
+            <DataGridTextColumn
+              Binding="{Binding Target}"
+              Header="Target Path" />
+            <DataGridTextColumn
+              Binding="{Binding filesNB}"
+              Header="Files Number" />
+            <DataGridTextColumn
+              Binding="{Binding Size}"
+              Header="Size" />
+          </DataGrid.Columns>
+        </DataGrid>
         
       </Grid>
 </UserControl>
