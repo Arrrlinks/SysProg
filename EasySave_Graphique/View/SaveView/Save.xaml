@@ -31,10 +31,11 @@
           </Grid.ColumnDefinitions>
           
           <ComboBox
+            IsReadOnly="True"
             Width="256"
             materialDesign:HintAssist.Hint="Save Mode"
             materialDesign:TextFieldAssist.HasClearButton="True"
-            ItemsSource="{Binding ShortStringList}"
+            ItemsSource=""
             Style="{StaticResource MaterialDesignOutlinedComboBox}">
             <ComboBox.SelectedItem>
               <Binding

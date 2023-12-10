@@ -23,30 +23,55 @@
             VerticalAlignment="Center"
         />
         
-        <ListView Grid.Row="2" Grid.RowSpan="2"
-                  ItemsSource="{Binding Items1}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn
-                        DisplayMemberBinding="{Binding Save}"
-                        Header="Save Number" />
-                    <GridViewColumn
-                        DisplayMemberBinding="{Binding Name}"
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Label> Name </Label>
+                <TextBox Text="{Binding SelectedBackup.Name, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label> Source </Label>
+                <TextBox Text="{Binding SelectedBackup.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <Label> Target </Label>
+                <TextBox Text="{Binding SelectedBackup.Target, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3">
+                <Button Margin="12,0,12,12" Background="#679436" Content="Send"></Button>
+                <Button Margin="12,0,12,12" Background="#BD3100" Content="Delete"></Button>
+            </StackPanel>
+        </Grid>
+        
+        <DataGrid Grid.Row="2" Grid.RowSpan="2"
+                  ItemsSource="{Binding Backups }"
+                  SelectedItem="{Binding SelectedBackup}"
+                  CanUserAddRows="False" CanUserDeleteRows="False"
+                    AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Binding="{Binding Name}"
                         Header="Name" />
-                    <GridViewColumn
-                        DisplayMemberBinding="{Binding Source}"
+                    <DataGridTextColumn
+                        Binding="{Binding Source}"
                         Header="Source Path" />
-                    <GridViewColumn
-                        DisplayMemberBinding="{Binding Target}"
+                    <DataGridTextColumn
+                        Binding="{Binding Target}"
                         Header="Target Path" />
-                    <GridViewColumn
-                        DisplayMemberBinding="{Binding Number}"
+                    <DataGridTextColumn
+                        Binding="{Binding filesNB}"
                         Header="Files Number" />
-                    <GridViewColumn
-                        DisplayMemberBinding="{Binding Size}"
+                    <DataGridTextColumn
+                        Binding="{Binding Size}"
                         Header="Size" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+                </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
