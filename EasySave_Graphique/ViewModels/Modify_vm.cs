@@ -48,10 +48,10 @@ public class Modify_vm : Base_vm
     //methods
     public backup_m SelectedBackup
     {
-        get { return _selectedBackup; }
+        get { return _selectedBackupM; }
         set
         {
-            _selectedBackup = value; 
+            _selectedBackupM = value; 
             OnPropertyChanged();
         }
     }
@@ -63,7 +63,7 @@ public class Modify_vm : Base_vm
         
         if (Directory.Exists(repo))
         {
-            SelectedBackupM.Source = repo;
+            SelectedBackup.Source = repo;
         }
         else
         {
@@ -78,26 +78,12 @@ public class Modify_vm : Base_vm
         
         if (Directory.Exists(repo))
         {
-            SelectedBackupM.Target = repo;
+            SelectedBackup.Target = repo;
         }
         else
         {
             Console.WriteLine("bread");
         }
-    }
-
-    private void addBackup()
-    {
-        Backups.Add(new backup_m()
-        {
-            Name = "",
-            Source = "",
-            Target = "",
-            Date = "---",
-            Size = "0Mo",
-            filesNB = "0", 
-            State = "Stop"
-        });
     }
     
     private void addBackup()
@@ -116,7 +102,7 @@ public class Modify_vm : Base_vm
     
     private void removeBackup()
     {
-        Backups.Remove(SelectedBackupM);
+        Backups.Remove(SelectedBackup);
     }
     private void ModifyBackup()
     {
