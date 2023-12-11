@@ -42,4 +42,28 @@
     <data name="LogFileType" xml:space="preserve">
         <value>Type de fichier du journal</value>
     </data>
+    <data name="Logs" xml:space="preserve">
+        <value>Journal</value>
+    </data>
+    <data name="LogsFrom" xml:space="preserve">
+        <value>Journal du :</value>
+    </data>
+    <data name="Submit" xml:space="preserve">
+        <value>Soumettre</value>
+    </data>
+    <data name="SaveName" xml:space="preserve">
+        <value>Nom de Sauvegarde</value>
+    </data>
+    <data name="SourcePath" xml:space="preserve">
+        <value>Source</value>
+    </data>
+    <data name="TargetPath" xml:space="preserve">
+        <value>Destination</value>
+    </data>
+    <data name="Size" xml:space="preserve">
+        <value>Taille</value>
+    </data>
+    <data name="Time" xml:space="preserve">
+        <value>Temps</value>
+    </data>
 </root>
