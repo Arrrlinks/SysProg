@@ -1,4 +1,6 @@
-﻿namespace CryptoSoft;
+﻿using System.Text;
+
+namespace CryptoSoft;
 
 public class Model
 {
@@ -6,16 +8,18 @@ public class Model
 
     public void encrypt(string path, string key)
     {
+        List<byte> bytes = new List<byte>();
         string text = "";
         int Index = 0;
         //for each character in the file
-        foreach (char character in File.ReadAllText(path))
+        
+        foreach (byte character in File.ReadAllBytes(path))
         {
-            text += (char) (character^key[Index]);
+            bytes.Add((byte)(character^key[Index]));
             //Goes to 0 every time it reaches the end of the key
             Index = (Index+1) % key.Length;
         }
-        //Writes the encrypted text in the file
-        File.WriteAllText(path, text);
+        //return the encrypted part of the file in the original state
+        File.WriteAllBytes(path, bytes.ToArray());
     }
 }

@@ -1,0 +1,74 @@
+<Root>
+  <LogEntry>
+    <Date>10/12/2023 22:13:40</Date>
+    <Name>Save1</Name>
+    <SourcePath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test1</SourcePath>
+    <TargetPath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test2</TargetPath>
+    <FileName>aaa - Copy (2).txt</FileName>
+    <FileSize>33</FileSize>
+    <TimeMs>6</TimeMs>
+  </LogEntry>
+  <LogEntry>
+    <Date>10/12/2023 22:13:40</Date>
+    <Name>Save1</Name>
+    <SourcePath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test1</SourcePath>
+    <TargetPath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test2</TargetPath>
+    <FileName>aaa - Copy (3).txt</FileName>
+    <FileSize>33</FileSize>
+    <TimeMs>4</TimeMs>
+  </LogEntry>
+  <LogEntry>
+    <Date>10/12/2023 22:13:41</Date>
+    <Name>Save1</Name>
+    <SourcePath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test1</SourcePath>
+    <TargetPath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test2</TargetPath>
+    <FileName>aaa - Copy (4).txt</FileName>
+    <FileSize>33</FileSize>
+    <TimeMs>4</TimeMs>
+  </LogEntry>
+  <LogEntry>
+    <Date>10/12/2023 22:13:41</Date>
+    <Name>Save1</Name>
+    <SourcePath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test1</SourcePath>
+    <TargetPath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test2</TargetPath>
+    <FileName>aaa - Copy (5).txt</FileName>
+    <FileSize>33</FileSize>
+    <TimeMs>4</TimeMs>
+  </LogEntry>
+  <LogEntry>
+    <Date>10/12/2023 22:13:41</Date>
+    <Name>Save1</Name>
+    <SourcePath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test1</SourcePath>
+    <TargetPath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test2</TargetPath>
+    <FileName>aaa - Copy (6).txt</FileName>
+    <FileSize>33</FileSize>
+    <TimeMs>3</TimeMs>
+  </LogEntry>
+  <LogEntry>
+    <Date>10/12/2023 22:13:41</Date>
+    <Name>Save1</Name>
+    <SourcePath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test1</SourcePath>
+    <TargetPath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test2</TargetPath>
+    <FileName>aaa - Copy (7).txt</FileName>
+    <FileSize>33</FileSize>
+    <TimeMs>5</TimeMs>
+  </LogEntry>
+  <LogEntry>
+    <Date>10/12/2023 22:13:41</Date>
+    <Name>Save1</Name>
+    <SourcePath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test1</SourcePath>
+    <TargetPath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test2</TargetPath>
+    <FileName>aaa - Copy.txt</FileName>
+    <FileSize>33</FileSize>
+    <TimeMs>4</TimeMs>
+  </LogEntry>
+  <LogEntry>
+    <Date>10/12/2023 22:13:41</Date>
+    <Name>Save1</Name>
+    <SourcePath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test1</SourcePath>
+    <TargetPath>C:\Users\User\OneDrive - Association Cesi Viacesi mail\Documents\test2</TargetPath>
+    <FileName>aaa.txt</FileName>
+    <FileSize>33</FileSize>
+    <TimeMs>3</TimeMs>
+  </LogEntry>
+</Root>
