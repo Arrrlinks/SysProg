@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using System.Windows.Media.Animation;
 using EasySave_Graphique.Models;
 
 namespace EasySave_Graphique.ViewModels;
@@ -9,25 +12,38 @@ namespace EasySave_Graphique.ViewModels;
 public class Modify_vm : Base_vm
 {
     //attributs
-    public ObservableCollection<backup> Backups { get; set; } //list of backups that update UI
+    public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
+
+    private FolderBrowserDialog _dialog;
     
     public RelayCommand AddCommand {get; set;}
     public RelayCommand RemoveCommand {get; set;}
     
-    private backup _selectedBackup;
+    public RelayCommand SendCommand { get; set;  }
+    
+    public RelayCommand SourceCommand { get; set; }
+    
+    public RelayCommand TargetCommand { get; set; }
+    
+    private backup_m _selectedBackupM;
     
     //builder
     public Modify_vm()
     {
+
+        _dialog = new FolderBrowserDialog();
         //List of backups
-        Backups = new ObservableCollection<backup>();
+        Backups = new ObservableCollection<backup_m>();
         //commands
         
         //relais command for the buttons
-        AddCommand = new RelayCommand(execute => ModifyBackup());
-        RemoveCommand = new RelayCommand(execute => removeBackup());
+        SendCommand = new RelayCommand(execute => ModifyBackup());
+        RemoveCommand = new RelayCommand(execute => removeBackup(), canExecute => _selectedBackupM != null);
+        AddCommand = new RelayCommand(execute => addBackup());
+        SourceCommand = new RelayCommand(execute => sourceGet(), canExecute => _selectedBackupM != null);
+        TargetCommand = new RelayCommand(execute => targetGet(), canExecute => _selectedBackupM != null);
         
-        Backups.Add(new backup
+        Backups.Add(new backup_m
         {
             Name = "save1",
             Source = "C:/Users/Utilisateur/Desktop/Source",
@@ -39,41 +55,70 @@ public class Modify_vm : Base_vm
         });
     }
     //methods
-    public backup SelectedBackup
+    public backup_m SelectedBackupM
     {
-        get { return _selectedBackup; }
+        get { return _selectedBackupM; }
         set
         {
-            _selectedBackup = value; 
+            _selectedBackupM = value; 
             OnPropertyChanged();
         }
+    }
+
+    private void sourceGet()
+    {
+        _dialog.ShowDialog();
+        string repo = _dialog.SelectedPath;
+        
+        if (Directory.Exists(repo))
+        {
+            SelectedBackupM.Source = repo;
+        }
+        else
+        {
+            Console.WriteLine("bread");
+        }
+    }
+    
+    private void targetGet()
+    {
+        _dialog.ShowDialog();
+        string repo = _dialog.SelectedPath;
+        
+        if (Directory.Exists(repo))
+        {
+            SelectedBackupM.Target = repo;
+        }
+        else
+        {
+            Console.WriteLine("bread");
+        }
+    }
+
+    private void addBackup()
+    {
+        Backups.Add(new backup_m()
+        {
+            Name = "",
+            Source = "",
+            Target = "",
+            Date = "---",
+            Size = "0Mo",
+            filesNB = "0", 
+            State = "Stop"
+        });
     }
     
     private void removeBackup()
     {
-        Backups.Remove(SelectedBackup);
+        Backups.Remove(SelectedBackupM);
     }
     private void ModifyBackup()
     {
-        int i = 0;
-        //modify the selected backup
         foreach (var backup in Backups)
         {
-            if (backup.Name == SelectedBackup.Name)
-            {
-                i = 1;
-                backup.Source = SelectedBackup.Source;
-                backup.Target = SelectedBackup.Target;
-                backup.Date = SelectedBackup.Date;
-                backup.Size = SelectedBackup.Size;
-                backup.filesNB = SelectedBackup.filesNB;
-                backup.State = SelectedBackup.State;
-            }
+            //envoi le backup dans la list, si il existe, il le modifie, sinon il le créer. a voir dans le log
+            Console.WriteLine("hhhh");
         }
-        if (i==0)
-        {
-            Backups.Add(SelectedBackup);
-        }
-        
     }
 }

@@ -57,7 +57,7 @@
           <DataGrid.Columns>
             
             <DataGridCheckBoxColumn
-              Header="Select">
+              Header="Select" Binding="{Binding selected, UpdateSourceTrigger=PropertyChanged}">
             </DataGridCheckBoxColumn>
             
             <DataGridTextColumn
