@@ -32,14 +32,14 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <Label> Name </Label>
-                <TextBox Text="{Binding SelectedBackupM.Name, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+                <TextBox Text="{Binding SelectedBackup.Name, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <TextBox IsReadOnly="True" x:Name="SourceText" Text="{Binding SelectedBackupM.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+                <TextBox IsReadOnly="True" x:Name="SourceText" Text="{Binding SelectedBackup.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
                 <Button Margin="12,0,12,12" Content="Source" Command="{Binding SourceCommand, UpdateSourceTrigger=PropertyChanged}"></Button>
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <TextBox IsReadOnly="True" x:Name="TargetText" Text="{Binding SelectedBackupM.Target}" Margin="12 0 12 12"/>
+                <TextBox IsReadOnly="True" x:Name="TargetText" Text="{Binding SelectedBackup.Target}" Margin="12 0 12 12"/>
                 <Button Margin="12,0,12,12" Content="Target" Command="{Binding TargetCommand}"></Button>
             </StackPanel>
             <StackPanel Grid.Column="3">
@@ -57,7 +57,7 @@
         
         <DataGrid Grid.Row="2" Grid.RowSpan="2"
                   ItemsSource="{Binding Backups}"
-                  SelectedItem="{Binding SelectedBackupM}"
+                  SelectedItem="{Binding SelectedBackup}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
                     AutoGenerateColumns="False"
                   IsReadOnly="True"
