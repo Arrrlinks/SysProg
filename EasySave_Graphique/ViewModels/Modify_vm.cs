@@ -43,7 +43,6 @@ public class Modify_vm : Base_vm
         SourceCommand = new RelayCommand(execute => sourceGet(), canExecute => _selectedBackupM != null);
         TargetCommand = new RelayCommand(execute => targetGet(), canExecute => _selectedBackupM != null);
         Backups = _state.GetBackupsFromStateFile(); // Get the backups from the state file
-        SelectedBackup = new backup_m();
     }
     //methods
     public backup_m SelectedBackup
