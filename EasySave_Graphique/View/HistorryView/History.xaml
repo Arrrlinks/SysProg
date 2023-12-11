@@ -1,8 +1,9 @@
-﻿<UserControl x:Class="EasySave_Graphique.View.HistorryView.History"
+<UserControl x:Class="EasySave_Graphique.View.HistorryView.History"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lang="clr-namespace:EasySave_Graphique.language"
              xmlns:local="clr-namespace:EasySave_Graphique.View.HistorryView"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -12,15 +13,35 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-            Text="History"
+            Text="{x:Static lang:Resources.Logs}"
             FontWeight="SemiBold"
             VerticalAlignment="Center"
         />
-        
-        <TextBox Grid.Row="1" Grid.RowSpan="3">gtfrds</TextBox>
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock Text="{x:Static lang:Resources.LogsFrom}" />
+            <StackPanel Orientation="Horizontal">
+                <DatePicker Name="datePicker" SelectedDate="{Binding TodayDate, Mode=TwoWay}" Margin="0,0,10,0" />
+                <Button Content="{x:Static lang:Resources.Submit}" Click="Submit_Click" Margin="10,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" Grid.RowSpan="3"
+                  ItemsSource="{Binding Logs}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
+                <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static lang:Resources.SaveName}" />
+                <DataGridTextColumn Binding="{Binding Source}" Header="{x:Static lang:Resources.SourcePath}" />
+                <DataGridTextColumn Binding="{Binding Target}" Header="{x:Static lang:Resources.TargetPath}" />
+                <DataGridTextColumn Binding="{Binding Size}" Header="{x:Static lang:Resources.Size}" />
+                <DataGridTextColumn Binding="{Binding Time}" Header="{x:Static lang:Resources.Time}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
