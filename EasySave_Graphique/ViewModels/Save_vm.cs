@@ -7,13 +7,14 @@ public class Save_vm : Base_vm
 {
     public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
     
-    private backup_m _selectedBackup;
+    private backup_m _selectedBackupM;
     //builder
     public Save_vm()
     {
         Backups = new ObservableCollection<backup_m>();
         Backups.Add(new backup_m()
         {
+            selected = true,
             Name = "save1",
             Source = "C:/Users/Utilisateur/Desktop/Source",
             Target = "C:/Users/Utilisateur/Desktop/Target",
@@ -24,12 +25,12 @@ public class Save_vm : Base_vm
         });
     }
     //methods
-    public backup_m SelectedBackup
+    public backup_m SelectedBackupM
     {
-        get { return _selectedBackup; }
+        get { return _selectedBackupM; }
         set
         {
-            _selectedBackup = value;
+            _selectedBackupM = value;
             OnPropertyChanged();
         }
     }

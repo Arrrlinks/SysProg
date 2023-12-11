@@ -35,21 +35,28 @@
                 <TextBox Text="{Binding SelectedBackupM.Name, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Label> Source </Label>
-                <TextBox Text="{Binding SelectedBackupM.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+                <TextBox IsReadOnly="True" x:Name="SourceText" Text="{Binding SelectedBackupM.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+                <Button Margin="12,0,12,12" Content="Source" Command="{Binding SourceCommand, UpdateSourceTrigger=PropertyChanged}"></Button>
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <Label> Target </Label>
-                <TextBox Text="{Binding SelectedBackupM.Target, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
+                <TextBox IsReadOnly="True" x:Name="TargetText" Text="{Binding SelectedBackupM.Target}" Margin="12 0 12 12"/>
+                <Button Margin="12,0,12,12" Content="Target" Command="{Binding TargetCommand}"></Button>
             </StackPanel>
             <StackPanel Grid.Column="3">
-                <Button x:Name="addBtn" Command="{Binding AddCommand}" Margin="12,0,12,12" Background="#5BB450" Content="Send"></Button>
-                <Button x:Name="deleteBtn" Command="{Binding RemoveCommand}" Margin="12,0,12,12" Background="#ED4437" Content="Delete"></Button>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" x:Name="addBtn" Command="{Binding AddCommand}" Margin="12,0,12,12" Background="#5BB450" Content="Add"></Button>
+                    <Button Grid.Column="1" x:Name="deleteBtn" Command="{Binding RemoveCommand}" Margin="12,0,12,12" Background="#ED4437" Content="Delete"></Button>
+                </Grid>
+                <Button x:Name="sendBtn" Command="{Binding SendCommand}" Margin="12,0,12,12" Content="Send"></Button>
             </StackPanel>
         </Grid>
         
         <DataGrid Grid.Row="2" Grid.RowSpan="2"
-                  ItemsSource="{Binding Backups }"
+                  ItemsSource="{Binding Backups}"
                   SelectedItem="{Binding SelectedBackupM}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
                     AutoGenerateColumns="False"
