@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using System.Windows.Media.Animation;
 using EasySave_Graphique.Models;
 
 namespace EasySave_Graphique.ViewModels;
@@ -9,30 +12,77 @@ namespace EasySave_Graphique.ViewModels;
 public class Modify_vm : Base_vm
 {
     //attributs
+    private state_m _state; // Model for the state
+    public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
+
+    private FolderBrowserDialog _dialog;
+    
     public RelayCommand AddCommand {get; set;}
     public RelayCommand RemoveCommand {get; set;}
-    private state_m _state; // Model for the state
     
-    public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
+    public RelayCommand SendCommand { get; set;  }
     
-    private backup_m _selectedBackup;
+    public RelayCommand SourceCommand { get; set; }
+    
+    public RelayCommand TargetCommand { get; set; }
+    private backup_m _selectedBackupM;
+    
     //builder
     public Modify_vm()
     {
         _state = new state_m(); // Create a new state model
-        RemoveCommand = new RelayCommand(execute => removeBackup(), canExecute => _selectedBackup != null);
+        _dialog = new FolderBrowserDialog();
+        //List of backups
+        Backups = new ObservableCollection<backup_m>();
+        //commands
+        
+        //relais command for the buttons
+        SendCommand = new RelayCommand(execute => ModifyBackup());
+        RemoveCommand = new RelayCommand(execute => removeBackup(), canExecute => _selectedBackupM != null);
         AddCommand = new RelayCommand(execute => addBackup());
+        SourceCommand = new RelayCommand(execute => sourceGet(), canExecute => _selectedBackupM != null);
+        TargetCommand = new RelayCommand(execute => targetGet(), canExecute => _selectedBackupM != null);
         Backups = _state.GetBackupsFromStateFile(); // Get the backups from the state file
         SelectedBackup = new backup_m();
     }
     //methods
     public backup_m SelectedBackup
     {
-        get { return _selectedBackup; }
+        get { return _selectedBackupM; }
         set
         {
-            _selectedBackup = value; 
+            _selectedBackupM = value; 
             OnPropertyChanged();
+        }
+    }
+
+    private void sourceGet()
+    {
+        _dialog.ShowDialog();
+        string repo = _dialog.SelectedPath;
+        
+        if (Directory.Exists(repo))
+        {
+            SelectedBackup.Source = repo;
+        }
+        else
+        {
+            Console.WriteLine("bread");
+        }
+    }
+    
+    private void targetGet()
+    {
+        _dialog.ShowDialog();
+        string repo = _dialog.SelectedPath;
+        
+        if (Directory.Exists(repo))
+        {
+            SelectedBackup.Target = repo;
+        }
+        else
+        {
+            Console.WriteLine("bread");
         }
     }
     
@@ -56,25 +106,10 @@ public class Modify_vm : Base_vm
     }
     private void ModifyBackup()
     {
-        int i = 0;
-        //modify the selected backup
         foreach (var backup in Backups)
         {
-            if (backup.Name == SelectedBackup.Name)
-            {
-                i = 1;
-                backup.Source = SelectedBackup.Source;
-                backup.Target = SelectedBackup.Target;
-                backup.Date = SelectedBackup.Date;
-                backup.Size = SelectedBackup.Size;
-                backup.filesNB = SelectedBackup.filesNB;
-                backup.State = SelectedBackup.State;
-            }
+            //envoi le backup dans la list, si il existe, il le modifie, sinon il le créer. a voir dans le log
+            Console.WriteLine("hhhh");
         }
-        if (i==0)
-        {
-            Backups.Add(SelectedBackup);
-        }
-        
     }
 }

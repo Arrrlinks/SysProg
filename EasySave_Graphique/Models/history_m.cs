@@ -1,4 +1,4 @@
-﻿namespace EasySave_Graphique.Models;
+namespace EasySave_Graphique.Models;
 
 public class history_m
 {

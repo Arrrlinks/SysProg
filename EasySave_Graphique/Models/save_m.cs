@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using EasySave_Graphique.Models; // Model for the history
 
