@@ -9,30 +9,45 @@ namespace EasySave_Graphique.ViewModels;
 public class Modify_vm : Base_vm
 {
     //attributs
+    public RelayCommand AddCommand {get; set;}
+    public RelayCommand RemoveCommand {get; set;}
     private state_m _state; // Model for the state
     
     public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
     
-    private backup_m _selectedBackupM;
+    private backup_m _selectedBackup;
     //builder
     public Modify_vm()
     {
         _state = new state_m(); // Create a new state model
+        RemoveCommand = new RelayCommand(execute => removeBackup(), canExecute => _selectedBackup != null);
+        AddCommand = new RelayCommand(execute => addBackup());
         Backups = _state.GetBackupsFromStateFile(); // Get the backups from the state file
-        public RelayCommand AddCommand {get; set;}
-        public RelayCommand RemoveCommand {get; set;}
-    
-        private backup _selectedBackup;
+        SelectedBackup = new backup_m();
     }
     //methods
-    public backup_m SelectedBackupM
+    public backup_m SelectedBackup
     {
-        get { return _selectedBackupM; }
+        get { return _selectedBackup; }
         set
         {
-            _selectedBackupM = value; 
+            _selectedBackup = value; 
             OnPropertyChanged();
         }
+    }
+    
+    private void addBackup()
+    {
+        Backups.Add(new backup_m()
+        {
+            Name = "",
+            Source = "",
+            Target = "",
+            Date = "---",
+            Size = "0Mo",
+            filesNB = "0", 
+            State = "Stop"
+        });
     }
     
     private void removeBackup()

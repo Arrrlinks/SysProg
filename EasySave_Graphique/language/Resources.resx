@@ -42,4 +42,28 @@
     <data name="LogFileType" xml:space="preserve">
         <value>Log File Type</value>
     </data>
+    <data name="Logs" xml:space="preserve">
+        <value>Logs</value>
+    </data>
+    <data name="LogsFrom" xml:space="preserve">
+        <value>Logs from:</value>
+    </data>
+    <data name="Submit" xml:space="preserve">
+        <value>Submit</value>
+    </data>
+    <data name="SaveName" xml:space="preserve">
+        <value>Save Name</value>
+    </data>
+    <data name="SourcePath" xml:space="preserve">
+        <value>Source Path</value>
+    </data>
+    <data name="TargetPath" xml:space="preserve">
+        <value>Target Path</value>
+    </data>
+    <data name="Size" xml:space="preserve">
+        <value>Size</value>
+    </data>
+    <data name="Time" xml:space="preserve">
+        <value>Time</value>
+    </data>
 </root>
