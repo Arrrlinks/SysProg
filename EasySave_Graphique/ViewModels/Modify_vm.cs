@@ -12,6 +12,7 @@ namespace EasySave_Graphique.ViewModels;
 public class Modify_vm : Base_vm
 {
     //attributs
+    private state_m _state; // Model for the state
     public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
 
     private FolderBrowserDialog _dialog;
@@ -24,13 +25,12 @@ public class Modify_vm : Base_vm
     public RelayCommand SourceCommand { get; set; }
     
     public RelayCommand TargetCommand { get; set; }
-    
     private backup_m _selectedBackupM;
     
     //builder
     public Modify_vm()
     {
-
+        _state = new state_m(); // Create a new state model
         _dialog = new FolderBrowserDialog();
         //List of backups
         Backups = new ObservableCollection<backup_m>();
@@ -42,25 +42,16 @@ public class Modify_vm : Base_vm
         AddCommand = new RelayCommand(execute => addBackup());
         SourceCommand = new RelayCommand(execute => sourceGet(), canExecute => _selectedBackupM != null);
         TargetCommand = new RelayCommand(execute => targetGet(), canExecute => _selectedBackupM != null);
-        
-        Backups.Add(new backup_m
-        {
-            Name = "save1",
-            Source = "C:/Users/Utilisateur/Desktop/Source",
-            Target = "C:/Users/Utilisateur/Desktop/Target",
-            Date = "01/01/2021",
-            Size = "100Mo",
-            filesNB = "10", 
-            State = "Success"
-        });
+        Backups = _state.GetBackupsFromStateFile(); // Get the backups from the state file
+        SelectedBackup = new backup_m();
     }
     //methods
-    public backup_m SelectedBackupM
+    public backup_m SelectedBackup
     {
-        get { return _selectedBackupM; }
+        get { return _selectedBackup; }
         set
         {
-            _selectedBackupM = value; 
+            _selectedBackup = value; 
             OnPropertyChanged();
         }
     }
@@ -95,6 +86,20 @@ public class Modify_vm : Base_vm
         }
     }
 
+    private void addBackup()
+    {
+        Backups.Add(new backup_m()
+        {
+            Name = "",
+            Source = "",
+            Target = "",
+            Date = "---",
+            Size = "0Mo",
+            filesNB = "0", 
+            State = "Stop"
+        });
+    }
+    
     private void addBackup()
     {
         Backups.Add(new backup_m()
