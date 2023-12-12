@@ -4,7 +4,7 @@ namespace EasySave_Graphique.Models;
 
 public class backup_m
 {
-    public bool selected { get; set; }
+    public bool selected { get; set; } = false;
     public string Name { get; set; }
     public string Source { get; set; }
     public string Target { get; set; }

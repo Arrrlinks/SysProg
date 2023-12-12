@@ -33,7 +33,6 @@ public class Modify_vm : Base_vm
         _state = new state_m(); // Create a new state model
         _dialog = new FolderBrowserDialog();
         //List of backups
-        Backups = new ObservableCollection<backup_m>();
         //commands
         
         //relais command for the buttons
@@ -108,7 +107,10 @@ public class Modify_vm : Base_vm
         foreach (var backup in Backups)
         {
             //envoi le backup dans la list, si il existe, il le modifie, sinon il le créer. a voir dans le log
-            Console.WriteLine("hhhh");
+            foreach (var f in Backups)
+            {
+                Console.WriteLine(f.Name);
+            }
         }
     }
 }
