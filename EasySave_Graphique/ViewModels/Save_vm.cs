@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Documents;
 using EasySave_Graphique.Models;
+using Program.Models;
 
 namespace EasySave_Graphique.ViewModels;
 
 public class Save_vm : Base_vm
 {
+    private save_m _saveM;
+
+    private format_m FormatM;
     private int select;
     
-    List<backup_m> backupsChecked;
 
     private state_m _state;
     
@@ -24,12 +28,13 @@ public class Save_vm : Base_vm
     public Save_vm()
     {
         int select = 0;
+
+        _saveM = new save_m();
+        FormatM = new format_m();
         
         LaunchCommand = new RelayCommand(execute => Save());
-        SaveCheckCommand = new RelayCommand(execute => CheckboxChecked());
         
         _state = new state_m();
-        backupsChecked = new List<backup_m>();
         Backups = _state.GetBackupsFromStateFile();
     }
     //methods
@@ -43,35 +48,22 @@ public class Save_vm : Base_vm
         }
     }
 
-    public void CheckboxChecked()
-    {
-        Console.WriteLine("hhh");
-        //ajoute ou supprime les backups de la liste des backups à sauvegarder selon si la checkbox est cochée ou non
-        /*    
-        if (backup.selected)
-            {
-                backupsChecked.Add(backup);
-                backup.selected = true;
-            }
-            else
-            {
-                backupsChecked.Remove(backup);
-                backup.selected = false;
-            }
-
-            foreach (var bac in backupsChecked)
-            {
-                Console.WriteLine(bac.Name);
-            } */
-    }
-
     private void Save()
     {
+        string extention = FormatM.RetrieveValueFromConfigFile("Extensions", "Extensions");
+        dynamic tr = extention.Replace('[', ' ');
+        foreach (var VARIABLE in tr)
+        {
+            Console.WriteLine(VARIABLE);
+        }
+
         foreach (var backup in Backups)
         {
             if (backup.Selected)
             {
                 Console.WriteLine(backup.Name);
+                //_saveM.SaveLaunch(backup.Source, backup.Target, backup.Name);
+                
             }
         }
     }
