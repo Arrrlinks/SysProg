@@ -36,10 +36,10 @@
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <TextBox IsReadOnly="True" x:Name="SourceText" Text="{Binding SelectedBackup.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
-                <Button Margin="12,0,12,12" Content="Source" Command="{Binding SourceCommand, UpdateSourceTrigger=PropertyChanged}"></Button>
+                <Button Margin="12,0,12,12" Content="Source" Command="{Binding SourceCommand}"></Button>
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <TextBox IsReadOnly="True" x:Name="TargetText" Text="{Binding SelectedBackup.Target}" Margin="12 0 12 12"/>
+                <TextBox IsReadOnly="True" x:Name="TargetText" Text="{Binding SelectedBackup.Target, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
                 <Button Margin="12,0,12,12" Content="Target" Command="{Binding TargetCommand}"></Button>
             </StackPanel>
             <StackPanel Grid.Column="3">

@@ -9,6 +9,7 @@
         xmlns:modifyView="clr-namespace:EasySave_Graphique.View.ModifyView"
         xmlns:historryView="clr-namespace:EasySave_Graphique.View.HistorryView"
         xmlns:settingsView="clr-namespace:EasySave_Graphique.View.SettingsView"
+        xmlns:lang="clr-namespace:EasySave_Graphique.language"
         mc:Ignorable="d"
 
         
@@ -43,7 +44,7 @@
                             Kind="ContentSaveCog" />
                   <TextBlock
                     HorizontalAlignment="Center"
-                    Text="Modify" />
+                    Text="{x:Static lang:Resources.Modify}" />
                 </StackPanel>
               </TabItem.Header>
       
@@ -63,7 +64,7 @@
             Kind="ContentSaveMove" />
           <TextBlock
             HorizontalAlignment="Center"
-            Text="Save" />
+            Text="{x:Static lang:Resources.Save}" />
         </StackPanel>
         
       </TabItem.Header>
@@ -85,7 +86,7 @@
                     Kind="ClipboardTextClock" />
           <TextBlock
               HorizontalAlignment="Center"
-              Text="History" />
+              Text="{x:Static lang:Resources.History}" />
         </StackPanel>
       </TabItem.Header>
       
@@ -105,7 +106,7 @@
               Kind="Cogs" />
             <TextBlock
               HorizontalAlignment="Center"
-              Text="Settings" />
+              Text="{x:Static lang:Resources.Settings}" />
           </StackPanel>
         </TabItem.Header>
 

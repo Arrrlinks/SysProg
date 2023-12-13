@@ -32,7 +32,6 @@ public class Modify_vm : Base_vm
         _state = new state_m(); // Create a new state model
         _dialog = new FolderBrowserDialog();
         //List of backups
-        Backups = new ObservableCollection<backup_m>();
         //commands
         
         //relais command for the buttons
@@ -42,7 +41,6 @@ public class Modify_vm : Base_vm
         TargetCommand = new RelayCommand(execute => targetGet(), canExecute => _selectedBackupM != null);
         SaveCommand = new RelayCommand(execute => ReplaceStateFile());
         Backups = _state.GetBackupsFromStateFile(); // Get the backups from the state file
-        SelectedBackup = new backup_m();
     }
     //methods
     public backup_m SelectedBackup

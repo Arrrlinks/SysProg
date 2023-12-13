@@ -152,4 +152,3 @@ private string CalculateSize(string source)
         return "Error";
     }
 }
-}
