@@ -51,7 +51,7 @@
                     <Button Grid.Column="0" x:Name="addBtn" Command="{Binding AddCommand}" Margin="12,0,12,12" Background="#5BB450" Content="Add"></Button>
                     <Button Grid.Column="1" x:Name="deleteBtn" Command="{Binding RemoveCommand}" Margin="12,0,12,12" Background="#ED4437" Content="Delete"></Button>
                 </Grid>
-                <Button x:Name="sendBtn" Command="{Binding SendCommand}" Margin="12,0,12,12" Content="Send"></Button>
+                <Button x:Name="sendBtn" Command="{Binding SaveCommand}" Margin="12,0,12,12" Content="Send"></Button>
             </StackPanel>
         </Grid>
         
@@ -59,7 +59,7 @@
                   ItemsSource="{Binding Backups}"
                   SelectedItem="{Binding SelectedBackup}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
-                    AutoGenerateColumns="False"
+                  AutoGenerateColumns="False"
                   IsReadOnly="True"
                   >
                 <DataGrid.Columns>
@@ -73,7 +73,7 @@
                         Binding="{Binding Target}"
                         Header="Target Path" />
                     <DataGridTextColumn
-                        Binding="{Binding filesNB}"
+                        Binding="{Binding FilesNB}"
                         Header="Files Number" />
                     <DataGridTextColumn
                         Binding="{Binding Size}"

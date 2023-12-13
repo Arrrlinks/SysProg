@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using System.Windows.Media.Animation;
 using EasySave_Graphique.Models;
 
 namespace EasySave_Graphique.ViewModels;
@@ -25,6 +22,8 @@ public class Modify_vm : Base_vm
     public RelayCommand SourceCommand { get; set; }
     
     public RelayCommand TargetCommand { get; set; }
+    
+    public RelayCommand SaveCommand { get; set;  }
     private backup_m _selectedBackupM;
     
     //builder
@@ -37,11 +36,11 @@ public class Modify_vm : Base_vm
         //commands
         
         //relais command for the buttons
-        SendCommand = new RelayCommand(execute => ModifyBackup());
         RemoveCommand = new RelayCommand(execute => removeBackup(), canExecute => _selectedBackupM != null);
         AddCommand = new RelayCommand(execute => addBackup());
         SourceCommand = new RelayCommand(execute => sourceGet(), canExecute => _selectedBackupM != null);
         TargetCommand = new RelayCommand(execute => targetGet(), canExecute => _selectedBackupM != null);
+        SaveCommand = new RelayCommand(execute => ReplaceStateFile());
         Backups = _state.GetBackupsFromStateFile(); // Get the backups from the state file
         SelectedBackup = new backup_m();
     }
@@ -93,9 +92,9 @@ public class Modify_vm : Base_vm
             Name = "",
             Source = "",
             Target = "",
-            Date = "---",
-            Size = "0Mo",
-            filesNB = "0", 
+            Date = _state.GetDate(),
+            Size = "0",
+            FilesNB = "0", 
             State = "Stop"
         });
     }
@@ -104,12 +103,9 @@ public class Modify_vm : Base_vm
     {
         Backups.Remove(SelectedBackup);
     }
-    private void ModifyBackup()
+
+    private void ReplaceStateFile()
     {
-        foreach (var backup in Backups)
-        {
-            //envoi le backup dans la list, si il existe, il le modifie, sinon il le créer. a voir dans le log
-            Console.WriteLine("hhhh");
-        }
+        _state.ReplaceStateFile(Backups);
     }
 }
