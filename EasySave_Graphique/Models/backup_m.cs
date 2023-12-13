@@ -23,12 +23,6 @@ public class backup_m : INotifyPropertyChanged
         }
     }
 
-    public backup_m()
-    {
-        FilesNB = CalculateFilesNB(_source);
-        Size = CalculateSize(_source);
-    }
-
     public string Source
     {
         get { return _source; }
@@ -90,16 +84,16 @@ public class backup_m : INotifyPropertyChanged
             OnPropertyChanged("State");
         }
     }
-    
+
     public bool Selected
+    {
+        get { return _selected; }
+        set
         {
-            get { return _selected; }
-            set
-            {
-                _selected = value;
-                OnPropertyChanged("Selected");
-            }
+            _selected = value;
+            OnPropertyChanged("Selected");
         }
+    }
 
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -129,26 +123,26 @@ public class backup_m : INotifyPropertyChanged
         }
     }
 
-private string CalculateSize(string source)
-{
-    try
+    private string CalculateSize(string source)
     {
-        if (System.IO.Directory.Exists(source))
+        try
         {
-            var files = System.IO.Directory.GetFiles(source, "*.*", System.IO.SearchOption.AllDirectories);
-            long totalSize = files.Sum(file => new System.IO.FileInfo(file).Length);
-            // Convert to MegaBytes
-            double sizeInMB = totalSize / (1024.0 * 1024.0);
-            return sizeInMB.ToString("F2");
+            if (System.IO.Directory.Exists(source))
+            {
+                var files = System.IO.Directory.GetFiles(source, "*.*", System.IO.SearchOption.AllDirectories);
+                long totalSize = files.Sum(file => new System.IO.FileInfo(file).Length);
+                double sizeInMB = totalSize / (1024.0 * 1024.0);
+                return sizeInMB.ToString("F2");
+            }
+            else
+            {
+                return "Directory does not exist";
+            }
         }
-        else
+        catch (Exception ex)
         {
-            return "Directory does not exist";
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            return "Error";
         }
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"An error occurred: {ex.Message}");
-        return "Error";
     }
 }

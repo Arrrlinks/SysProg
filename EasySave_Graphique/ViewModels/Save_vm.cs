@@ -69,7 +69,7 @@ public class Save_vm : Base_vm
     {
         foreach (var backup in Backups)
         {
-            if (backup.selected)
+            if (backup.Selected)
             {
                 Console.WriteLine(backup.Name);
             }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lang="clr-namespace:EasySave_Graphique.language"
              xmlns:local="clr-namespace:EasySave_Graphique.View.ModifyView"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -18,7 +19,7 @@
         
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-            Text="Modify"
+            Text="{x:Static lang:Resources.Modify}"
             FontWeight="SemiBold"
             VerticalAlignment="Center"
         />
@@ -31,16 +32,16 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Label> Name </Label>
+                <Label Content="{x:Static lang:Resources.SaveName}"/>
                 <TextBox Text="{Binding SelectedBackup.Name, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <TextBox IsReadOnly="True" x:Name="SourceText" Text="{Binding SelectedBackup.Source, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
-                <Button Margin="12,0,12,12" Content="Source" Command="{Binding SourceCommand}"></Button>
+                <Button Margin="12,0,12,12" Content="{x:Static lang:Resources.SourcePath}" Command="{Binding SourceCommand}"></Button>
             </StackPanel>
             <StackPanel Grid.Column="2">
                 <TextBox IsReadOnly="True" x:Name="TargetText" Text="{Binding SelectedBackup.Target, UpdateSourceTrigger=PropertyChanged}" Margin="12 0 12 12"/>
-                <Button Margin="12,0,12,12" Content="Target" Command="{Binding TargetCommand}"></Button>
+                <Button Margin="12,0,12,12" Content="{x:Static lang:Resources.TargetPath}" Command="{Binding TargetCommand}"></Button>
             </StackPanel>
             <StackPanel Grid.Column="3">
                 <Grid>
@@ -48,10 +49,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" x:Name="addBtn" Command="{Binding AddCommand}" Margin="12,0,12,12" Background="#5BB450" Content="Add"></Button>
-                    <Button Grid.Column="1" x:Name="deleteBtn" Command="{Binding RemoveCommand}" Margin="12,0,12,12" Background="#ED4437" Content="Delete"></Button>
+                    <Button Grid.Column="0" x:Name="addBtn" Command="{Binding AddCommand}" Margin="12,0,12,12" Background="#5BB450" Content="{x:Static lang:Resources.Add}"></Button>
+                    <Button Grid.Column="1" x:Name="deleteBtn" Command="{Binding RemoveCommand}" Margin="12,0,12,12" Background="#ED4437" Content="{x:Static lang:Resources.Delete}"></Button>
                 </Grid>
-                <Button x:Name="sendBtn" Command="{Binding SaveCommand}" Margin="12,0,12,12" Content="Send"></Button>
+                <Button x:Name="sendBtn" Command="{Binding SaveCommand}" Margin="12,0,12,12" Content="{x:Static lang:Resources.Save}"></Button>
             </StackPanel>
         </Grid>
         
@@ -65,19 +66,19 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Binding="{Binding Name}"
-                        Header="Name" />
+                        Header="{x:Static lang:Resources.SaveName}" />
                     <DataGridTextColumn
                         Binding="{Binding Source}"
-                        Header="Source Path" />
+                        Header="{x:Static lang:Resources.SourcePath}" />
                     <DataGridTextColumn
                         Binding="{Binding Target}"
-                        Header="Target Path" />
+                        Header="{x:Static lang:Resources.TargetPath}" />
                     <DataGridTextColumn
                         Binding="{Binding FilesNB}"
-                        Header="Files Number" />
+                        Header="{x:Static lang:Resources.FilesNumber}" />
                     <DataGridTextColumn
                         Binding="{Binding Size}"
-                        Header="Size" />
+                        Header="{x:Static lang:Resources.Size}" />
                 </DataGrid.Columns>
         </DataGrid>
     </Grid>

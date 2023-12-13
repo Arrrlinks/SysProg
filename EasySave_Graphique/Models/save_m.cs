@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
-using EasySave_Graphique.Models; // Model for the history
+using EasySave_Graphique.Models;
+using Newtonsoft.Json; // Model for the history
 
 namespace Program.Models; // Namespace for the models
 
@@ -55,7 +57,13 @@ public class save_m // Model for the saves
         weightList[1] = length; // Set the length of the save
         return weightList; // Return the list of double
     }
-
+    
+    public List<string> ConvertStringToList(string input)
+    {
+        List<string> result = JsonConvert.DeserializeObject<List<string>>(input);
+        return result;
+    }
+    
     void CopyFileIfFile(string sourceFilePath, string destinationFolderPath, bool isComplete = false) // Function to copy a file
     {
         try // Try to copy the file
