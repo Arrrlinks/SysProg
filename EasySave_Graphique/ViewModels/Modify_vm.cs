@@ -106,4 +106,16 @@ public class Modify_vm : Base_vm
     {
         _state.ReplaceStateFile(Backups);
     }
+    
+    private void ModifyBackup()
+    {
+        foreach (var backup in Backups)
+        {
+            //envoi le backup dans la list, si il existe, il le modifie, sinon il le créer. a voir dans le log
+            foreach (var f in Backups)
+            {
+                
+            }
+        }
+    }
 }
