@@ -74,7 +74,7 @@ public class state_m
                 Target = jsonObject["Target"]?.ToString(),
                 Date = jsonObject["Date"]?.ToString(),
                 Size = jsonObject["Size"].ToString(),
-                FilesNB = jsonObject["filesNB"]?.ToString(),
+                FilesNB = jsonObject["FilesNB"]?.ToString(),
                 State = jsonObject["State"]?.ToString()
             });
         }

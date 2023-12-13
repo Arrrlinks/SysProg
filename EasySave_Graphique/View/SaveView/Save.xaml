@@ -52,7 +52,7 @@
             <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Name}"
-              Header="{x:Static lang:Resources.Name}" />
+              Header="{x:Static lang:Resources.SaveName}" />
             <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Source}"

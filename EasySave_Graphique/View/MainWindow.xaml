@@ -86,7 +86,7 @@
                     Kind="ClipboardTextClock" />
           <TextBlock
               HorizontalAlignment="Center"
-              Text="{x:Static lang:Resources.History}" />
+              Text="{x:Static lang:Resources.Logs}" />
         </StackPanel>
       </TabItem.Header>
       
