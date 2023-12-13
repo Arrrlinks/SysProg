@@ -159,7 +159,7 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Size.
+        ///   Looks up a localized string similar to Size (MB).
         /// </summary>
         public static string Size {
             get {

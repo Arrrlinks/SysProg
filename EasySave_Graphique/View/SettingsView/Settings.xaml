@@ -11,19 +11,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock
+        <TextBlock Grid.Row="0"
             Style="{StaticResource MaterialDesignHeadline2TextBlock}"
             Text="{x:Static lang:Resources.Settings}"
             FontWeight="SemiBold"
             VerticalAlignment="Center"
-            Margin="0,50,0,0"
         />
 
         <Grid Grid.Row="1" Margin="0,50,0,0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -50,26 +51,42 @@
                     <ComboBoxItem Content="JSON"/>
                     <ComboBoxItem Content="XML"/>
             </ComboBox>
+            
+            <!-- save file type -->
+            <ComboBox Grid.Column="2" x:Name="SaveFileTypeComboBox"
+                      Width="256"
+                      materialDesign:HintAssist.Hint="{x:Static lang:Resources.LogFileType}"
+                      materialDesign:TextFieldAssist.HasClearButton="False"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      SelectionChanged="LogFileComboBox_SelectionChanged">
+                <ComboBoxItem Content="Différentielle"/>
+                <ComboBoxItem Content="Incrémentielle"/>
+            </ComboBox>
         </Grid>
 
-        <Grid Grid.Row="2" Height="300" Margin="0,-50,0,0">
+        <Grid Grid.Row="3">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="ExtensionTextBox" Width="200" Height="30" VerticalAlignment="Top" KeyDown="ExtensionTextBox_KeyDown"
+            <TextBox x:Name="ExtensionTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="ExtensionTextBox_KeyDown"
                      materialDesign:HintAssist.Hint="{x:Static lang:Resources.AddEncryptedExtension}"/>
 
-            <StackPanel Grid.Column="1">
-                <TextBlock Text="{x:Static lang:Resources.EncryptedExtensions}"/>
-                <ListBox x:Name="ExtensionsListBox" VerticalAlignment="Stretch" MaxHeight="200" SelectionMode="Extended" />
-                <Button Content="{x:Static lang:Resources.DeleteSelection}" Width="250" Click="DeleteButton_Click" />
-            </StackPanel>
+            <Grid Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="1" Margin="0 50 0 0" VerticalAlignment="Top" Text="{x:Static lang:Resources.EncryptedExtensions}"/>
+                <ListBox Grid.Row="1" x:Name="ExtensionsListBox" VerticalAlignment="Center" MaxHeight="200" SelectionMode="Extended" />
+                <Button Grid.Row="2" Content="{x:Static lang:Resources.DeleteSelection}" Width="250" Click="DeleteButton_Click" />
+            </Grid>
 
             <Button Content="{x:Static lang:Resources.Save}" Width="120" Click="SaveButton_Click" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
         </Grid>

@@ -159,7 +159,7 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Taille.
+        ///   Looks up a localized string similar to Taille (Mo).
         /// </summary>
         internal static string Size {
             get {
