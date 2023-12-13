@@ -61,7 +61,7 @@
         <value>Destination</value>
     </data>
     <data name="Size" xml:space="preserve">
-        <value>Taille</value>
+        <value>Taille (Mo)</value>
     </data>
     <data name="Time" xml:space="preserve">
         <value>Temps</value>
