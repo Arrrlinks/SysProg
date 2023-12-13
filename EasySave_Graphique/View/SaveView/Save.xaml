@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lang="clr-namespace:EasySave_Graphique.language"
              xmlns:local="clr-namespace:EasySave_Graphique.View.SaveView"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              
@@ -23,7 +24,7 @@
         
         <TextBlock
           Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-          Text="Save"
+          Text="{x:Static lang:Resources.Save}"
           FontWeight="SemiBold"
           VerticalAlignment="Center"
           />
@@ -51,23 +52,23 @@
             <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Name}"
-              Header="Name" />
+              Header="{x:Static lang:Resources.Name}" />
             <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Source}"
-              Header="Source Path" />
+              Header="{x:Static lang:Resources.SourcePath}" />
             <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Target}"
-              Header="Target Path" />
+              Header="{x:Static lang:Resources.TargetPath}" />
             <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding filesNB}"
-              Header="Files Number" />
+              Header="{x:Static lang:Resources.FilesNumber}" />
             <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Size}"
-              Header="Size" />
+              Header="{x:Static lang:Resources.Size}" />
           </DataGrid.Columns>
         </DataGrid>
         
