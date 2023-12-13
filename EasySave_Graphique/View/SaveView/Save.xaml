@@ -47,7 +47,8 @@
           
           <DataGrid.Columns>
             
-            <DataGridCheckBoxColumn Binding="{Binding selected}"/>
+            <DataGridCheckBoxColumn Binding="{Binding selected}" Header="Selection">
+            </DataGridCheckBoxColumn>
             
             <DataGridTextColumn
               IsReadOnly="True"
