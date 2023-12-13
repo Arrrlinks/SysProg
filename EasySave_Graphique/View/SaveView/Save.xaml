@@ -34,7 +34,7 @@
             <ColumnDefinition></ColumnDefinition>
           </Grid.ColumnDefinitions>
           
-          <Button Content="Test" Command="{Binding LaunchCommand}"/>
+          <Button Content="Test" Command="{Binding LaunchCommand}" Margin="12 12 12 12"/>
           
         </Grid>
         <DataGrid Grid.Row="2" Grid.RowSpan="2"

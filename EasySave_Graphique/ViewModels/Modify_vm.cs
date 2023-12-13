@@ -102,6 +102,7 @@ public class Modify_vm : Base_vm
     {
         Backups.Remove(SelectedBackup);
     }
+    
     private void ModifyBackup()
     {
         foreach (var backup in Backups)
@@ -109,7 +110,7 @@ public class Modify_vm : Base_vm
             //envoi le backup dans la list, si il existe, il le modifie, sinon il le créer. a voir dans le log
             foreach (var f in Backups)
             {
-                Console.WriteLine(f.Name);
+                
             }
         }
     }

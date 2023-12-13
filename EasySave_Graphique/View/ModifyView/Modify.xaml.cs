@@ -7,8 +7,8 @@ public partial class Modify : UserControl
 {
     public Modify()
     {
-        InitializeComponent();
         Modify_vm vm = new Modify_vm();
         DataContext = vm;
+        InitializeComponent();
     }
 }
