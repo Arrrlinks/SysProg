@@ -61,9 +61,24 @@
         <value>Target Path</value>
     </data>
     <data name="Size" xml:space="preserve">
-        <value>Size</value>
+        <value>Size (MB)</value>
     </data>
     <data name="Time" xml:space="preserve">
         <value>Time</value>
+    </data>
+    <data name="FilesNumber" xml:space="preserve">
+        <value>Files Number</value>
+    </data>
+    <data name="Save" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="Modify" xml:space="preserve">
+        <value>Modify</value>
+    </data>
+    <data name="Add" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Delete</value>
     </data>
 </root>

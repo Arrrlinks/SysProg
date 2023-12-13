@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 
 namespace EasySave_Graphique.Models;
 using System;
@@ -69,12 +70,12 @@ public class state_m
             backups.Add(new backup_m()
             {
                 Name = jsonObject["Name"]?.ToString(),
-                Source = jsonObject["SourcePath"]?.ToString(),
-                Target = jsonObject["TargetPath"]?.ToString(),
+                Source = jsonObject["Source"]?.ToString(),
+                Target = jsonObject["Target"]?.ToString(),
                 Date = jsonObject["Date"]?.ToString(),
-                Size = $"{jsonObject["Size"]} MB",
-                filesNB = jsonObject["TotalFiles"]?.ToString(),
-                State = jsonObject["Status"]?.ToString()
+                Size = jsonObject["Size"].ToString(),
+                FilesNB = jsonObject["FilesNB"]?.ToString(),
+                State = jsonObject["State"]?.ToString()
             });
         }
 
@@ -135,6 +136,12 @@ public class state_m
         {
             Console.WriteLine($"[AddEntryToStateFile] An error occured : {ex.Message}"); // Display an error message
         }
+    }
+    
+    public void ReplaceStateFile(ObservableCollection<backup_m> backups)
+    {
+        string jsonContent = JsonConvert.SerializeObject(backups);
+        File.WriteAllText("../../../state.json", jsonContent);
     }
     
     public void ModifyStateFile(string name, string? source, string? target, double[] fileSizeList, string? status, int iteration = 0, bool isComplete = false) // Function to modify a save in the history

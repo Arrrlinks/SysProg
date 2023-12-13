@@ -60,11 +60,29 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ajouter.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ajouter une extension à chiffrer.
         /// </summary>
         internal static string AddEncryptedExtension {
             get {
                 return ResourceManager.GetString("AddEncryptedExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supprimer.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
@@ -92,6 +110,15 @@ namespace EasySave_Graphique.language {
         internal static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre de fichier.
+        /// </summary>
+        internal static string FilesNumber {
+            get {
+                return ResourceManager.GetString("FilesNumber", resourceCulture);
             }
         }
         
@@ -141,6 +168,24 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modifier.
+        /// </summary>
+        internal static string Modify {
+            get {
+                return ResourceManager.GetString("Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sauvegarder.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nom de Sauvegarde.
         /// </summary>
         internal static string SaveName {
@@ -159,7 +204,7 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Taille.
+        ///   Looks up a localized string similar to Taille (Mo).
         /// </summary>
         internal static string Size {
             get {
