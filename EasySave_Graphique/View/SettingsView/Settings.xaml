@@ -71,7 +71,7 @@
                 <Button Content="{x:Static lang:Resources.DeleteSelection}" Width="250" Click="DeleteButton_Click" />
             </StackPanel>
 
-            <Button Content="Save" Width="120" Click="SaveButton_Click" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
+            <Button Content="{x:Static lang:Resources.Save}" Width="120" Click="SaveButton_Click" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
         </Grid>
     </Grid>
 </UserControl>
