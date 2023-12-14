@@ -26,7 +26,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <!-- Language -->
@@ -52,16 +51,6 @@
                     <ComboBoxItem Content="XML"/>
             </ComboBox>
             
-            <!-- save file type -->
-            <ComboBox Grid.Column="2" x:Name="SaveFileTypeComboBox"
-                      Width="256"
-                      materialDesign:HintAssist.Hint="{x:Static lang:Resources.LogFileType}"
-                      materialDesign:TextFieldAssist.HasClearButton="False"
-                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      SelectionChanged="LogFileComboBox_SelectionChanged">
-                <ComboBoxItem Content="Différentielle"/>
-                <ComboBoxItem Content="Incrémentielle"/>
-            </ComboBox>
         </Grid>
 
         <Grid Grid.Row="3">

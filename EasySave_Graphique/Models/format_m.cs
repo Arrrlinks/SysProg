@@ -10,7 +10,7 @@ namespace EasySave_Graphique.Models
 {
     internal class format_m
     {
-        public string? RetrieveValueFromConfigFile(string? itemName, string? key) // Function to retrieve a value from a json file
+        public dynamic? RetrieveValueFromConfigFile(string? itemName, string? key) // Function to retrieve a value from a json file
         {
             try // Try to retrieve the value from the json file
             {
