@@ -20,8 +20,6 @@ public class Save_vm : Base_vm
     
     public RelayCommand LaunchCommand { get; set; }
     
-    public RelayCommand SaveCheckCommand { get; set; }
-    
     public RelayCommand SelectAllCommand { get; set; }
     public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
     
@@ -53,19 +51,15 @@ public class Save_vm : Base_vm
 
     private void Save()
     {
-        string extention = FormatM.RetrieveValueFromConfigFile("Extensions", "Extensions");
-        dynamic tr = extention.Replace('[', ' ');
-        foreach (var VARIABLE in tr)
-        {
-            Console.WriteLine(VARIABLE);
-        }
+        //string extention = FormatM.RetrieveValueFromConfigFile("Extensions", "Extensions");
+        //dynamic tr = extention.Replace('[', ' ');
+        Console.WriteLine("rr");
 
         foreach (var backup in Backups)
         {
             if (backup.Selected)
             {
-                Console.WriteLine(backup.Name);
-                //_saveM.SaveLaunch(backup.Source, backup.Target, backup.Name);
+                _saveM.SaveLaunch(backup.Source, backup.Target, backup.Name);
                 
             }
         }

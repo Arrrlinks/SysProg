@@ -47,7 +47,7 @@
           
           <DataGrid.Columns>
             
-            <DataGridCheckBoxColumn Binding="{Binding selected}" Header="Selection">
+            <DataGridCheckBoxColumn Binding="{Binding Selected}" Header="Selection">
             </DataGridCheckBoxColumn>
             
             <DataGridTextColumn
@@ -64,7 +64,7 @@
               Header="{x:Static lang:Resources.TargetPath}" />
             <DataGridTextColumn
               IsReadOnly="True"
-              Binding="{Binding filesNB}"
+              Binding="{Binding FilesNB}"
               Header="{x:Static lang:Resources.FilesNumber}" />
             <DataGridTextColumn
               IsReadOnly="True"
