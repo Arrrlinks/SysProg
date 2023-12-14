@@ -11,8 +11,7 @@ namespace EasySave_Graphique.ViewModels;
 public class Save_vm : Base_vm
 {
     private save_m _saveM;
-
-    private format_m FormatM;
+    
     private int select;
     
 
@@ -30,7 +29,6 @@ public class Save_vm : Base_vm
         int select = 0;
 
         _saveM = new save_m();
-        FormatM = new format_m();
         
         LaunchCommand = new RelayCommand(execute => Save());
         SelectAllCommand = new RelayCommand(execute => SelectAll());
@@ -51,6 +49,8 @@ public class Save_vm : Base_vm
 
     private void Save()
     {
+        _saveM.SaveLaunch(SelectedBackupM.Source, SelectedBackupM.Target, SelectedBackupM.Name);
+
         //string extention = FormatM.RetrieveValueFromConfigFile("Extensions", "Extensions");
         //dynamic tr = extention.Replace('[', ' ');
         Console.WriteLine("rr");

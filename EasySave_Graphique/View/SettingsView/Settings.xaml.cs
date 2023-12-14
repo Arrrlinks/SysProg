@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text.Json;
 using System.Windows.Input;
 using EasySave_Graphique.ViewModels;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace EasySave_Graphique.View.SettingsView;
 
@@ -37,7 +39,15 @@ public partial class Settings : UserControl
         var languageItem = config.Find(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "Lang");
         if (languageItem != null)
         {
-            LanguageComboBox.SelectedItem = languageItem["Lang"].ToString() == "fr" ? LanguageComboBox.Items[0] : LanguageComboBox.Items[1];
+            // Temporarily remove the event handler
+            LanguageComboBox.SelectionChanged -= LanguageComboBox_SelectionChanged;
+
+            // Set the selected item
+            LanguageComboBox.SelectedItem = LanguageComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(item => item.Name == languageItem["Lang"].ToString());
+
+            // Reattach the event handler
+            LanguageComboBox.SelectionChanged += LanguageComboBox_SelectionChanged;
+
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(languageItem["Lang"].ToString());
             EasySave_Graphique.language.Resources.Culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
         }
@@ -87,6 +97,11 @@ public partial class Settings : UserControl
     }
 
     private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        UpdateLanguageSetting();
+    }
+
+    public void UpdateLanguageSetting()
     {
         string selectedLanguage = ((ComboBoxItem)LanguageComboBox.SelectedItem).Content.ToString();
         _settingsViewModel.Language = selectedLanguage == "French" ? "fr" : "en";
