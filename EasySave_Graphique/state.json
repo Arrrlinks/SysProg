@@ -1,1 +1,19 @@
-[{"Name":"Save1","Source":"C:\\Users\\Antoine\\Documents\\test1","Target":"C:\\Users\\Antoine\\Documents\\test2","Date":"05/12/2023 20:27:28","Size":"0,00","FilesNB":"6","State":"Completed","Selected":false}]
+[
+  {
+    "Name": "Save1",
+    "Source": "C:\\Users\\Antoine\\Documents\\test1",
+    "Target": "C:\\Users\\Antoine\\Documents\\test2",
+    "Date": "2023-12-14T10:48:44.3590775Z",
+    "Size": 0.0,
+    "FilesNB": "6",
+    "State": "Completed",
+    "Selected": false,
+    "SourcePath": "C:\\Users\\Antoine\\Documents\\test1",
+    "TargetPath": "C:\\Users\\Antoine\\Documents\\test2",
+    "TotalFiles": 1.0,
+    "FilesCopied": 6,
+    "FilesRemaining": -5.0,
+    "isComplete": false,
+    "Status": "Completed"
+  }
+]

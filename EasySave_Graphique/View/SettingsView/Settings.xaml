@@ -37,8 +37,8 @@
                 ItemsSource="{Binding _langage}"
                 Style="{StaticResource MaterialDesignOutlinedComboBox}"
                 SelectionChanged="LanguageComboBox_SelectionChanged">
-                <ComboBoxItem Content="{x:Static lang:Resources.English}"/>
-                <ComboBoxItem Content="{x:Static lang:Resources.French}"/>
+                <ComboBoxItem Name="en" Content="{x:Static lang:Resources.English}"/>
+                <ComboBoxItem Name="fr" Content="{x:Static lang:Resources.French}"/>
             </ComboBox>
 
             <!-- log file -->
