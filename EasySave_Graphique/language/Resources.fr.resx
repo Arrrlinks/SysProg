@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Settings" xml:space="preserve">
+        <value>Parametres</value>
+    </data>
+    <data name="French" xml:space="preserve">
+        <value>Français</value>
+    </data>
+    <data name="English" xml:space="preserve">
+        <value>Anglais</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>Langue</value>
+    </data>
+    <data name="AddEncryptedExtension" xml:space="preserve">
+        <value>Ajouter une extension à chiffrer</value>
+    </data>
+    <data name="EncryptedExtensions" xml:space="preserve">
+        <value>Extensions Chifrées :</value>
+    </data>
+    <data name="DeleteSelection" xml:space="preserve">
+        <value>Supprimer la selection</value>
+    </data>
+    <data name="LogFileType" xml:space="preserve">
+        <value>Type de fichier du journal</value>
+    </data>
+    <data name="Logs" xml:space="preserve">
+        <value>Journal</value>
+    </data>
+    <data name="LogsFrom" xml:space="preserve">
+        <value>Journal du :</value>
+    </data>
+    <data name="Submit" xml:space="preserve">
+        <value>Soumettre</value>
+    </data>
+    <data name="SaveName" xml:space="preserve">
+        <value>Nom de Sauvegarde</value>
+    </data>
+    <data name="SourcePath" xml:space="preserve">
+        <value>Source</value>
+    </data>
+    <data name="TargetPath" xml:space="preserve">
+        <value>Destination</value>
+    </data>
+    <data name="Size" xml:space="preserve">
+        <value>Taille (Mo)</value>
+    </data>
+    <data name="Time" xml:space="preserve">
+        <value>Temps</value>
+    </data>
+    <data name="FilesNumber" xml:space="preserve">
+        <value>Nombre de fichier</value>
+    </data>
+    <data name="Save" xml:space="preserve">
+        <value>Sauvegarder</value>
+    </data>
+    <data name="Modify" xml:space="preserve">
+        <value>Modifier</value>
+    </data>
+    <data name="Add" xml:space="preserve">
+        <value>Ajouter</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Supprimer</value>
+    </data>
+    <data name="ABackupWithTheName" xml:space="preserve">
+        <value>La sauvegarde avec le nom</value>
+    </data>
+    <data name="AlreadyExistsTheBackupWasNotSaved" xml:space="preserve">
+        <value>existe déjà. La sauvegarde n'a pas été enregistrée.</value>
+    </data>
+</root>
