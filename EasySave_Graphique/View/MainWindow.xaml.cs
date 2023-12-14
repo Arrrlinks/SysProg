@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EasySave_Graphique.View.SettingsView;
 using Microsoft.Win32;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -24,11 +25,12 @@ namespace EasySave_Graphique
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly Settings _settingsView = new Settings();
+        
         public MainWindow()
         {
             InitializeComponent();
         }
     }
-    
 }
 

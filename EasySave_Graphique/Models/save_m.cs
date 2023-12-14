@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using EasySave_Graphique.Models;
 using Newtonsoft.Json; // Model for the history
 
@@ -68,9 +69,15 @@ public class save_m // Model for the saves
     
     void CopyFileIfFile(string sourceFilePath, string destinationFolderPath, bool isComplete = false) // Function to copy a file
     {
-        string[] extention = _format.RetrieveValueFromConfigFile("Extensions", "Extensions");
         try // Try to copy the file
         {
+            var extention = ConvertStringToList(_format.RetrieveValueFromConfigFile("Extensions", "Extensions"));
+            bool isCrypted = false;
+            foreach (var item in extention)
+            {
+                if(Path.GetExtension(sourceFilePath) == $".{item}")
+                    isCrypted = true;
+            }
             if (isComplete) // If the save is complete
             {
                 if (File.Exists(sourceFilePath)) // If the file exists
@@ -80,6 +87,10 @@ public class save_m // Model for the saves
                     {
                         string destinationFilePath = Path.Combine(destinationFolderPath, fileName); // Get the destination file path
                         File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
+                        if (isCrypted)
+                        {
+                            Console.WriteLine($"Crypt the file {destinationFilePath}");
+                        }
                     }
                     else // If the destination folder path is not valid
                     {
@@ -104,6 +115,10 @@ public class save_m // Model for the saves
                     else // If the destination file path is not valid
                     {
                         File.Copy(sourceFilePath, destinationFilePath); // Copy the file
+                        if (isCrypted)
+                        {
+                            Console.WriteLine($"Crypt the file {destinationFilePath}");
+                        }
                     }
                 }
             }
