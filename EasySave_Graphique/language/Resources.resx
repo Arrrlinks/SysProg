@@ -81,4 +81,10 @@
     <data name="Delete" xml:space="preserve">
         <value>Delete</value>
     </data>
+    <data name="ABackupWithTheName" xml:space="preserve">
+        <value>A backup with the name</value>
+    </data>
+    <data name="AlreadyExistsTheBackupWasNotSaved" xml:space="preserve">
+        <value>already exists. The backup was not saved.</value>
+    </data>
 </root>

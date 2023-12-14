@@ -28,17 +28,17 @@
           FontWeight="SemiBold"
           VerticalAlignment="Center"
           />
+        <Button Grid.Row="0" Margin="0 50 0 0" Content="Launch All Selected Backups" Command="{Binding LaunchCommand}" HorizontalAlignment="Center" Padding="10,5" />
         
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="0">
           <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
           </Grid.ColumnDefinitions>
           
-          <Button Content="Test" Command="{Binding LaunchCommand}" Margin="12 12 12 12"/>
           
         </Grid>
-        <DataGrid Grid.Row="2" Grid.RowSpan="2"
+        <DataGrid Grid.Row="1" Grid.RowSpan="2"
                   ItemsSource="{Binding Backups }"
                   SelectedItem="{Binding SelectedBackupM}"
                   CanUserAddRows="False" CanUserDeleteRows="False"
