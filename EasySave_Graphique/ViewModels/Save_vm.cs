@@ -19,7 +19,7 @@ public class Save_vm : Base_vm
     
     public RelayCommand LaunchCommand { get; set; }
     
-    public RelayCommand SaveCheckCommand { get; set; }
+    public RelayCommand SelectAllCommand { get; set; }
     public ObservableCollection<backup_m> Backups { get; set; } //list of backups that update UI
     
     private backup_m _selectedBackupM;
@@ -31,6 +31,7 @@ public class Save_vm : Base_vm
         _saveM = new save_m();
         
         LaunchCommand = new RelayCommand(execute => Save());
+        SelectAllCommand = new RelayCommand(execute => SelectAll());
         
         _state = new state_m();
         Backups = _state.GetBackupsFromStateFile();
@@ -49,6 +50,34 @@ public class Save_vm : Base_vm
     private void Save()
     {
         _saveM.SaveLaunch(SelectedBackupM.Source, SelectedBackupM.Target, SelectedBackupM.Name);
+
+        //string extention = FormatM.RetrieveValueFromConfigFile("Extensions", "Extensions");
+        //dynamic tr = extention.Replace('[', ' ');
+        Console.WriteLine("rr");
+
+        foreach (var backup in Backups)
+        {
+            if (backup.Selected)
+            {
+                _saveM.SaveLaunch(backup.Source, backup.Target, backup.Name);
+                
+            }
+        }
+    }
+
+    private void SelectAll()
+    {
+        foreach (var backup in Backups)
+        {
+            if (backup.Selected)
+            {
+                backup.Selected = false;
+            }
+            else
+            {
+                backup.Selected = true;
+            }
+        }
     }
     
 }
