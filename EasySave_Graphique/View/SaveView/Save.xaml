@@ -44,36 +44,57 @@
                   CanUserAddRows="False" CanUserDeleteRows="False"
                   AutoGenerateColumns="False"
                   IsReadOnly="False">
-          
-          <DataGrid.Columns>
-            
-            <DataGridCheckBoxColumn Binding="{Binding Selected}" Header="Selection">
-            </DataGridCheckBoxColumn>
-            
-            <DataGridTextColumn
+
+            <DataGrid.Columns>
+
+                <DataGridCheckBoxColumn Binding="{Binding Selected}" Header="Selection">
+                </DataGridCheckBoxColumn>
+
+                <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Name}"
               Header="{x:Static lang:Resources.SaveName}" />
-            <DataGridTextColumn
+                <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Source}"
               Header="{x:Static lang:Resources.SourcePath}" />
-            <DataGridTextColumn
+                <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Target}"
               Header="{x:Static lang:Resources.TargetPath}" />
-            <DataGridTextColumn
+                <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding FilesNB}"
               Header="{x:Static lang:Resources.FilesNumber}" />
-            <DataGridTextColumn
+                <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding Size}"
               Header="{x:Static lang:Resources.Size}" />
-            <DataGridTextColumn
+                <DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding State}"
               Header="State" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button >Start</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button >Pause</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button >Stop</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         
