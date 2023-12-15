@@ -66,14 +66,14 @@
             <TextBox x:Name="ExtensionTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="ExtensionTextBox_KeyDown"
                      materialDesign:HintAssist.Hint="{x:Static lang:Resources.AddEncryptedExtension}"/>
 
-            <Grid Grid.Column="1" >
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="1" Margin="0 50 0 0" VerticalAlignment="Top" Text="{x:Static lang:Resources.EncryptedExtensions}"/>
-                <ListBox Grid.Row="1" x:Name="ExtensionsListBox" VerticalAlignment="Center" MaxHeight="200" SelectionMode="Extended" />
+                <TextBlock Grid.Row="1" VerticalAlignment="Top" Text="{x:Static lang:Resources.EncryptedExtensions}"/>
+                <ListBox Grid.Row="1" x:Name="ExtensionsListBox" Margin="0 15 0 0" VerticalAlignment="Center" SelectionMode="Extended" />
                 <Button Grid.Row="2" Content="{x:Static lang:Resources.DeleteSelection}" Width="250" Click="DeleteButton_Click" />
             </Grid>
 

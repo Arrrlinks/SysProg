@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Windows.Documents;
 using EasySave_Graphique.Models;
 using Program.Models;
 
@@ -35,7 +32,20 @@ public class Save_vm : Base_vm
         
         _state = new state_m();
         Backups = _state.GetBackupsFromStateFile();
+
+        Modify_vm.BackupUpdated += UpdateSaveMenu;
     }
+
+    private void UpdateSaveMenu()
+    {
+        Backups.Clear();
+        ObservableCollection<backup_m> updatedBackups = _state.GetBackupsFromStateFile();
+        foreach (var backup in updatedBackups)
+        {
+            Backups.Add(backup);
+        }
+    }
+
     //methods
     public backup_m SelectedBackupM
     {
@@ -53,7 +63,6 @@ public class Save_vm : Base_vm
 
         //string extention = FormatM.RetrieveValueFromConfigFile("Extensions", "Extensions");
         //dynamic tr = extention.Replace('[', ' ');
-        Console.WriteLine("rr");
 
         foreach (var backup in Backups)
         {
@@ -79,5 +88,4 @@ public class Save_vm : Base_vm
             }
         }
     }
-    
 }

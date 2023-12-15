@@ -1,9 +1,8 @@
-﻿using System.Windows.Controls;
-using EasySave_Graphique.ViewModels;
+﻿using EasySave_Graphique.ViewModels;
 
 namespace EasySave_Graphique.View.ModifyView;
 
-public partial class Modify : UserControl
+public partial class Modify
 {
     public Modify()
     {

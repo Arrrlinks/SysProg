@@ -60,6 +60,15 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A backup with the name.
+        /// </summary>
+        public static string ABackupWithTheName {
+            get {
+                return ResourceManager.GetString("ABackupWithTheName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -74,6 +83,15 @@ namespace EasySave_Graphique.language {
         public static string AddEncryptedExtension {
             get {
                 return ResourceManager.GetString("AddEncryptedExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to already exists. The backup was not saved..
+        /// </summary>
+        public static string AlreadyExistsTheBackupWasNotSaved {
+            get {
+                return ResourceManager.GetString("AlreadyExistsTheBackupWasNotSaved", resourceCulture);
             }
         }
         
