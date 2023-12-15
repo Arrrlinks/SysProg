@@ -11,8 +11,10 @@ public class Model
         List<byte> bytes = new List<byte>();
         string text = "";
         int Index = 0;
+        path = path.Replace("?"," ");
         //for each character in the file
         
+        //test if the file contains some text
         foreach (byte character in File.ReadAllBytes(path))
         {
             bytes.Add((byte)(character^key[Index]));

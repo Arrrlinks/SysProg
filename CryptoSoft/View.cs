@@ -13,12 +13,12 @@ public class View
     {
         Console.WriteLine("Enter the path of the file you want to encrypt/decrypt");
         string path = Console.ReadLine();
-        while (!File.Exists(path))
+        while (!File.Exists(path.Replace("?"," ")))
         {
             Console.WriteLine("Wrong path, enter the path of the file you want to encrypt/decrypt");
             path = Console.ReadLine();
         }
-        return path;
+        return path.Replace("?"," ");
     }
     
     public string GetKey()

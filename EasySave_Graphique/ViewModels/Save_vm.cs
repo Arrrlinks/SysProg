@@ -35,6 +35,7 @@ public class Save_vm : Base_vm
         Backups = _state.GetBackupsFromStateFile();
 
         Modify_vm.BackupUpdated += UpdateSaveMenu;
+        _saveM.SaveUpdated += UpdateSaveMenu;
     }
 
     private void UpdateSaveMenu()
