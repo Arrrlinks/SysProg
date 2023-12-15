@@ -31,7 +31,7 @@ public class save_m // Model for the saves
     private Process _saveProcess; // Process for the save
 
     private string _key;
-    
+    public bool isPaused;
     //Builders
     public save_m() // Builder for the save
     {
@@ -67,7 +67,7 @@ public class save_m // Model for the saves
         return result;
     }
     
-    void CopyFileIfFile(string sourceFilePath, string destinationFolderPath, bool isComplete = false) // Function to copy a file
+    void CopyFileIfFile(string sourceFilePath, string destinationFolderPath, bool isPaused, bool isComplete = false ) // Function to copy a file
     {
         try // Try to copy the file
         {
@@ -78,6 +78,7 @@ public class save_m // Model for the saves
                 if(Path.GetExtension(sourceFilePath) == $".{item}")
                     isCrypted = true;
             }
+
             if (isComplete) // If the save is complete
             {
                 if (File.Exists(sourceFilePath)) // If the file exists
@@ -86,15 +87,28 @@ public class save_m // Model for the saves
                     if (Directory.Exists(destinationFolderPath)) // If the destination folder path is valid
                     {
                         string destinationFilePath = Path.Combine(destinationFolderPath, fileName); // Get the destination file path
-                        File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
-                        if (isCrypted)
+                        foreach (var item in extention)
                         {
-                            
-                            string Argument = $"{destinationFilePath.Replace(" ","?")},{_key}";
-                            _saveProcess.StartInfo.Arguments = Argument; 
-                            _saveProcess.Start(); // Start the process
-                            _saveProcess.WaitForExit();
+                          /*
+                            while (isPaused == true)
+                            {
+                                if (isPaused == false)
+                                {
+                                    break;
+                                }
+                            }
+                            */
+                            File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
+                            if (isCrypted)
+                            {
+                                string Argument = $"\"{destinationFilePath.Replace(" ","?")}\" \"{_key}\"";
+                                _saveProcess.StartInfo.Arguments = Argument;
+                                _saveProcess.Start(); // Start the process
+                                _saveProcess.WaitForExit();
+                            }
                         }
+                        
+                        
                     }
                     else // If the destination folder path is not valid
                     {
@@ -104,32 +118,49 @@ public class save_m // Model for the saves
             }
             else // If the save is not complete
             {
-                if (File.Exists(sourceFilePath)) // If the file exists
-                {
-                    string fileName = Path.GetFileName(sourceFilePath); // Get the name of the file
-                    string destinationFilePath = Path.Combine(destinationFolderPath, fileName); // Get the destination file path
-
-                    if (File.Exists(destinationFilePath)) // If the destination file path is valid
+                foreach (var item in extention)
+                {/*
+                    while (isPaused == true)
                     {
-                        if (!FileCompare(sourceFilePath, destinationFilePath)) // If the file is different
-                        {
+                        if (isPaused == false)
+                        { */
                             File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
                             if (isCrypted)
                             {
                                 string Argument = $"{destinationFilePath.Replace(" ","?")} {_key}";
                                 _saveProcess.StartInfo.Arguments = Argument; 
                                 _saveProcess.Start(); // Start the process
-                            }
+                            }/*
+                            break;
                         }
                     }
-                    else // If the destination file path is not valid
+                    */
+                    if (File.Exists(sourceFilePath)) // If the file exists
                     {
-                        File.Copy(sourceFilePath, destinationFilePath); // Copy the file
-                        if (isCrypted)
+                        string fileName = Path.GetFileName(sourceFilePath); // Get the name of the file
+                        string destinationFilePath = Path.Combine(destinationFolderPath, fileName); // Get the destination file path
+
+                        if (File.Exists(destinationFilePath)) // If the destination file path is valid
                         {
-                            string Argument = $"{destinationFilePath.Replace(" ","?")} {_key}";
-                            _saveProcess.StartInfo.Arguments = Argument; 
-                            _saveProcess.Start(); // Start the process
+                            if (!FileCompare(sourceFilePath, destinationFilePath)) // If the file is different
+                            {
+                                File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
+                                {
+                                    string Argument = $"{destinationFilePath} {_key}";
+                                    _saveProcess.StartInfo.Arguments = Argument;
+                                    _saveProcess.Start(); // Start the process
+                                }
+                            }
+                        }
+                        else // If the destination file path is not valid
+                        {
+                            File.Copy(sourceFilePath, destinationFilePath); // Copy the file
+                            if (isCrypted)
+                            {
+                                string Argument = $"{destinationFilePath.Replace(" ","?")} {_key}";
+                                _saveProcess.StartInfo.Arguments = Argument;
+                                _saveProcess.Start(); // Start the process
+                            }
                         }
                     }
                 }
@@ -224,7 +255,7 @@ public class save_m // Model for the saves
         
         if (@target != null && fileName != null && file != null) // If the target path, the name of the file and if the file is valid
         {
-            CopyFileIfFile(file, @target, isComplete); // Copy the file
+            CopyFileIfFile(file, @target, isPaused ,isComplete); // Copy the file
         }
 
         string end = DateTime.UtcNow.ToString("o"); // Get the end of the save
@@ -328,20 +359,5 @@ public class save_m // Model for the saves
             }
         }
 
-        /*
-        if (@source != null) // If the source path is valid
-        {
-            string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
-            foreach (string? directory in directories) // For each directory in the save
-            {
-                if (target != null) // If the target path is valid
-                {
-                    DirectoryInfo newDirectory = Directory.CreateDirectory(Path.Combine(target, Path.GetFileName(directory) ?? string.Empty)); // Create the directory
-                    string? newDirectoryPath = newDirectory.FullName; // Get the path of the directory
-                    SaveLaunch(directory, newDirectoryPath, name, i, isComplete); // Save the directory
-                }
-            }
-        }
-        */
     }
 }

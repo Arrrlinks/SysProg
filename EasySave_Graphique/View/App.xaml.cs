@@ -14,7 +14,7 @@ namespace EasySave_Graphique
     public partial class App : Application
     {
         private static RemoteAccess _remoteAccess;
-
+        private static readonly object _lock = new object();
         private static Thread Remote;
         
         protected override void OnStartup(StartupEventArgs e)
@@ -47,15 +47,18 @@ namespace EasySave_Graphique
 
         private string LoadLanguageFromConfigFile()
         {
-            string configJson = File.ReadAllText("../../../config.json");
-            JArray config = JArray.Parse(configJson);
-            JObject languageItem = config.Children<JObject>()
-                .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "Lang");
-            if (languageItem != null)
+            lock (_lock)
             {
-                return languageItem["Lang"].ToString();
+                string configJson = File.ReadAllText("../../../config.json");
+                JArray config = JArray.Parse(configJson);
+                JObject languageItem = config.Children<JObject>()
+                    .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "Lang");
+                if (languageItem != null)
+                    {
+                    return languageItem["Lang"].ToString();
+                    }
+                return "en"; // default language
             }
-            return "en"; // default language
         }
     }
 }
