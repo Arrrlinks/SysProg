@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using EasySave_Graphique.Models;
 using Program.Models;
+using System.Threading;
 
 namespace EasySave_Graphique.ViewModels;
 
@@ -59,17 +60,12 @@ public class Save_vm : Base_vm
 
     private void Save()
     {
-        _saveM.SaveLaunch(SelectedBackupM.Source, SelectedBackupM.Target, SelectedBackupM.Name);
-
-        //string extention = FormatM.RetrieveValueFromConfigFile("Extensions", "Extensions");
-        //dynamic tr = extention.Replace('[', ' ');
-
         foreach (var backup in Backups)
         {
             if (backup.Selected)
             {
-                _saveM.SaveLaunch(backup.Source, backup.Target, backup.Name);
-                
+                Thread thread = new Thread(() =>_saveM.SaveLaunch(backup.Source, backup.Target, backup.Name));
+                thread.Start();
             }
         }
     }

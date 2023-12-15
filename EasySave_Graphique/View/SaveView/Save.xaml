@@ -70,7 +70,11 @@
               IsReadOnly="True"
               Binding="{Binding Size}"
               Header="{x:Static lang:Resources.Size}" />
-          </DataGrid.Columns>
+            <DataGridTextColumn
+              IsReadOnly="True"
+              Binding="{Binding State}"
+              Header="State" />
+            </DataGrid.Columns>
         </DataGrid>
         
       </Grid>
