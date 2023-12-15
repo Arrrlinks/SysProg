@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 using Newtonsoft.Json;
 
 namespace EasySave_Graphique.Models;
@@ -74,7 +76,7 @@ public class state_m
                 Target = jsonObject["Target"]?.ToString(),
                 Date = jsonObject["Date"]?.ToString(),
                 Size = jsonObject["Size"].ToString(),
-                FilesNB = jsonObject["filesNB"]?.ToString(),
+                FilesNB = jsonObject["FilesNB"]?.ToString(),
                 State = jsonObject["State"]?.ToString()
             });
         }
@@ -140,7 +142,20 @@ public class state_m
     
     public void ReplaceStateFile(ObservableCollection<backup_m> backups)
     {
-        string jsonContent = JsonConvert.SerializeObject(backups);
+        List<backup_m> uniqueBackups = new List<backup_m>();
+
+        foreach (var backup in backups)
+        {
+            if (!uniqueBackups.Exists(b => b.Name == backup.Name))
+            {
+                uniqueBackups.Add(backup);
+            }
+            else
+            {
+                MessageBox.Show($"{language.Resources.ABackupWithTheName} {backup.Name} {language.Resources.AlreadyExistsTheBackupWasNotSaved}", "EasySave", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        string jsonContent = JsonConvert.SerializeObject(uniqueBackups);
         File.WriteAllText("../../../state.json", jsonContent);
     }
     

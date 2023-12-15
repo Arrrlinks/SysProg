@@ -67,4 +67,8 @@
     <ItemGroup>
       <None Include="bin\Debug\net7.0-windows\config.json" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CryptoSoft\CryptoSoft.csproj" />
+    </ItemGroup>
 </Project>

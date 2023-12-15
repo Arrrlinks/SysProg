@@ -16,15 +16,15 @@ public class Modify_vm : Base_vm
     
     public RelayCommand AddCommand {get; set;}
     public RelayCommand RemoveCommand {get; set;}
-    
-    public RelayCommand SendCommand { get; set;  }
-    
+
     public RelayCommand SourceCommand { get; set; }
     
     public RelayCommand TargetCommand { get; set; }
     
     public RelayCommand SaveCommand { get; set;  }
     private backup_m _selectedBackupM;
+    
+    public static event Action BackupUpdated;
     
     //builder
     public Modify_vm()
@@ -105,5 +105,7 @@ public class Modify_vm : Base_vm
     private void ReplaceStateFile()
     {
         _state.ReplaceStateFile(Backups);
+        BackupUpdated?.Invoke();
+        
     }
 }

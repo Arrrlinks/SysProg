@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using EasySave_Graphique.Models; // Model for the history
+using System.Linq;
+using EasySave_Graphique.Models;
+using Newtonsoft.Json; // Model for the history
 
 namespace Program.Models; // Namespace for the models
 
@@ -14,12 +18,23 @@ public class save_m // Model for the saves
     public double _nbFiles { get; set; } // Number of files of the save
     private log_m _log; // Model for the history
     private state_m _state; // Model for the state
+    private format_m _format;
+    
+    private Process _saveProcess; // Process for the save
+
+    private string _key;
     
     //Builders
     public save_m() // Builder for the save
     {
+        _saveProcess = new Process(); // Create a new process
         _log = new log_m(); // Create a new history model
         _state = new state_m(); // Create a new state model
+        _format = new format_m(); // Create a new format model
+        
+        _saveProcess.StartInfo.FileName = @".\Cryptosoft.exe"; // Set the name of the process
+        _saveProcess.StartInfo.UseShellExecute = false; // Set the use of the shell to false
+        _key = "azerty"; // Set the key of the save
     }
     public save_m(string name, string? source, string? target) // Builder for the save
     {
@@ -55,11 +70,24 @@ public class save_m // Model for the saves
         weightList[1] = length; // Set the length of the save
         return weightList; // Return the list of double
     }
-
+    
+    public List<string> ConvertStringToList(string input)
+    {
+        List<string> result = JsonConvert.DeserializeObject<List<string>>(input);
+        return result;
+    }
+    
     void CopyFileIfFile(string sourceFilePath, string destinationFolderPath, bool isComplete = false) // Function to copy a file
     {
         try // Try to copy the file
         {
+            var extention = ConvertStringToList(_format.RetrieveValueFromConfigFile("Extensions", "Extensions"));
+            bool isCrypted = false;
+            foreach (var item in extention)
+            {
+                if(Path.GetExtension(sourceFilePath) == $".{item}")
+                    isCrypted = true;
+            }
             if (isComplete) // If the save is complete
             {
                 if (File.Exists(sourceFilePath)) // If the file exists
@@ -69,6 +97,15 @@ public class save_m // Model for the saves
                     {
                         string destinationFilePath = Path.Combine(destinationFolderPath, fileName); // Get the destination file path
                         File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
+                        if (isCrypted)
+                        {
+                            
+                            string Argument = $"\"{destinationFilePath}\" \"{_key}\"";
+                            Console.WriteLine(Argument);
+                            _saveProcess.StartInfo.Arguments = Argument; 
+                            _saveProcess.Start(); // Start the process
+                            _saveProcess.WaitForExit();
+                        }
                     }
                     else // If the destination folder path is not valid
                     {
@@ -88,11 +125,22 @@ public class save_m // Model for the saves
                         if (!FileCompare(sourceFilePath, destinationFilePath)) // If the file is different
                         {
                             File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
+                            {
+                                string Argument = $"{destinationFilePath} {_key}";
+                                _saveProcess.StartInfo.Arguments = Argument; 
+                                _saveProcess.Start(); // Start the process
+                            }
                         }
                     }
                     else // If the destination file path is not valid
                     {
                         File.Copy(sourceFilePath, destinationFilePath); // Copy the file
+                        if (isCrypted)
+                        {
+                            string Argument = $"{destinationFilePath} {_key}";
+                            _saveProcess.StartInfo.Arguments = Argument; 
+                            _saveProcess.Start(); // Start the process
+                        }
                     }
                 }
             }
@@ -150,8 +198,6 @@ public class save_m // Model for the saves
     
     public void CopyFile(string? file, string? target = null, string? source = null, string? name = null, int iteration = 0, bool isFile = false, bool isComplete = false) // Function to copy a file
     {
-        source ??= _source; // Set the source path of the save
-        target ??= _target; // Set the target path of the save
         string debut = DateTime.UtcNow.ToString("o"); // Get the start of the save
         
         string? fileName = Path.GetFileName(file); // Get the name of the file
@@ -160,9 +206,9 @@ public class save_m // Model for the saves
         
         if (name != null) // If the name of the save is valid
         {
-            if (_state.RetrieveValueFromStateFile(name, "Name") != null) // If the save exists in the history
+            if (_state.RetrieveValueFromStateFile(name, "Name") != null && target != null && source != null) // If the save exists in the history
             {
-                    if (target != null && source != null)
+                    //if (target != null && source != null)
                         _state.ModifyStateFile(name, source, target, fileSizeList, "Active", iteration, isComplete); // Modify the save in the history
             }
             else // If the save doesn't exist in the history
@@ -186,12 +232,9 @@ public class save_m // Model for the saves
             }
         }
         
-        if (@target != null) // If the target path is valid
+        if (@target != null && fileName != null && file != null) // If the target path, the name of the file and if the file is valid
         {
-            if (fileName != null) // If the name of the file is valid
-            {
-                if (file != null) CopyFileIfFile(file, @target, isComplete); // Copy the file
-            }
+            CopyFileIfFile(file, @target, isComplete); // Copy the file
         }
 
         string end = DateTime.UtcNow.ToString("o"); // Get the end of the save
@@ -233,8 +276,20 @@ public class save_m // Model for the saves
                         isComplete); // Modify the status of the save in the history
                 i++; // Increment the number of files copied
             }
+            
+            string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
+            foreach (string? directory in directories) // For each directory in the save
+            {
+                if (target != null) // If the target path is valid
+                {
+                    DirectoryInfo newDirectory = Directory.CreateDirectory(Path.Combine(target, Path.GetFileName(directory) ?? string.Empty)); // Create the directory
+                    string? newDirectoryPath = newDirectory.FullName; // Get the path of the directory
+                    SaveLaunch(directory, newDirectoryPath, name, i, isComplete); // Save the directory
+                }
+            }
         }
 
+        /*
         if (@source != null) // If the source path is valid
         {
             string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
@@ -248,5 +303,6 @@ public class save_m // Model for the saves
                 }
             }
         }
+        */
     }
 }

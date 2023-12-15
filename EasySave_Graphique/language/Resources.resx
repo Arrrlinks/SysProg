@@ -66,4 +66,25 @@
     <data name="Time" xml:space="preserve">
         <value>Time</value>
     </data>
+    <data name="FilesNumber" xml:space="preserve">
+        <value>Files Number</value>
+    </data>
+    <data name="Save" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="Modify" xml:space="preserve">
+        <value>Modify</value>
+    </data>
+    <data name="Add" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Delete</value>
+    </data>
+    <data name="ABackupWithTheName" xml:space="preserve">
+        <value>A backup with the name</value>
+    </data>
+    <data name="AlreadyExistsTheBackupWasNotSaved" xml:space="preserve">
+        <value>already exists. The backup was not saved.</value>
+    </data>
 </root>
