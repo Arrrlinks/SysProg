@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using EasySave_Graphique.Models;
@@ -19,12 +20,21 @@ public class save_m // Model for the saves
     private state_m _state; // Model for the state
     private format_m _format;
     
+    private Process _saveProcess; // Process for the save
+
+    private string _key;
+    
     //Builders
     public save_m() // Builder for the save
     {
+        _saveProcess = new Process(); // Create a new process
         _log = new log_m(); // Create a new history model
         _state = new state_m(); // Create a new state model
         _format = new format_m(); // Create a new format model
+        
+        _saveProcess.StartInfo.FileName = @".\Cryptosoft.exe"; // Set the name of the process
+        _saveProcess.StartInfo.UseShellExecute = false; // Set the use of the shell to false
+        _key = "azerty"; // Set the key of the save
     }
     public save_m(string name, string? source, string? target) // Builder for the save
     {
@@ -89,7 +99,12 @@ public class save_m // Model for the saves
                         File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
                         if (isCrypted)
                         {
-                            Console.WriteLine($"Crypt the file {destinationFilePath}");
+                            
+                            string Argument = $"\"{destinationFilePath}\" \"{_key}\"";
+                            Console.WriteLine(Argument);
+                            _saveProcess.StartInfo.Arguments = Argument; 
+                            _saveProcess.Start(); // Start the process
+                            _saveProcess.WaitForExit();
                         }
                     }
                     else // If the destination folder path is not valid
@@ -110,6 +125,11 @@ public class save_m // Model for the saves
                         if (!FileCompare(sourceFilePath, destinationFilePath)) // If the file is different
                         {
                             File.Copy(sourceFilePath, destinationFilePath, true); // Copy the file
+                            {
+                                string Argument = $"{destinationFilePath} {_key}";
+                                _saveProcess.StartInfo.Arguments = Argument; 
+                                _saveProcess.Start(); // Start the process
+                            }
                         }
                     }
                     else // If the destination file path is not valid
@@ -117,7 +137,9 @@ public class save_m // Model for the saves
                         File.Copy(sourceFilePath, destinationFilePath); // Copy the file
                         if (isCrypted)
                         {
-                            Console.WriteLine($"Crypt the file {destinationFilePath}");
+                            string Argument = $"{destinationFilePath} {_key}";
+                            _saveProcess.StartInfo.Arguments = Argument; 
+                            _saveProcess.Start(); // Start the process
                         }
                     }
                 }
