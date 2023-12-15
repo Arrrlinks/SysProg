@@ -87,4 +87,7 @@
     <data name="AlreadyExistsTheBackupWasNotSaved" xml:space="preserve">
         <value>already exists. The backup was not saved.</value>
     </data>
+    <data name="State" xml:space="preserve">
+        <value>Status</value>
+    </data>
 </root>
