@@ -79,10 +79,7 @@
                     <DataGridTextColumn
                         Binding="{Binding Size}"
                         Header="{x:Static lang:Resources.Size}" />
-                    <DataGridTextColumn
-                        Binding="{Binding State}"
-                        Header="State" />
-                </DataGrid.Columns>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

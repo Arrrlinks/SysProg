@@ -70,7 +70,29 @@
               IsReadOnly="True"
               Binding="{Binding Size}"
               Header="{x:Static lang:Resources.Size}" />
-                <DataGridTextColumn
+            <DataGridTemplateColumn Header="{x:Static lang:Resources.State}">
+            <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <ProgressBar x:Name="DeterminateCircularProgress"
+                                     Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                     Value="{Binding FilesRemaining}"
+                                     Maximum="{Binding FilesNB}"
+                                     Visibility="Collapsed" />
+                        <TextBlock x:Name="StateTextBlock"
+                                   Text="{Binding State}"
+                                   Visibility="Visible" />
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding State}" Value="Active">
+                            <Setter TargetName="DeterminateCircularProgress" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="StateTextBlock" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+                <!--DataGridTextColumn
               IsReadOnly="True"
               Binding="{Binding State}"
               Header="State" />
@@ -94,7 +116,7 @@
                             <Button >Stop</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn-->
             </DataGrid.Columns>
         </DataGrid>
         

@@ -1,1 +1,28 @@
-[{"Name":"Save1","Source":"C:\\Users\\Antoine\\Documents\\test1","Target":"C:\\Users\\Antoine\\Documents\\tests","Date":"14/12/2023 10:48:44","Size":"0,00","FilesNB":"7","State":"Completed","Selected":false},{"Name":"Save2","Source":"C:\\Users\\Antoine\\Documents\\test1","Target":"C:\\Users\\Antoine\\Documents\\test2","Date":"14/12/2023 16:00:49","Size":"0,00","FilesNB":"7","State":"Stop","Selected":false}]
+[
+  {
+    "Name": "Save1",
+    "Source": "C:\\Users\\Antoine\\Documents\\test1",
+    "Target": "C:\\Users\\Antoine\\Documents\\test2",
+    "Date": "2023-12-15T15:22:56.3684887Z",
+    "Size": "0,00",
+    "FilesNB": "7",
+    "State": "Completed",
+    "Selected": false,
+    "FilesRemaining": 7,
+    "FilesCopied": 7,
+    "isComplete": false
+  },
+  {
+    "Name": "Save2",
+    "Source": "C:\\Users\\Antoine\\Documents\\test3",
+    "Target": "C:\\Users\\Antoine\\Documents\\tests",
+    "Date": "2023-12-19T08:00:17.551585Z",
+    "Size": "3056,00",
+    "FilesNB": "8",
+    "State": "Completed",
+    "Selected": false,
+    "FilesRemaining": 8,
+    "FilesCopied": 8,
+    "isComplete": false
+  }
+]
