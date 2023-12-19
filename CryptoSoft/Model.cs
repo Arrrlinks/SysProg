@@ -12,6 +12,10 @@ public class Model
         string text = "";
         int Index = 0;
         //for each character in the file
+        if (File.ReadAllBytes(path).Length > 0)
+        {
+            return;
+        }
         
         foreach (byte character in File.ReadAllBytes(path))
         {
