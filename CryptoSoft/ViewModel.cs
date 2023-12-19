@@ -19,7 +19,7 @@ public class ViewModel
     
     public ViewModel(string path, string key)
     {
-        _path = path;
+        _path = path.Replace("?"," ");
         _key = key;
         _view = new View();
         _model = new Model();
@@ -27,7 +27,7 @@ public class ViewModel
     
     public void SetPath()
     {
-        _path = _view.GetPath();
+        _path = _view.GetPath().Replace("?"," ");
     }
     
     public void SetKey()
@@ -37,7 +37,7 @@ public class ViewModel
     
     public void Encrypt()
     {
-        _model.encrypt(_path, _key);
+        _model.encrypt(_path.Replace("?"," "), _key);
     }
 
     public void Run()
@@ -45,13 +45,13 @@ public class ViewModel
         //if the path or the key is null, get them
         if (_path.Length == 0)
         {
-            _path = _view.GetPath();
+            _path = _view.GetPath().Replace("?"," ");
         }
         if (_key.Length == 0)
         {
             _key = _view.GetKey();
         }
-        if (File.Exists(_path) == false || _key.Length > 64 || _key.Length == 0)
+        if (File.Exists(_path.Replace("?"," ")) == false || _key.Length > 64 || _key.Length == 0)
         {
             _view.ShowError();
             return;

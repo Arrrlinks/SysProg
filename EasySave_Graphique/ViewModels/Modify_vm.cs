@@ -93,7 +93,7 @@ public class Modify_vm : Base_vm
             Date = _state.GetDate(),
             Size = "0",
             FilesNB = "0", 
-            State = "Stop"
+            State = "Not Started"
         });
     }
     

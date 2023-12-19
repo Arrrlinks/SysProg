@@ -95,5 +95,7 @@
     </data>
     <data name="Sequential" xml:space="preserve">
         <value>Sequential</value>
+    <data name="State" xml:space="preserve">
+        <value>Status</value>
     </data>
 </root>
