@@ -36,13 +36,12 @@ namespace EasySave_Graphique
             // Set the Culture property of the Resources class
             EasySave_Graphique.language.Resources.Culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
             
-            Exit += App_Exit;
-        }
-        
-        private void App_Exit(object sender, ExitEventArgs e)
-        {
-            // Stop your additional thread when the application exits
-            Remote.Abort(); // Note: This method is not recommended, but it forcefully stops the thread
+            //kill the thread when the app is closed
+            this.Exit += (s, e) =>
+            {
+                Remote.Abort();
+            };
+
         }
 
         private string LoadLanguageFromConfigFile()
