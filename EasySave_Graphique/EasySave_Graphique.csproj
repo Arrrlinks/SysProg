@@ -55,6 +55,7 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
+        <Generator>PublicResXFileCodeGenerator</Generator>
       </Compile>
       <Compile Update="language\Resources.fr.Designer.cs">
         <DesignTime>True</DesignTime>

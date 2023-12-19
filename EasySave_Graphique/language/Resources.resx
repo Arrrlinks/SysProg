@@ -87,6 +87,14 @@
     <data name="AlreadyExistsTheBackupWasNotSaved" xml:space="preserve">
         <value>already exists. The backup was not saved.</value>
     </data>
+    <data name="Differential" xml:space="preserve">
+        <value>Differential</value>
+    </data>
+    <data name="SaveMode" xml:space="preserve">
+        <value>Save Mode</value>
+    </data>
+    <data name="Sequential" xml:space="preserve">
+        <value>Sequential</value>
     <data name="State" xml:space="preserve">
         <value>Status</value>
     </data>

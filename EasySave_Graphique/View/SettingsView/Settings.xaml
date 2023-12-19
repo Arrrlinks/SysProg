@@ -26,6 +26,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <!-- Language -->
@@ -33,7 +34,6 @@
                 Width="256"
                 materialDesign:HintAssist.Hint="{x:Static lang:Resources.Language}"
                 materialDesign:TextFieldAssist.HasClearButton="False"
-                ItemsSource="{Binding _langage}"
                 Style="{StaticResource MaterialDesignOutlinedComboBox}"
                 SelectionChanged="LanguageComboBox_SelectionChanged">
                 <ComboBoxItem Name="en" Content="{x:Static lang:Resources.English}"/>
@@ -49,6 +49,17 @@
                 SelectionChanged="LogFileComboBox_SelectionChanged">
                     <ComboBoxItem Content="JSON"/>
                     <ComboBoxItem Content="XML"/>
+            </ComboBox>
+            
+            <ComboBox Grid.Column="2" x:Name="SaveModeComboBox"
+                      Width="256"
+                      materialDesign:HintAssist.Hint="{x:Static lang:Resources.SaveMode}"
+                      materialDesign:TextFieldAssist.HasClearButton="False"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      SelectionChanged="LanguageComboBox_SelectionChanged"
+                      >
+                <ComboBoxItem Name="sequential" Content="{x:Static lang:Resources.Sequential}"/>
+                <ComboBoxItem Name="differential" Content="{x:Static lang:Resources.Differential}"/>
             </ComboBox>
             
         </Grid>

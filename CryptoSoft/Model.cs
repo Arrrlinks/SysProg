@@ -13,6 +13,10 @@ public class Model
         int Index = 0;
         path = path.Replace("?"," ");
         //for each character in the file
+        if (File.ReadAllBytes(path).Length > 0)
+        {
+            return;
+        }
         
         //test if the file contains some text
         foreach (byte character in File.ReadAllBytes(path))
