@@ -21,6 +21,7 @@ public class Settings_m
             {
                 new Dictionary<string, object> { { "Name", "Lang" }, { "Lang", "fr" } },
                 new Dictionary<string, object> { { "Name", "Format" }, { "Format", "json" } },
+                new Dictionary<string, object> { { "Name", "SaveMode" }, { "SaveMode", "complete" } },
                 new Dictionary<string, object> { { "Name", "Extensions" }, { "Extensions", new List<string> { "txt", "json" } } }
             };
             }
@@ -37,6 +38,7 @@ public class Settings_m
                 {
                     new Dictionary<string, object> { { "Name", "Lang" }, { "Lang", "fr" } },
                     new Dictionary<string, object> { { "Name", "Format" }, { "Format", "json" } },
+                    new Dictionary<string, object> { { "Name", "SaveMode" }, { "SaveMode", "complete" } },
                     new Dictionary<string, object> { { "Name", "Extensions" }, { "Extensions", new List<string> { "txt", "json" } } }
                 };
                 }
@@ -45,7 +47,7 @@ public class Settings_m
 
             if (item != null)
             {
-                if (key == "Lang" || key == "Format")
+                if (key == "Lang" || key == "Format" || key == "SaveMode")
                 {
                     item[key] = value;
                 }
