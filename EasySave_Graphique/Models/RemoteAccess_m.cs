@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using EasySave_Graphique.ViewModels;
 
 namespace EasySave_Graphique.Models;
 
@@ -15,10 +16,12 @@ public sealed class RemoteAccess_m
 
     private ObservableCollection<backup_m> BackupMs;
     private state_m _state;
+    private Save_vm _save;
 
     private RemoteAccess_m()
     {
         _state = new state_m();
+        _save = new Save_vm();
         BackupMs = new ObservableCollection<backup_m>();
     }
 
@@ -124,16 +127,30 @@ public sealed class RemoteAccess_m
                     switch (msg[0])
                     {
                         case "save":
-                            Console.WriteLine(BackupMs[Int32.Parse(msg[1])].Name);
+                            _save.StartSave(BackupMs[Int32.Parse(msg[1])]);
+                            //_save.SaveLaunch(BackupMs[Int32.Parse(msg[1])].Source, BackupMs[Int32.Parse(msg[1])].Target, BackupMs[Int32.Parse(msg[1])].Name, BackupMs[Int32.Parse(msg[1])]);
                             break;
-                        case "launch":
-                            Console.WriteLine("launch");
+                        
+                        case "pause":
+                            _save.StopSave(BackupMs[Int32.Parse(msg[1])]);
+                            /*
+                            if (BackupMs[Int32.Parse(msg[1])].IsPaused)
+                            {
+                                _save.ResumeSelectedSave(BackupMs[Int32.Parse(msg[1])]);
+                            }
+                            else
+                            {
+                                _save.PauseSelectedSave(BackupMs[Int32.Parse(msg[1])]);
+                            }*/
                             break;
+                        
                         case "stop":
-                            Console.WriteLine("stop");
+                            _save.StopSave(BackupMs[Int32.Parse(msg[1])]);
                             break;
+                        
                         case "exit":
                             break;
+                        
                         default:
                             Console.WriteLine("error");
                             break;

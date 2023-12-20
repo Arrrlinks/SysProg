@@ -32,6 +32,7 @@ public class save_m // Model for the saves
     
     public void PauseSelectedSave(backup_m backup)
     {
+        _state.ModifyJsonFile("../../../state.json", backup.Name, "IsPaused", true);
         if (_pauseEvents.TryGetValue(backup.Name, out var pauseEvent))
         {
             pauseEvent.Reset();
@@ -62,6 +63,7 @@ public class save_m // Model for the saves
     
     public void ResumeSelectedSave(backup_m backup)
     {
+        _state.ModifyJsonFile("../../../state.json", backup.Name, "IsPaused", false);
         if (_pauseEvents.TryGetValue(backup.Name, out var pauseEvent))
         {
             pauseEvent.Set();
@@ -326,7 +328,7 @@ public class save_m // Model for the saves
         return false;
     }
     
-    public void SaveLaunch(string? source = null, string? target = null, string? name = null,backup_m? backup = null, int i = 0, bool isComplete = false) // Function to launch a save
+    public void SaveLaunch(string? source = null, string? target = null, string? name = null, backup_m? backup = null, int i = 0, bool isComplete = false) // Function to launch a save
     {
         if (!IsBusinessSoftwareRunning())
         {
