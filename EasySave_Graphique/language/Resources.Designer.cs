@@ -114,6 +114,15 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Differential.
+        /// </summary>
+        public static string Differential {
+            get {
+                return ResourceManager.GetString("Differential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Encrypted extensions:.
         /// </summary>
         public static string EncryptedExtensions {
@@ -204,11 +213,29 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Mode.
+        /// </summary>
+        public static string SaveMode {
+            get {
+                return ResourceManager.GetString("SaveMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Name.
         /// </summary>
         public static string SaveName {
             get {
                 return ResourceManager.GetString("SaveName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequential.
+        /// </summary>
+        public static string Sequential {
+            get {
+                return ResourceManager.GetString("Sequential", resourceCulture);
             }
         }
         
