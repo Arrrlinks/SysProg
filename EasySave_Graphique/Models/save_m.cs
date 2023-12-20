@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using EasySave_Graphique.Models;
@@ -17,6 +17,7 @@ public class save_m // Model for the saves
     public delegate void SaveCompletedEventHandler(object sender, EventArgs e);
     public event SaveCompletedEventHandler SaveCompleted;
     //Attributes
+    private Dictionary<string, ManualResetEvent> _pauseEvents = new Dictionary<string, ManualResetEvent>();
     public string _name { get; set; } // Name of the save
     public string? _source { get; set; } // Source path of the save
     public string? _target { get; set; } // Target path of the save
@@ -24,13 +25,24 @@ public class save_m // Model for the saves
     public double _nbFiles { get; set; } // Number of files of the save
     private log_m _log; // Model for the history
     private state_m _state; // Model for the state
-    private format_m _format;
-    
+    private format_m _format; // Model for the format
+    private bool _stopRequested = false;
     public event Action SaveUpdated;
-    
     private Process _saveProcess; // Process for the save
-
     private string _key;
+    
+    public void PauseSelectedSave(backup_m backup)
+    {
+        if (_pauseEvents.TryGetValue(backup.Name, out var pauseEvent))
+        {
+            pauseEvent.Reset();
+        }
+    }
+
+    public void StopSave()
+    {
+        _stopRequested = true;
+    }
     
     //Builders
     public save_m() // Builder for the save
@@ -43,6 +55,7 @@ public class save_m // Model for the saves
         _saveProcess.StartInfo.FileName = @".\Cryptosoft.exe"; // Set the name of the process
         _saveProcess.StartInfo.UseShellExecute = false; // Set the use of the shell to false
         _key = "azerty"; // Set the key of the save
+
     }
     public save_m(string name, string? source, string? target) // Builder for the save
     {
@@ -52,6 +65,14 @@ public class save_m // Model for the saves
         _weight = 0; // Set the weight of the save
     }
     //Methods
+    
+    public void ResumeSelectedSave(backup_m backup)
+    {
+        if (_pauseEvents.TryGetValue(backup.Name, out var pauseEvent))
+        {
+            pauseEvent.Set();
+        }
+    }
     
     public double[] GetFileSize(string? source) // Function to get the size of a file
     {
@@ -186,7 +207,7 @@ public class save_m // Model for the saves
         }
     }
     
-    public void CopyFile(string? file, string? target = null, string? source = null, string? name = null, int iteration = 0, bool isFile = false, bool isComplete = false) // Function to copy a file
+    public void CopyFile(string? file, string? target = null, string? source = null, string? name = null, int iteration = 0, bool isComplete = false) // Function to copy a file
     {
         string debut = DateTime.UtcNow.ToString("o"); // Get the start of the save
         
@@ -307,30 +328,26 @@ public class save_m // Model for the saves
         if (@source != null) // If the source path is valid
         {
             string?[] files = Directory.GetFiles(@source); // Get the files of the save
+
+            // Create a new ManualResetEvent for this task and add it to the dictionary
+            _pauseEvents[name] = new ManualResetEvent(true);
+
             foreach (string? file in files) // For each file in the save
             {
-                CopyFile(file, target, source, name, i,false,  isComplete); // Copy the file
+                if (_state.RetrieveValueFromStateFile(name, "IsPaused"))
+                {
+                    _state.ModifyJsonFile("../../../state.json", name, "IsPaused", false);
+                }
+                CopyFile(file, target, source, name, i, isComplete); // Copy the file
                 if (name != null)
                     _state.ModifyJsonFile("../../../state.json", name, "isComplete",
                         isComplete); // Modify the status of the save in the history
                 i++; // Increment the number of files copied
-            }
-            
-            string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
-            foreach (string? directory in directories) // For each directory in the save
-            {
-                if (target != null) // If the target path is valid
-                {
-                    DirectoryInfo newDirectory = Directory.CreateDirectory(Path.Combine(target, Path.GetFileName(directory) ?? string.Empty)); // Create the directory
-                    string? newDirectoryPath = newDirectory.FullName; // Get the path of the directory
-                    SaveLaunch(directory, newDirectoryPath, name, i, isComplete); // Save the directory
-                }
-            }
-        }
 
-        /*
-        if (@source != null) // If the source path is valid
-        {
+                // Wait using the correct ManualResetEvent
+                _pauseEvents[name].WaitOne();
+            }
+
             string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
             foreach (string? directory in directories) // For each directory in the save
             {
@@ -342,6 +359,5 @@ public class save_m // Model for the saves
                 }
             }
         }
-        */
     }
 }
