@@ -6,10 +6,6 @@
              xmlns:lang="clr-namespace:EasySave_Graphique.language"
              xmlns:local="clr-namespace:EasySave_Graphique.View.SaveView"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             
-             
-             
-             
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
         <Grid>

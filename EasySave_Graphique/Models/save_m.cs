@@ -110,10 +110,9 @@ public class save_m // Model for the saves
                         if (isCrypted)
                         {
                             
-                            string Argument = $"{destinationFilePath.Replace(" ","?")},{_key}";
+                            string Argument = $"{destinationFilePath.Replace(" ","?")} {_key}";
                             _saveProcess.StartInfo.Arguments = Argument; 
                             _saveProcess.Start(); // Start the process
-                            _saveProcess.WaitForExit();
                         }
                     }
                     else // If the destination folder path is not valid
