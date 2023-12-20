@@ -105,4 +105,7 @@
     <data name="TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused" xml:space="preserve">
         <value>Le logiciel métier a été lancé, toutes les sauvegardes en cours ont été mises en pause</value>
     </data>
+    <data name="Complete" xml:space="preserve">
+        <value>Complète</value>
+    </data>
 </root>

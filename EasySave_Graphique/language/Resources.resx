@@ -105,4 +105,7 @@
     <data name="TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused" xml:space="preserve">
         <value>The business software is running, all running saves have been paused</value>
     </data>
+    <data name="Complete" xml:space="preserve">
+        <value>Complete</value>
+    </data>
 </root>

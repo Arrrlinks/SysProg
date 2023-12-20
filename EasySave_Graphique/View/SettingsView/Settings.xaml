@@ -56,9 +56,9 @@
                       materialDesign:HintAssist.Hint="{x:Static lang:Resources.SaveMode}"
                       materialDesign:TextFieldAssist.HasClearButton="False"
                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      SelectionChanged="LanguageComboBox_SelectionChanged"
+                      SelectionChanged="SaveModeComboBox_SelectionChanged"
                       >
-                <ComboBoxItem Name="sequential" Content="{x:Static lang:Resources.Sequential}"/>
+                <ComboBoxItem Name="complete" Content="{x:Static lang:Resources.Complete}"/>
                 <ComboBoxItem Name="differential" Content="{x:Static lang:Resources.Differential}"/>
             </ComboBox>
             
