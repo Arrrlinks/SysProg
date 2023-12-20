@@ -99,4 +99,10 @@
     <data name="State" xml:space="preserve">
         <value>Status</value>
     </data>
+    <data name="YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning" xml:space="preserve">
+        <value>You can't launch a save while the business software is running</value>
+    </data>
+    <data name="TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused" xml:space="preserve">
+        <value>The business software is running, all running saves have been paused</value>
+    </data>
 </root>
