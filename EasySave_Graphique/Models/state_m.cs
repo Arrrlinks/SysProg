@@ -212,4 +212,21 @@ public class state_m
         }
         
     }
+    
+    public void AbortPausedTasksOnStartup()
+    {
+        var tasks = GetBackupsFromStateFile();
+        foreach (var task in tasks)
+        {
+            if (task.State == "Paused" || task.State == "Active")
+            {
+                task.State = "Aborted";
+            }
+            if (task.IsPaused == true)
+            {
+                task.IsPaused = false;
+            }
+        }
+        ReplaceStateFile(tasks);
+    }
 }

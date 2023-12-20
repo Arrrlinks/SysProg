@@ -64,59 +64,124 @@
               Header="{x:Static lang:Resources.TargetPath}" />
                 <DataGridTextColumn
               IsReadOnly="True"
-              Binding="{Binding FilesNB}"
-              Header="{x:Static lang:Resources.FilesNumber}" />
-                <DataGridTextColumn
-              IsReadOnly="True"
               Binding="{Binding Size}"
               Header="{x:Static lang:Resources.Size}" />
             <DataGridTemplateColumn Header="{x:Static lang:Resources.State}">
             <DataGridTemplateColumn.CellTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <ProgressBar x:Name="DeterminateCircularProgress"
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ProgressBar x:Name="Active"
                                      Style="{StaticResource MaterialDesignCircularProgressBar}"
                                      Value="{Binding FilesRemaining}"
                                      Maximum="{Binding FilesNB}"
                                      Visibility="Collapsed" />
-                        <TextBlock x:Name="StateTextBlock"
-                                   Text="{Binding State}"
-                                   Visibility="Visible" />
+                        <materialDesign:PackIcon x:Name="Completed"
+                                                 Kind="CheckboxMarkedCircle" 
+                                                 Visibility="Collapsed"
+                                                 Width="20"
+                                                 Height="20"
+                                                 Foreground="#4caf50"/>
+                        <materialDesign:PackIcon x:Name="Paused"
+                                                 Kind="PauseOctagon"
+                                                 Visibility="Collapsed"
+                                                 Width="20"
+                                                 Height="20"
+                                                 Foreground="#673ab7"/>
+                        <materialDesign:PackIcon x:Name="Aborted"
+                                                 Kind="CloseCircle"
+                                                 Visibility="Collapsed"
+                                                 Width="20"
+                                                 Height="20"
+                                                 Foreground="#f44336"/> 
+                        <materialDesign:PackIcon x:Name="NotStarted"
+                                                 Kind="BookmarkMultiple" 
+                                                 Visibility="Collapsed"
+                                                 Width="20"
+                                                 Height="20"
+                                                 Foreground="#673ab7"/>
                     </Grid>
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding State}" Value="Active">
-                            <Setter TargetName="DeterminateCircularProgress" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="StateTextBlock" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Active" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Completed" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Paused" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Aborted" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="NotStarted" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="Completed">
+                            <Setter TargetName="Active" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Completed" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Paused" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Aborted" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="NotStarted" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="Paused">
+                            <Setter TargetName="Active" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Completed" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Paused" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Aborted" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="NotStarted" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="Aborted">
+                            <Setter TargetName="Active" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Completed" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Paused" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Aborted" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="NotStarted" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="Not Started">
+                            <Setter TargetName="Active" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Completed" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Paused" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Aborted" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="NotStarted" Property="Visibility" Value="Visible" />
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-                <!--DataGridTextColumn
-              IsReadOnly="True"
-              Binding="{Binding State}"
-              Header="State" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button >Start</Button>
+                            <Button Command="{Binding DataContext.StartSaveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"
+                                    Content="Start" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button >Pause</Button>
+                            <Grid>
+                                <Button x:Name="ResumeButton"
+                                        Command="{Binding DataContext.PauseSaveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding}"
+                                        Content="Resume" 
+                                        Visibility="Collapsed"/>
+                                <Button x:Name="StopButton"
+                                        Command="{Binding DataContext.PauseSaveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding}"
+                                        Content="Pause" 
+                                        Visibility="Visible"/>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding State}" Value="Paused">
+                                    <Setter TargetName="ResumeButton" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="StopButton" Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button >Stop</Button>
+                            <Button Command="{Binding DataContext.StopSaveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"
+                                    Content="Stop" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn-->
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         

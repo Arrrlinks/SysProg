@@ -1,22 +1,5 @@
-﻿using System;
-using Windowsform = System.Windows.Forms;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms.Integration;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using EasySave_Graphique.View.SettingsView;
-using Microsoft.Win32;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.Windows;
+using EasySave_Graphique.Models;
 
 namespace EasySave_Graphique
 {
@@ -25,10 +8,10 @@ namespace EasySave_Graphique
     /// </summary>
     public partial class MainWindow : Window
     {
-        readonly Settings _settingsView = new Settings();
-        
+        state_m _state = new state_m();
         public MainWindow()
         {
+            _state.AbortPausedTasksOnStartup();
             InitializeComponent();
         }
     }
