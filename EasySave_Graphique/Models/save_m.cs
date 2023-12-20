@@ -248,11 +248,10 @@ public class save_m // Model for the saves
         if (@target != null && fileName != null && file != null) // If the target path, the name of the file and if the file is valid
         {
             string configJson = File.ReadAllText("../../../config.json");
-            JArray config = JArray.Parse(configJson);
+            JArray config = JArray.Parse(configJson); // Get the config file
             string saveMode = config.Children<JObject>()
-                .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "SaveMode")?["SaveMode"].ToString();
-            isComplete = saveMode == "complete";
-            Console.WriteLine(isComplete); // Display a message
+                .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "SaveMode")?["SaveMode"].ToString(); // Get the save mode
+            isComplete = saveMode == "complete"; // Set the status of the save
             CopyFileIfFile(file, @target, isComplete); // Copy the file
         }
 
