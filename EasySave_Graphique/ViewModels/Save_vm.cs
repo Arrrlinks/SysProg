@@ -42,7 +42,7 @@ public class Save_vm : Base_vm
         _saveM.SaveUpdated += UpdateSaveMenu;
     }
 
-    private void PauseSave(object obj)
+    public void PauseSave(object obj)
     {
         if (obj is backup_m backup)
         {
@@ -73,7 +73,7 @@ public class Save_vm : Base_vm
         }
     }
 
-    private void StopSave(object obj)
+    public void StopSave(object obj)
     {
         if (obj is backup_m backup)
         {
@@ -85,7 +85,7 @@ public class Save_vm : Base_vm
         }
     }
     
-    private void StartSave(object obj)
+    public void StartSave(object obj)
     {
         if (obj is backup_m backup)
         {

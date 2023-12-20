@@ -13,18 +13,14 @@ namespace EasySave_Graphique
     /// </summary>
     public partial class App : Application
     {
-        private static RemoteAccess _remoteAccess;
         private static readonly object _lock = new object();
         private static Thread Remote;
         
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            
-            _remoteAccess = new RemoteAccess();
-            
 
-            Remote = new Thread(_remoteAccess.ServerPart);
+            Remote = new Thread(RemoteAccess.ServerConnection);
             Remote.Start();
             // Load the language setting from the config.json file
             //_remoteAccess.ServerPart();
