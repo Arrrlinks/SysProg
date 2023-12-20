@@ -294,11 +294,29 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Le logiciel métier a été lancé, toutes les sauvegardes en cours ont été mises en pause.
+        /// </summary>
+        internal static string TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused {
+            get {
+                return ResourceManager.GetString("TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Temps.
         /// </summary>
         internal static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vous ne pouvez pas lancer une sauvegarde tant que le logiciel métier est lancé.
+        /// </summary>
+        internal static string YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning {
+            get {
+                return ResourceManager.GetString("YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning", resourceCulture);
             }
         }
     }

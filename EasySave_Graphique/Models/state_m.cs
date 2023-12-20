@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Newtonsoft.Json;
-
-namespace EasySave_Graphique.Models;
 using System;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+
+namespace EasySave_Graphique.Models;
 
 public class state_m
 {

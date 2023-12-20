@@ -99,4 +99,10 @@
     <data name="State" xml:space="preserve">
         <value>Status</value>
     </data>
+    <data name="YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning" xml:space="preserve">
+        <value>Vous ne pouvez pas lancer une sauvegarde tant que le logiciel métier est lancé</value>
+    </data>
+    <data name="TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused" xml:space="preserve">
+        <value>Le logiciel métier a été lancé, toutes les sauvegardes en cours ont été mises en pause</value>
+    </data>
 </root>
