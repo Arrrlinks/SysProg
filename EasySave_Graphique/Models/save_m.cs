@@ -256,7 +256,7 @@ public class save_m // Model for the saves
                            " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + "\"," + // Create the log
                            " \"TargetPath\": \"" + @target.Replace("\\", "\\\\") + "\"," + // Create the log
                            " \"FileName\": \"" + fileName + "\"," + // Create the log
-                           " \"FileSize\": " + fileSizeList[0].ToString(CultureInfo.InvariantCulture) + ", " + // Create the log
+                           " \"FileSize\": " + fileSizeList[1].ToString(CultureInfo.InvariantCulture) + ", " + // Create the log
                            " \"TimeMs\": " + differenceMs + "}"; // Create the log
         
         _log.AddEntryToLogFile(toAdd2Log); // Add the log to the history
