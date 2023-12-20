@@ -17,12 +17,19 @@ public sealed class RemoteAccess_m
     private ObservableCollection<backup_m> BackupMs;
     private state_m _state;
     private Save_vm _save;
+    private bool _finish;
 
     private RemoteAccess_m()
     {
         _state = new state_m();
         _save = new Save_vm();
         BackupMs = new ObservableCollection<backup_m>();
+        _finish = false;
+    }
+    
+    public void SetFinish()
+    {
+        _finish = true;
     }
 
     
@@ -106,11 +113,17 @@ public sealed class RemoteAccess_m
 
             while (true)
             {
+                if (_finish == true)
+                {
+                    return;
+                }
+                BackupMs = _state.GetBackupsFromStateFile();
+                ListData = ListToString(BackupMs);
+                socket.Send(Encoding.UTF8.GetBytes(ListData));
+
                 recv = socket.Receive(data);
                 imput = Encoding.UTF8.GetString(data, 0, recv);
                 
-                BackupMs = _state.GetBackupsFromStateFile();
-                ListData = ListToString(BackupMs);
                 
                 //parse le message du client
                 var msg = imput.Split(" ");
@@ -156,7 +169,6 @@ public sealed class RemoteAccess_m
                             break;
                     }
                 }
-                socket.Send(Encoding.UTF8.GetBytes(ListData));
             }
         }
 }

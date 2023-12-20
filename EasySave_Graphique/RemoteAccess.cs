@@ -18,4 +18,9 @@ public static class RemoteAccess
         _remoteAccess.Deconnecter(socket);
     }
     
+    public static void SetFinish()
+    {
+        _remoteAccess.SetFinish();
+    }
+    
 }
