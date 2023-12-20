@@ -7,10 +7,9 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using EasySave_Graphique.Models;
-using Newtonsoft.Json; // Model for the history
+using Newtonsoft.Json;
 
-namespace Program.Models; // Namespace for the models
+namespace EasySave_Graphique.Models;
 
 public class save_m // Model for the saves
 {
@@ -37,11 +36,6 @@ public class save_m // Model for the saves
         {
             pauseEvent.Reset();
         }
-    }
-
-    public void StopSave()
-    {
-        _stopRequested = true;
     }
     
     //Builders
@@ -240,6 +234,11 @@ public class save_m // Model for the saves
             {
                 _state.ModifyJsonFile("../../../state.json", name, "State", "Completed"); // Modify the status of the save in the history
             }
+
+            if (IsBusinessSoftwareRunning())
+            {
+                _state.ModifyJsonFile("../../../state.json", name, "State", "Paused");
+            }
             UpdateSaveMenu();
         }
         
@@ -315,49 +314,86 @@ public class save_m // Model for the saves
         }));
     }
     
-    public void SaveLaunch(string? source = null, string? target = null, string? name = null, int i = 0, bool isComplete = false) // Function to save a save
+    public bool IsBusinessSoftwareRunning()
     {
-        if (source == null) // If the source path is not valid
+        foreach (var process in Process.GetProcesses())
         {
-            source = _source; // Set the source path of the save
-        }
-        if (target == null) // If the target path is not valid
-        {
-            target = _target; // Set the target path of the save
-        }
-        if (@source != null) // If the source path is valid
-        {
-            string?[] files = Directory.GetFiles(@source); // Get the files of the save
-
-            // Create a new ManualResetEvent for this task and add it to the dictionary
-            _pauseEvents[name] = new ManualResetEvent(true);
-
-            foreach (string? file in files) // For each file in the save
+            if (process.ProcessName == "CalculatorApp")
             {
-                if (_state.RetrieveValueFromStateFile(name, "IsPaused"))
-                {
-                    _state.ModifyJsonFile("../../../state.json", name, "IsPaused", false);
-                }
-                CopyFile(file, target, source, name, i, isComplete); // Copy the file
-                if (name != null)
-                    _state.ModifyJsonFile("../../../state.json", name, "isComplete",
-                        isComplete); // Modify the status of the save in the history
-                i++; // Increment the number of files copied
-
-                // Wait using the correct ManualResetEvent
-                _pauseEvents[name].WaitOne();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void SaveLaunch(string? source = null, string? target = null, string? name = null,backup_m? backup = null, int i = 0, bool isComplete = false) // Function to launch a save
+    {
+        if (!IsBusinessSoftwareRunning())
+        {
+            if (source == null) // If the source path is not valid
+            {
+                source = _source; // Set the source path of the save
             }
 
-            string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
-            foreach (string? directory in directories) // For each directory in the save
+            if (target == null) // If the target path is not valid
             {
-                if (target != null) // If the target path is valid
+                target = _target; // Set the target path of the save
+            }
+
+            if (@source != null) // If the source path is valid
+            {
+                string?[] files = Directory.GetFiles(@source); // Get the files of the save
+
+                // Create a new ManualResetEvent for this task and add it to the dictionary
+                _pauseEvents[name] = new ManualResetEvent(true);
+
+                foreach (string? file in files) // For each file in the save
                 {
-                    DirectoryInfo newDirectory = Directory.CreateDirectory(Path.Combine(target, Path.GetFileName(directory) ?? string.Empty)); // Create the directory
-                    string? newDirectoryPath = newDirectory.FullName; // Get the path of the directory
-                    SaveLaunch(directory, newDirectoryPath, name, i, isComplete); // Save the directory
+                    if (_state.RetrieveValueFromStateFile(name, "IsPaused"))
+                    {
+                        _state.ModifyJsonFile("../../../state.json", name, "IsPaused", false);
+                    }
+
+                    if (IsBusinessSoftwareRunning())
+                    {
+                        PauseSelectedSave(backup);
+                        _state.ModifyJsonFile("../../../state.json", name, "State", "Paused");
+                        _state.ModifyJsonFile("../../../state.json", name, "IsPaused", true);
+                        UpdateSaveMenu();
+                        MessageBox.Show(
+                            $"{language.Resources.TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused}",
+                            "EasySave", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+
+                    CopyFile(file, target, source, name, i, isComplete); // Copy the file
+                    if (name != null)
+                        _state.ModifyJsonFile("../../../state.json", name, "isComplete",
+                            isComplete); // Modify the status of the save in the history
+                    i++; // Increment the number of files copied
+
+                    // Wait using the correct ManualResetEvent
+                    _pauseEvents[name].WaitOne();
+                }
+
+                string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
+                foreach (string? directory in directories) // For each directory in the save
+                {
+                    if (target != null) // If the target path is valid
+                    {
+                        DirectoryInfo newDirectory =
+                            Directory.CreateDirectory(Path.Combine(target,
+                                Path.GetFileName(directory) ?? string.Empty)); // Create the directory
+                        string? newDirectoryPath = newDirectory.FullName; // Get the path of the directory
+                        SaveLaunch(directory, newDirectoryPath, name, backup, i, isComplete); // Save the directory
+                    }
                 }
             }
+        }
+        else
+        {
+            MessageBox.Show(
+                $"{language.Resources.YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning}",
+                "EasySave", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

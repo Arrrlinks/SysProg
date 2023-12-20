@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using EasySave_Graphique.Models;
-using Program.Models;
 using System.Threading;
-using Newtonsoft.Json;
 
 namespace EasySave_Graphique.ViewModels;
 
@@ -58,7 +54,12 @@ public class Save_vm : Base_vm
                 string newStatus = backup.IsPaused ? "Paused" : "Active";
                 _state.ModifyJsonFile("../../../state.json", backup.Name, "IsPaused", isPaused);
                 _state.ModifyJsonFile("../../../state.json", backup.Name, "State", newStatus);
-                if (backup.IsPaused)
+                if (_saveM.IsBusinessSoftwareRunning())
+                {
+                    _state.ModifyJsonFile("../../../state.json", backup.Name, "IsPaused", true);
+                    _state.ModifyJsonFile("../../../state.json", backup.Name, "State", "Paused");
+                }
+                if (backup.IsPaused || _saveM.IsBusinessSoftwareRunning())
                 {
                     _saveM.PauseSelectedSave(backup);
                 }
@@ -88,7 +89,7 @@ public class Save_vm : Base_vm
     {
         if (obj is backup_m backup)
         {
-            Thread thread = new Thread(() =>_saveM.SaveLaunch(backup.Source, backup.Target, backup.Name));
+            Thread thread = new Thread(() =>_saveM.SaveLaunch(backup.Source, backup.Target, backup.Name, backup));
             thread.Start();
         }
     }

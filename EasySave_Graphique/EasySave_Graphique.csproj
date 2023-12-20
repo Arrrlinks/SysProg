@@ -6,11 +6,8 @@
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
+        <ApplicationIcon>Pictures\sauver.ico</ApplicationIcon>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Pictures\" />
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="MaterialDesignColors" Version="3.0.0-ci472" />

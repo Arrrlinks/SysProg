@@ -294,11 +294,29 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The business software is running, all running saves have been paused.
+        /// </summary>
+        public static string TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused {
+            get {
+                return ResourceManager.GetString("TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t launch a save while the business software is running.
+        /// </summary>
+        public static string YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning {
+            get {
+                return ResourceManager.GetString("YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning", resourceCulture);
             }
         }
     }
