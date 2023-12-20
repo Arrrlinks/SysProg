@@ -15,26 +15,14 @@
     "Name": "Save2",
     "Source": "C:\\Users\\Antoine\\Documents\\test3",
     "Target": "C:\\Users\\Antoine\\Documents\\tests",
-    "Date": "2023-12-20T10:01:59.9880271Z",
+    "Date": "2023-12-20T15:59:53.6810637Z",
     "Size": "3056,00",
     "FilesNB": "8",
     "State": "Aborted",
     "Selected": false,
     "IsPaused": true,
-    "FilesRemaining": 4,
-    "FilesCopied": 4,
+    "FilesRemaining": 3,
+    "FilesCopied": 3,
     "isComplete": false
-  },
-  {
-    "Name": "Save3",
-    "Source": "C:\\Users\\Antoine\\Documents\\test1",
-    "Target": "C:\\Users\\Antoine\\Documents\\test2",
-    "Date": "20/12/2023 09:04:44",
-    "Size": "0,00",
-    "FilesNB": "7",
-    "State": "Completed",
-    "Selected": false,
-    "IsPaused": false,
-    "FilesRemaining": "7"
   }
 ]

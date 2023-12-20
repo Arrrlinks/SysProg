@@ -96,6 +96,15 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complète.
+        /// </summary>
+        internal static string Complete {
+            get {
+                return ResourceManager.GetString("Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supprimer.
         /// </summary>
         internal static string Delete {

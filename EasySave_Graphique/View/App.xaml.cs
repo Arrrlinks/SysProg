@@ -53,9 +53,9 @@ namespace EasySave_Graphique
                 JObject languageItem = config.Children<JObject>()
                     .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "Lang");
                 if (languageItem != null)
-                    {
+                {
                     return languageItem["Lang"].ToString();
-                    }
+                }
                 return "en"; // default language
             }
         }

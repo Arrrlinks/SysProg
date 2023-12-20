@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EasySave_Graphique.Models;
 
@@ -25,6 +26,7 @@ public class save_m // Model for the saves
     private log_m _log; // Model for the history
     private state_m _state; // Model for the state
     private format_m _format; // Model for the format
+    private Settings_m _settings; // Model for the settings
     private bool _stopRequested = false;
     public event Action SaveUpdated;
     private Process _saveProcess; // Process for the save
@@ -45,6 +47,7 @@ public class save_m // Model for the saves
         _log = new log_m(); // Create a new history model
         _state = new state_m(); // Create a new state model
         _format = new format_m(); // Create a new format model
+        _settings = new Settings_m(); // Create a new settings model
         
         _saveProcess.StartInfo.FileName = @".\Cryptosoft.exe"; // Set the name of the process
         _saveProcess.StartInfo.UseShellExecute = false; // Set the use of the shell to false
@@ -244,6 +247,11 @@ public class save_m // Model for the saves
         
         if (@target != null && fileName != null && file != null) // If the target path, the name of the file and if the file is valid
         {
+            string configJson = File.ReadAllText("../../../config.json");
+            JArray config = JArray.Parse(configJson); // Get the config file
+            string saveMode = config.Children<JObject>()
+                .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "SaveMode")?["SaveMode"].ToString(); // Get the save mode
+            isComplete = saveMode == "complete"; // Set the status of the save
             CopyFileIfFile(file, @target, isComplete); // Copy the file
         }
 
@@ -253,10 +261,10 @@ public class save_m // Model for the saves
         
         string toAdd2Log = "{\"Date\": \"" + _state.GetDate() + "\"," + // Create the log
                            "\"Name\": \"" + name + "\"," + // Create the log
-                           " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + "\"," + // Create the log
+                           " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + $"\\\\{fileName}\"," + // Create the log
                            " \"TargetPath\": \"" + @target.Replace("\\", "\\\\") + "\"," + // Create the log
                            " \"FileName\": \"" + fileName + "\"," + // Create the log
-                           " \"FileSize\": " + fileSizeList[0].ToString(CultureInfo.InvariantCulture) + ", " + // Create the log
+                           " \"FileSize\": " + fileSizeList[1].ToString(CultureInfo.InvariantCulture) + ", " + // Create the log
                            " \"TimeMs\": " + differenceMs + "}"; // Create the log
         
         _log.AddEntryToLogFile(toAdd2Log); // Add the log to the history
