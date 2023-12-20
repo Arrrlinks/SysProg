@@ -253,7 +253,7 @@ public class save_m // Model for the saves
         
         string toAdd2Log = "{\"Date\": \"" + _state.GetDate() + "\"," + // Create the log
                            "\"Name\": \"" + name + "\"," + // Create the log
-                           " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + "\"," + // Create the log
+                           " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + $"\\\\{fileName}\"," + // Create the log
                            " \"TargetPath\": \"" + @target.Replace("\\", "\\\\") + "\"," + // Create the log
                            " \"FileName\": \"" + fileName + "\"," + // Create the log
                            " \"FileSize\": " + fileSizeList[1].ToString(CultureInfo.InvariantCulture) + ", " + // Create the log

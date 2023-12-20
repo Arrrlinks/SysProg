@@ -40,7 +40,7 @@
                 <DataGridTextColumn Binding="{Binding Source}" Header="{x:Static lang:Resources.SourcePath}" />
                 <DataGridTextColumn Binding="{Binding Target}" Header="{x:Static lang:Resources.TargetPath}" />
                 <DataGridTextColumn Binding="{Binding Size}" Header="{x:Static lang:Resources.Size}" />
-                <DataGridTextColumn Binding="{Binding Time}" Header="{x:Static lang:Resources.Time}" />
+                <DataGridTextColumn Binding="{Binding TimeMs}" Header="{x:Static lang:Resources.Time}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
