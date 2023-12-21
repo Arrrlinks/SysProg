@@ -26,6 +26,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <!-- Language -->
@@ -33,7 +35,6 @@
                 Width="256"
                 materialDesign:HintAssist.Hint="{x:Static lang:Resources.Language}"
                 materialDesign:TextFieldAssist.HasClearButton="False"
-                ItemsSource="{Binding _langage}"
                 Style="{StaticResource MaterialDesignOutlinedComboBox}"
                 SelectionChanged="LanguageComboBox_SelectionChanged">
                 <ComboBoxItem Name="en" Content="{x:Static lang:Resources.English}"/>
@@ -51,6 +52,25 @@
                     <ComboBoxItem Content="XML"/>
             </ComboBox>
             
+            <ComboBox Grid.Column="2" x:Name="SaveModeComboBox"
+                      Width="256"
+                      materialDesign:HintAssist.Hint="{x:Static lang:Resources.SaveMode}"
+                      materialDesign:TextFieldAssist.HasClearButton="False"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      SelectionChanged="SaveModeComboBox_SelectionChanged">
+                <ComboBoxItem Name="complete" Content="{x:Static lang:Resources.Complete}"/>
+                <ComboBoxItem Name="differential" Content="{x:Static lang:Resources.Differential}"/>
+            </ComboBox>
+            
+            <TextBox Grid.Column="3" x:Name="SizeLimitTextBox"
+                     Width="256"
+                     materialDesign:HintAssist.Hint="{x:Static lang:Resources.SizeLimit}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     KeyDown="SizeLimitTextBox_TextInput"
+                     KeyUp="SizeLimitTextBox_TextInput"
+                     >
+            </TextBox>
+            
         </Grid>
 
         <Grid Grid.Row="3">
@@ -58,23 +78,21 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <TextBox x:Name="ExtensionTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="ExtensionTextBox_KeyDown"
-                     materialDesign:HintAssist.Hint="{x:Static lang:Resources.AddEncryptedExtension}"/>
-
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="1" VerticalAlignment="Top" Text="{x:Static lang:Resources.EncryptedExtensions}"/>
-                <ListBox Grid.Row="1" x:Name="ExtensionsListBox" Margin="0 15 0 0" VerticalAlignment="Center" SelectionMode="Extended" />
-                <Button Grid.Row="2" Content="{x:Static lang:Resources.DeleteSelection}" Width="250" Click="DeleteButton_Click" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Row="1" x:Name="ExtensionTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="ExtensionTextBox_KeyDown"
+                                     materialDesign:HintAssist.Hint="{x:Static lang:Resources.AddEncryptedExtension}"/>
+                <TextBlock Grid.Row="2" VerticalAlignment="Top" Text="{x:Static lang:Resources.EncryptedExtensions}"/>
+                <ListBox Grid.Row="2" x:Name="ExtensionsListBox" Margin="0 15 0 0" VerticalAlignment="Center" SelectionMode="Extended" Height="Auto" />
+                <Button Grid.Row="3" Content="{x:Static lang:Resources.DeleteSelection}" Width="250" Click="DeleteButton_Click" />
             </Grid>
 
             <Button Content="{x:Static lang:Resources.Save}" Width="120" Click="SaveButton_Click" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" />

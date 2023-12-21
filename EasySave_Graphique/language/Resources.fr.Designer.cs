@@ -96,6 +96,15 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complète.
+        /// </summary>
+        internal static string Complete {
+            get {
+                return ResourceManager.GetString("Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supprimer.
         /// </summary>
         internal static string Delete {
@@ -110,6 +119,15 @@ namespace EasySave_Graphique.language {
         internal static string DeleteSelection {
             get {
                 return ResourceManager.GetString("DeleteSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Différentielle.
+        /// </summary>
+        internal static string Differential {
+            get {
+                return ResourceManager.GetString("Differential", resourceCulture);
             }
         }
         
@@ -204,11 +222,29 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mode de Sauvegarde.
+        /// </summary>
+        internal static string SaveMode {
+            get {
+                return ResourceManager.GetString("SaveMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nom de Sauvegarde.
         /// </summary>
         internal static string SaveName {
             get {
                 return ResourceManager.GetString("SaveName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Séquentielle.
+        /// </summary>
+        internal static string Sequential {
+            get {
+                return ResourceManager.GetString("Sequential", resourceCulture);
             }
         }
         
@@ -231,11 +267,29 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Limite de taille (Mo).
+        /// </summary>
+        internal static string SizeLimit {
+            get {
+                return ResourceManager.GetString("SizeLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Source.
         /// </summary>
         internal static string SourcePath {
             get {
                 return ResourceManager.GetString("SourcePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string State {
+            get {
+                return ResourceManager.GetString("State", resourceCulture);
             }
         }
         
@@ -258,11 +312,48 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Le logiciel métier a été lancé, toutes les sauvegardes en cours ont été mises en pause.
+        /// </summary>
+        internal static string TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused {
+            get {
+                return ResourceManager.GetString("TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Les sauvegardes ont un volumes de données trop grand pour être lancées. Veuillez réduire la taille des sauvegardes ou augmenter la Limite de taill dans les paramètres.
+        /// </summary>
+        internal static string TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitInTheSettings {
+            get {
+                return ResourceManager.GetString("TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitI" +
+                        "nTheSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Temps.
         /// </summary>
         internal static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vous ne pouvez pas lancer une sauvegarde tant que le logiciel métier est lancé.
+        /// </summary>
+        internal static string YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning {
+            get {
+                return ResourceManager.GetString("YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vous devez redémarrer l&apos;application pour changer le langage, voulez-vous redémarrer ?.
+        /// </summary>
+        internal static string YouNeedToRestartTheApplicationToChangeTheLanguageDoYouWantToRestartNow {
+            get {
+                return ResourceManager.GetString("YouNeedToRestartTheApplicationToChangeTheLanguageDoYouWantToRestartNow", resourceCulture);
             }
         }
     }

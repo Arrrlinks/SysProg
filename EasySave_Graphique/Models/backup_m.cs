@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 
 public class backup_m : INotifyPropertyChanged
 {
@@ -11,7 +12,9 @@ public class backup_m : INotifyPropertyChanged
     private string _date;
     private string _size;
     private string _filesNB;
+    private string? _filesRemaining;
     private string _state;
+    private string _isPaused;
 
     public string Name
     {
@@ -92,6 +95,18 @@ public class backup_m : INotifyPropertyChanged
         {
             _selected = value;
             OnPropertyChanged("Selected");
+        }
+    }
+
+    public bool IsPaused { get; set; } = false;
+
+    public string? FilesRemaining
+    {
+        get { return _filesRemaining; }
+        set
+        {
+            _filesRemaining = value;
+            OnPropertyChanged("FilesRemaining");
         }
     }
 

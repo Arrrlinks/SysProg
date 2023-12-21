@@ -79,7 +79,7 @@
                     <DataGridTextColumn
                         Binding="{Binding Size}"
                         Header="{x:Static lang:Resources.Size}" />
-                </DataGrid.Columns>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

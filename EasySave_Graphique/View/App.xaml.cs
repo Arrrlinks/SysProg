@@ -13,19 +13,23 @@ namespace EasySave_Graphique
     /// </summary>
     public partial class App : Application
     {
-        private static RemoteAccess _remoteAccess;
-
+        private static readonly object _lock = new object();
         private static Thread Remote;
+        private static Thread Stop;
         
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            
-            _remoteAccess = new RemoteAccess();
-            
 
-            Remote = new Thread(_remoteAccess.ServerPart);
-            Remote.Start();
+            Remote = new Thread(RemoteAccess_vm.ServerConnection);
+            try
+            {
+                Remote.Start();
+            }
+            catch (Exception)
+            {
+                Remote.Start();
+            }
             // Load the language setting from the config.json file
             //_remoteAccess.ServerPart();
             string language = LoadLanguageFromConfigFile();
@@ -36,26 +40,35 @@ namespace EasySave_Graphique
             // Set the Culture property of the Resources class
             EasySave_Graphique.language.Resources.Culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
             
-            Exit += App_Exit;
-        }
-        
-        private void App_Exit(object sender, ExitEventArgs e)
-        {
-            // Stop your additional thread when the application exits
-            Remote.Abort(); // Note: This method is not recommended, but it forcefully stops the thread
+            //kill the thread when the app is closed
+            this.Exit += (s, e) =>
+            {
+                try
+                {
+                    Remote.Abort();
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
+            };
+
         }
 
         private string LoadLanguageFromConfigFile()
         {
-            string configJson = File.ReadAllText("../../../config.json");
-            JArray config = JArray.Parse(configJson);
-            JObject languageItem = config.Children<JObject>()
-                .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "Lang");
-            if (languageItem != null)
+            lock (_lock)
             {
-                return languageItem["Lang"].ToString();
+                string configJson = File.ReadAllText("../../../config.json");
+                JArray config = JArray.Parse(configJson);
+                JObject languageItem = config.Children<JObject>()
+                    .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "Lang");
+                if (languageItem != null)
+                {
+                    return languageItem["Lang"].ToString();
+                }
+                return "en"; // default language
             }
-            return "en"; // default language
         }
     }
 }

@@ -6,13 +6,8 @@
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
+        <ApplicationIcon>Pictures\sauver.ico</ApplicationIcon>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="log\" />
-      <Folder Include="Pictures\" />
-      <Folder Include="src\" />
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="MaterialDesignColors" Version="3.0.0-ci472" />
@@ -57,6 +52,7 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
+        <Generator>PublicResXFileCodeGenerator</Generator>
       </Compile>
       <Compile Update="language\Resources.fr.Designer.cs">
         <DesignTime>True</DesignTime>
@@ -67,5 +63,9 @@
 
     <ItemGroup>
       <None Include="bin\Debug\net7.0-windows\config.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CryptoSoft\CryptoSoft.csproj" />
     </ItemGroup>
 </Project>

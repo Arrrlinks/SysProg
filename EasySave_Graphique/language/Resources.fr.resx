@@ -87,4 +87,34 @@
     <data name="AlreadyExistsTheBackupWasNotSaved" xml:space="preserve">
         <value>existe déjà. La sauvegarde n'a pas été enregistrée.</value>
     </data>
+    <data name="SaveMode" xml:space="preserve">
+        <value>Mode de Sauvegarde</value>
+    </data>
+    <data name="Differential" xml:space="preserve">
+        <value>Différentielle</value>
+    </data>
+    <data name="Sequential" xml:space="preserve">
+        <value>Séquentielle</value>
+    </data>
+    <data name="State" xml:space="preserve">
+        <value>Status</value>
+    </data>
+    <data name="YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning" xml:space="preserve">
+        <value>Vous ne pouvez pas lancer une sauvegarde tant que le logiciel métier est lancé</value>
+    </data>
+    <data name="TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused" xml:space="preserve">
+        <value>Le logiciel métier a été lancé, toutes les sauvegardes en cours ont été mises en pause</value>
+    </data>
+    <data name="Complete" xml:space="preserve">
+        <value>Complète</value>
+    </data>
+    <data name="YouNeedToRestartTheApplicationToChangeTheLanguageDoYouWantToRestartNow" xml:space="preserve">
+        <value>Vous devez redémarrer l'application pour changer le langage, voulez-vous redémarrer ?</value>
+    </data>
+    <data name="SizeLimit" xml:space="preserve">
+        <value>Limite de taille (Mo)</value>
+    </data>
+    <data name="TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitInTheSettings" xml:space="preserve">
+        <value>Les sauvegardes ont un volumes de données trop grand pour être lancées. Veuillez réduire la taille des sauvegardes ou augmenter la Limite de taill dans les paramètres</value>
+    </data>
 </root>
