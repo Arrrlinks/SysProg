@@ -14,15 +14,24 @@ public sealed class RemoteAccess_m
     
     private static IPEndPoint clientEndPoint;
 
+    public Action _Reconnect;
+
     private ObservableCollection<backup_m> BackupMs;
     private state_m _state;
     private Save_vm _save;
+    private bool _finish;
 
     private RemoteAccess_m()
     {
         _state = new state_m();
         _save = new Save_vm();
         BackupMs = new ObservableCollection<backup_m>();
+        _finish = false;
+    }
+    
+    public void SetFinish()
+    {
+        _finish = true;
     }
 
     
@@ -75,7 +84,7 @@ public sealed class RemoteAccess_m
     public void Deconnecter(Socket socket)
     {
     socket.Close();
-    Console.ReadLine();
+    return;
     }
 
     public string ListToString(ObservableCollection<backup_m> backups)
@@ -95,32 +104,37 @@ public sealed class RemoteAccess_m
     //encode et envoi bienvenu au client
             string imput;
             int recv;
-            string welcome = "Bienvenue...";
+            string welcome = "Bienvenue...\n";
 
             byte[] data = new byte[1024];
 
             data = Encoding.UTF8.GetBytes(welcome);
             socket.Send(data, data.Length, SocketFlags.None);
-
+            
             string ListData;
+            
+            BackupMs = _state.GetBackupsFromStateFile();
+            ListData = ListToString(BackupMs);
+            socket.Send(Encoding.UTF8.GetBytes(ListData));
 
             while (true)
             {
+                if (_finish == true)
+                {
+                    return;
+                }
+                BackupMs = _state.GetBackupsFromStateFile();
+                ListData = ListToString(BackupMs);
+                socket.Send(Encoding.UTF8.GetBytes(ListData));
+
                 recv = socket.Receive(data);
                 imput = Encoding.UTF8.GetString(data, 0, recv);
                 
-                BackupMs = _state.GetBackupsFromStateFile();
-                ListData = ListToString(BackupMs);
                 
                 //parse le message du client
                 var msg = imput.Split(" ");
                 if (msg.Length != 2 && msg[0] != "exit" || msg.Length == 2 && int.TryParse(msg[1], out _) == false)
                 {
-                    Console.WriteLine("error");
-                }
-                else if (msg[0] == "exit")
-                {
-                    break;
                 }
                 else
                 {
@@ -133,15 +147,6 @@ public sealed class RemoteAccess_m
                         
                         case "pause":
                             _save.StopSave(BackupMs[Int32.Parse(msg[1])]);
-                            /*
-                            if (BackupMs[Int32.Parse(msg[1])].IsPaused)
-                            {
-                                _save.ResumeSelectedSave(BackupMs[Int32.Parse(msg[1])]);
-                            }
-                            else
-                            {
-                                _save.PauseSelectedSave(BackupMs[Int32.Parse(msg[1])]);
-                            }*/
                             break;
                         
                         case "stop":
@@ -149,14 +154,14 @@ public sealed class RemoteAccess_m
                             break;
                         
                         case "exit":
+                            _Reconnect();
                             break;
                         
-                        default:
-                            Console.WriteLine("error");
+                        default: 
+                            socket.Send(Encoding.UTF8.GetBytes("Commande non reconnue"));
                             break;
                     }
                 }
-                socket.Send(Encoding.UTF8.GetBytes(ListData));
             }
         }
 }
