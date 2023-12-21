@@ -321,6 +321,16 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The saves are too big to be launched. Please reduce the size of the saves or increase the Size Limit in the Settings..
+        /// </summary>
+        public static string TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitInTheSettings {
+            get {
+                return ResourceManager.GetString("TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitI" +
+                        "nTheSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string Time {

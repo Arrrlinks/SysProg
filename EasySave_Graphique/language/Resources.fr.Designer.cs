@@ -321,6 +321,16 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Les sauvegardes ont un volumes de données trop grand pour être lancées. Veuillez réduire la taille des sauvegardes ou augmenter la Limite de taill dans les paramètres.
+        /// </summary>
+        internal static string TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitInTheSettings {
+            get {
+                return ResourceManager.GetString("TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitI" +
+                        "nTheSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Temps.
         /// </summary>
         internal static string Time {
