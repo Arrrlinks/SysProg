@@ -267,6 +267,15 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size Limit (MB).
+        /// </summary>
+        public static string SizeLimit {
+            get {
+                return ResourceManager.GetString("SizeLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Source Path.
         /// </summary>
         public static string SourcePath {
@@ -326,6 +335,15 @@ namespace EasySave_Graphique.language {
         public static string YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning {
             get {
                 return ResourceManager.GetString("YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to restart the application to change the language, do you want to restart now ?.
+        /// </summary>
+        public static string YouNeedToRestartTheApplicationToChangeTheLanguageDoYouWantToRestartNow {
+            get {
+                return ResourceManager.GetString("YouNeedToRestartTheApplicationToChangeTheLanguageDoYouWantToRestartNow", resourceCulture);
             }
         }
     }

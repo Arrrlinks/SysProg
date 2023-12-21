@@ -339,6 +339,46 @@ public class save_m // Model for the saves
     {
         if (!IsBusinessSoftwareRunning())
         {
+            string configJson = File.ReadAllText("../../../config.json");
+            JArray configArray = JArray.Parse(configJson);
+            double sizeLimit = 0;
+
+            foreach (var config in configArray)
+            {
+                if (config["Name"]?.ToString() == "SizeLimit")
+                {
+                    sizeLimit = config["SizeLimit"].Value<double>();
+                    break;
+                }
+            }
+
+            var backups = _state.GetBackupsFromStateFile();
+            
+            double totalSize = 0;
+            int count = 0;
+            foreach (var item in backups)
+            {
+                if (item.State == "Active")
+                {
+                    totalSize += GetFileSize(item.Source)[1];
+                    count++;
+                }
+            }
+
+            Console.WriteLine(sizeLimit);
+            Console.WriteLine(totalSize);
+            
+            if (count > 0)
+            {
+                totalSize += GetFileSize(source)[1];
+            }
+
+            if (totalSize > sizeLimit)
+            {
+                MessageBox.Show("The saves are too big to be launched. Please reduce the size of the saves or increase the SizeLimit in the config.json file.");
+                return;
+            }
+            
             if (source == null) // If the source path is not valid
             {
                 source = _source; // Set the source path of the save
