@@ -1,0 +1,20 @@
+[
+  {
+    "Date": "2023-12-15T09:00:24.5807451Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\matth\\Documents\\CESI\\A3\\DS\\Projet\\test",
+    "TargetPath": "C:\\Users\\matth\\Documents\\CESI\\A3\\DS\\Projet\\tr",
+    "FileName": "fds.txt",
+    "FileSize": 6,
+    "TimeMs": 205
+  },
+  {
+    "Date": "2023-12-15T09:00:24.6851719Z",
+    "Name": "Save1",
+    "SourcePath": "C:\\Users\\matth\\Documents\\CESI\\A3\\DS\\Projet\\test",
+    "TargetPath": "C:\\Users\\matth\\Documents\\CESI\\A3\\DS\\Projet\\tr",
+    "FileName": "~$verletter.docx",
+    "FileSize": 162,
+    "TimeMs": 86
+  }
+]

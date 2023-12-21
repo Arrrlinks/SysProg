@@ -15,13 +15,21 @@ namespace EasySave_Graphique
     {
         private static readonly object _lock = new object();
         private static Thread Remote;
+        private static Thread Stop;
         
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            Remote = new Thread(RemoteAccess.ServerConnection);
-            Remote.Start();
+            Remote = new Thread(RemoteAccess_vm.ServerConnection);
+            try
+            {
+                Remote.Start();
+            }
+            catch (Exception)
+            {
+                Remote.Start();
+            }
             // Load the language setting from the config.json file
             //_remoteAccess.ServerPart();
             string language = LoadLanguageFromConfigFile();
@@ -35,7 +43,14 @@ namespace EasySave_Graphique
             //kill the thread when the app is closed
             this.Exit += (s, e) =>
             {
-                Remote.Abort();
+                try
+                {
+                    Remote.Abort();
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
             };
 
         }

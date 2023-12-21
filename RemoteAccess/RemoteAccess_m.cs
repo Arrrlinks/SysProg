@@ -7,12 +7,19 @@ namespace Client;
 public sealed class RemoteAccess_m
 {
     public string _ip { get; set; }
+    public string _input { get; set; }
+    public string _StringData { get; set; }
     
+    //to use ViewModel Method in Model
+    public Action _displayError;
+    public Action _displayInfo;
+    public Action _displayDeconnexion;
+    public Action _GetAction;
+    
+    //singleton
     private static readonly object _lock = new object();
     public static RemoteAccess_m _instance = null;
     
-    //Créer un RemoteAccess_m si il n'existe pas et le retourne
-    //Utilise une protection multithread
     public static RemoteAccess_m Instance
     {
         get
@@ -46,8 +53,8 @@ public sealed class RemoteAccess_m
             catch (SocketException e)
             {
                 //write error if server connection failed
-                Console.WriteLine("Unable to connect to server.");
-                Console.WriteLine(e.ToString());
+                //Console.WriteLine("Unable to connect to server.");
+                _displayError();
                 return null;
             }
             return server;
@@ -59,41 +66,39 @@ public sealed class RemoteAccess_m
             //recup server message
             byte[] data = new byte[1024];
             int recv = server.Receive(data);
-            string imput, stringData;
             
             //print server message
-            stringData = Encoding.UTF8.GetString(data, 0, recv);
+            _StringData = Encoding.UTF8.GetString(data, 0, recv);
             
-            Console.WriteLine(stringData);
+            Console.WriteLine(_StringData);
 
             while (true)
             {
                 //if user input is exit, close the socket
-                imput = Console.ReadLine();
-                if (imput == "exit")
+                _GetAction();
+                if (_input == "exit")
                 {
-                    server.Send(Encoding.UTF8.GetBytes(imput));
+                    server.Send(Encoding.UTF8.GetBytes(_input));
                     Deconexion(server);
                     break;
                 }
                 //send user input to server
                 //receive server message
-                Console.WriteLine("Client: " + imput);
-                server.Send(Encoding.UTF8.GetBytes(imput));
+                server.Send(Encoding.UTF8.GetBytes(_input));
                 data = new byte[1024];
+                Thread.Sleep(1000);
                 recv = server.Receive(data);
-                stringData = Encoding.UTF8.GetString(data, 0, recv);
-                Console.Clear();
-                Console.WriteLine(stringData);
+                _StringData = Encoding.UTF8.GetString(data, 0, recv); 
+                //print server message
+                _displayInfo();
             }
         }
         
-        private static void Deconexion(Socket server)
+        private void Deconexion(Socket server)
         {
-            Console.WriteLine("Disconnecting from server...");
             server.Shutdown(SocketShutdown.Both);
             server.Close();
-            Console.WriteLine("Disconnected from server.");
+            _displayDeconnexion();
             return;
         }
 }
