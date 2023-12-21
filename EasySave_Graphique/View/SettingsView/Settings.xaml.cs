@@ -59,6 +59,11 @@ public partial class Settings : UserControl
             {
                 SaveModeComboBox.SelectedItem = saveModeItem["SaveMode"].ToString() == "complete" ? SaveModeComboBox.Items[0] : SaveModeComboBox.Items[1];
             }
+            var SizeLimitItem = config.Find(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "SizeLimit");
+            if (SizeLimitItem != null)
+            {
+                SizeLimitTextBox.Text = SizeLimitItem["SizeLimit"].ToString();
+            }
         }
     }
 
@@ -99,7 +104,13 @@ public partial class Settings : UserControl
         _settingsViewModel.UpdateConfigFile("Extensions");
         _settingsViewModel.ChangeLanguage(_settingsViewModel.Language);
     }
-
+    
+    private void SizeLimitTextBox_TextInput(object sender, KeyEventArgs keyEventArgs)
+    {
+        _settingsViewModel.SizeLimit = SizeLimitTextBox.Text;
+        _settingsViewModel.UpdateConfigFile("SizeLimit");
+    }
+    
     private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         UpdateLanguageSetting();

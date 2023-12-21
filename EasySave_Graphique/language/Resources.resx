@@ -108,4 +108,10 @@
     <data name="Complete" xml:space="preserve">
         <value>Complete</value>
     </data>
+    <data name="YouNeedToRestartTheApplicationToChangeTheLanguageDoYouWantToRestartNow" xml:space="preserve">
+        <value>You need to restart the application to change the language, do you want to restart now ?</value>
+    </data>
+    <data name="SizeLimit" xml:space="preserve">
+        <value>Size Limit (MB)</value>
+    </data>
 </root>

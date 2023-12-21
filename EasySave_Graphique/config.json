@@ -1,1 +1,1 @@
-[{"Name":"Lang","Lang":"en"},{"Name":"Format","Format":"json"},{"Name":"SaveMode","SaveMode":"complete"},{"Name":"Extensions","Extensions":["json","txt"]}]
+[{"Name":"Lang","Lang":"en"},{"Name":"Format","Format":"json"},{"Name":"SaveMode","SaveMode":"complete"},{"Name":"SizeLimit","SizeLimit":1},{"Name":"Extensions","Extensions":["txt","json"]}]
