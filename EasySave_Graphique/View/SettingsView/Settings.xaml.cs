@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows;
 using System.IO;
@@ -41,13 +42,8 @@ public partial class Settings : UserControl
             var languageItem = config.Find(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "Lang");
             if (languageItem != null)
             {
-                // Temporarily remove the event handler
                 LanguageComboBox.SelectionChanged -= LanguageComboBox_SelectionChanged;
-
-                // Set the selected item
                 LanguageComboBox.SelectedItem = LanguageComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(item => item.Name == languageItem["Lang"].ToString());
-
-                // Reattach the event handler
                 LanguageComboBox.SelectionChanged += LanguageComboBox_SelectionChanged;
 
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(languageItem["Lang"].ToString());
@@ -57,6 +53,11 @@ public partial class Settings : UserControl
             if (formatItem != null)
             {
                 LogFileComboBox.SelectedItem = formatItem["Format"].ToString() == "json" ? LogFileComboBox.Items[0] : LogFileComboBox.Items[1];
+            }
+            var saveModeItem = config.Find(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "SaveMode");
+            if (saveModeItem != null)
+            {
+                SaveModeComboBox.SelectedItem = saveModeItem["SaveMode"].ToString() == "complete" ? SaveModeComboBox.Items[0] : SaveModeComboBox.Items[1];
             }
         }
     }
@@ -119,4 +120,13 @@ public partial class Settings : UserControl
         _settingsViewModel.Format = selectedLogFileType == "JSON" ? "json" : "xml";
         _settingsViewModel.UpdateConfigFile("Format");
     }
+    
+    private void SaveModeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        string? selectedSaveMode = ((ComboBoxItem)SaveModeComboBox.SelectedItem).Content.ToString()?.Replace("è", "e");
+        _settingsViewModel.SaveMode = selectedSaveMode == "Complete" ? "complete" : "differential";
+        _settingsViewModel.UpdateConfigFile("SaveMode");
+    }
+    
+    
 }

@@ -13,18 +13,14 @@ namespace EasySave_Graphique
     /// </summary>
     public partial class App : Application
     {
-        private static RemoteAccess _remoteAccess;
         private static readonly object _lock = new object();
         private static Thread Remote;
         
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            
-            _remoteAccess = new RemoteAccess();
-            
 
-            Remote = new Thread(_remoteAccess.ServerPart);
+            Remote = new Thread(RemoteAccess.ServerConnection);
             Remote.Start();
             // Load the language setting from the config.json file
             //_remoteAccess.ServerPart();
@@ -53,9 +49,9 @@ namespace EasySave_Graphique
                 JObject languageItem = config.Children<JObject>()
                     .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "Lang");
                 if (languageItem != null)
-                    {
+                {
                     return languageItem["Lang"].ToString();
-                    }
+                }
                 return "en"; // default language
             }
         }

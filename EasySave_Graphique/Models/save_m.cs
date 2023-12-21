@@ -1,22 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using EasySave_Graphique.Models;
-using Newtonsoft.Json; // Model for the history
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace Program.Models; // Namespace for the models
+namespace EasySave_Graphique.Models;
 
 public class save_m // Model for the saves
 {
     public delegate void SaveCompletedEventHandler(object sender, EventArgs e);
     public event SaveCompletedEventHandler SaveCompleted;
     //Attributes
+    private Dictionary<string, ManualResetEvent> _pauseEvents = new Dictionary<string, ManualResetEvent>();
     public string _name { get; set; } // Name of the save
     public string? _source { get; set; } // Source path of the save
     public string? _target { get; set; } // Target path of the save
@@ -24,13 +25,21 @@ public class save_m // Model for the saves
     public double _nbFiles { get; set; } // Number of files of the save
     private log_m _log; // Model for the history
     private state_m _state; // Model for the state
-    private format_m _format;
-    
+    private format_m _format; // Model for the format
+    private Settings_m _settings; // Model for the settings
+    private bool _stopRequested = false;
     public event Action SaveUpdated;
-    
     private Process _saveProcess; // Process for the save
-
     private string _key;
+    
+    public void PauseSelectedSave(backup_m backup)
+    {
+        _state.ModifyJsonFile("../../../state.json", backup.Name, "IsPaused", true);
+        if (_pauseEvents.TryGetValue(backup.Name, out var pauseEvent))
+        {
+            pauseEvent.Reset();
+        }
+    }
     
     //Builders
     public save_m() // Builder for the save
@@ -39,10 +48,12 @@ public class save_m // Model for the saves
         _log = new log_m(); // Create a new history model
         _state = new state_m(); // Create a new state model
         _format = new format_m(); // Create a new format model
+        _settings = new Settings_m(); // Create a new settings model
         
         _saveProcess.StartInfo.FileName = @".\Cryptosoft.exe"; // Set the name of the process
         _saveProcess.StartInfo.UseShellExecute = false; // Set the use of the shell to false
         _key = "azerty"; // Set the key of the save
+
     }
     public save_m(string name, string? source, string? target) // Builder for the save
     {
@@ -52,6 +63,15 @@ public class save_m // Model for the saves
         _weight = 0; // Set the weight of the save
     }
     //Methods
+    
+    public void ResumeSelectedSave(backup_m backup)
+    {
+        _state.ModifyJsonFile("../../../state.json", backup.Name, "IsPaused", false);
+        if (_pauseEvents.TryGetValue(backup.Name, out var pauseEvent))
+        {
+            pauseEvent.Set();
+        }
+    }
     
     public double[] GetFileSize(string? source) // Function to get the size of a file
     {
@@ -186,7 +206,7 @@ public class save_m // Model for the saves
         }
     }
     
-    public void CopyFile(string? file, string? target = null, string? source = null, string? name = null, int iteration = 0, bool isFile = false, bool isComplete = false) // Function to copy a file
+    public void CopyFile(string? file, string? target = null, string? source = null, string? name = null, int iteration = 0, bool isComplete = false) // Function to copy a file
     {
         string debut = DateTime.UtcNow.ToString("o"); // Get the start of the save
         
@@ -219,11 +239,21 @@ public class save_m // Model for the saves
             {
                 _state.ModifyJsonFile("../../../state.json", name, "State", "Completed"); // Modify the status of the save in the history
             }
+
+            if (IsBusinessSoftwareRunning())
+            {
+                _state.ModifyJsonFile("../../../state.json", name, "State", "Paused");
+            }
             UpdateSaveMenu();
         }
         
         if (@target != null && fileName != null && file != null) // If the target path, the name of the file and if the file is valid
         {
+            string configJson = File.ReadAllText("../../../config.json");
+            JArray config = JArray.Parse(configJson); // Get the config file
+            string saveMode = config.Children<JObject>()
+                .FirstOrDefault(dict => dict.ContainsKey("Name") && dict["Name"].ToString() == "SaveMode")?["SaveMode"].ToString(); // Get the save mode
+            isComplete = saveMode == "complete"; // Set the status of the save
             CopyFileIfFile(file, @target, isComplete); // Copy the file
         }
 
@@ -233,10 +263,10 @@ public class save_m // Model for the saves
         
         string toAdd2Log = "{\"Date\": \"" + _state.GetDate() + "\"," + // Create the log
                            "\"Name\": \"" + name + "\"," + // Create the log
-                           " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + "\"," + // Create the log
+                           " \"SourcePath\": \"" + @source.Replace("\\", "\\\\") + $"\\\\{fileName}\"," + // Create the log
                            " \"TargetPath\": \"" + @target.Replace("\\", "\\\\") + "\"," + // Create the log
                            " \"FileName\": \"" + fileName + "\"," + // Create the log
-                           " \"FileSize\": " + fileSizeList[0].ToString(CultureInfo.InvariantCulture) + ", " + // Create the log
+                           " \"FileSize\": " + fileSizeList[1].ToString(CultureInfo.InvariantCulture) + ", " + // Create the log
                            " \"TimeMs\": " + differenceMs + "}"; // Create the log
         
         _log.AddEntryToLogFile(toAdd2Log); // Add the log to the history
@@ -294,54 +324,86 @@ public class save_m // Model for the saves
         }));
     }
     
-    public void SaveLaunch(string? source = null, string? target = null, string? name = null, int i = 0, bool isComplete = false) // Function to save a save
+    public bool IsBusinessSoftwareRunning()
     {
-        if (source == null) // If the source path is not valid
+        foreach (var process in Process.GetProcesses())
         {
-            source = _source; // Set the source path of the save
-        }
-        if (target == null) // If the target path is not valid
-        {
-            target = _target; // Set the target path of the save
-        }
-        if (@source != null) // If the source path is valid
-        {
-            string?[] files = Directory.GetFiles(@source); // Get the files of the save
-            foreach (string? file in files) // For each file in the save
+            if (process.ProcessName == "CalculatorApp")
             {
-                CopyFile(file, target, source, name, i,false,  isComplete); // Copy the file
-                if (name != null)
-                    _state.ModifyJsonFile("../../../state.json", name, "isComplete",
-                        isComplete); // Modify the status of the save in the history
-                i++; // Increment the number of files copied
-            }
-            
-            string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
-            foreach (string? directory in directories) // For each directory in the save
-            {
-                if (target != null) // If the target path is valid
-                {
-                    DirectoryInfo newDirectory = Directory.CreateDirectory(Path.Combine(target, Path.GetFileName(directory) ?? string.Empty)); // Create the directory
-                    string? newDirectoryPath = newDirectory.FullName; // Get the path of the directory
-                    SaveLaunch(directory, newDirectoryPath, name, i, isComplete); // Save the directory
-                }
+                return true;
             }
         }
+        return false;
+    }
+    
+    public void SaveLaunch(string? source = null, string? target = null, string? name = null, backup_m? backup = null, int i = 0, bool isComplete = false) // Function to launch a save
+    {
+        if (!IsBusinessSoftwareRunning())
+        {
+            if (source == null) // If the source path is not valid
+            {
+                source = _source; // Set the source path of the save
+            }
 
-        /*
-        if (@source != null) // If the source path is valid
-        {
-            string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
-            foreach (string? directory in directories) // For each directory in the save
+            if (target == null) // If the target path is not valid
             {
-                if (target != null) // If the target path is valid
+                target = _target; // Set the target path of the save
+            }
+
+            if (@source != null) // If the source path is valid
+            {
+                string?[] files = Directory.GetFiles(@source); // Get the files of the save
+
+                // Create a new ManualResetEvent for this task and add it to the dictionary
+                _pauseEvents[name] = new ManualResetEvent(true);
+
+                foreach (string? file in files) // For each file in the save
                 {
-                    DirectoryInfo newDirectory = Directory.CreateDirectory(Path.Combine(target, Path.GetFileName(directory) ?? string.Empty)); // Create the directory
-                    string? newDirectoryPath = newDirectory.FullName; // Get the path of the directory
-                    SaveLaunch(directory, newDirectoryPath, name, i, isComplete); // Save the directory
+                    if (_state.RetrieveValueFromStateFile(name, "IsPaused"))
+                    {
+                        _state.ModifyJsonFile("../../../state.json", name, "IsPaused", false);
+                    }
+
+                    if (IsBusinessSoftwareRunning())
+                    {
+                        PauseSelectedSave(backup);
+                        _state.ModifyJsonFile("../../../state.json", name, "State", "Paused");
+                        _state.ModifyJsonFile("../../../state.json", name, "IsPaused", true);
+                        UpdateSaveMenu();
+                        MessageBox.Show(
+                            $"{language.Resources.TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused}",
+                            "EasySave", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+
+                    CopyFile(file, target, source, name, i, isComplete); // Copy the file
+                    if (name != null)
+                        _state.ModifyJsonFile("../../../state.json", name, "isComplete",
+                            isComplete); // Modify the status of the save in the history
+                    i++; // Increment the number of files copied
+
+                    // Wait using the correct ManualResetEvent
+                    _pauseEvents[name].WaitOne();
+                }
+
+                string?[] directories = Directory.GetDirectories(@source); // Get the directories of the save
+                foreach (string? directory in directories) // For each directory in the save
+                {
+                    if (target != null) // If the target path is valid
+                    {
+                        DirectoryInfo newDirectory =
+                            Directory.CreateDirectory(Path.Combine(target,
+                                Path.GetFileName(directory) ?? string.Empty)); // Create the directory
+                        string? newDirectoryPath = newDirectory.FullName; // Get the path of the directory
+                        SaveLaunch(directory, newDirectoryPath, name, backup, i, isComplete); // Save the directory
+                    }
                 }
             }
         }
-        */
+        else
+        {
+            MessageBox.Show(
+                $"{language.Resources.YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning}",
+                "EasySave", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }

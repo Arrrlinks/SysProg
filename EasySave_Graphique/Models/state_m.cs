@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Newtonsoft.Json;
-
-namespace EasySave_Graphique.Models;
 using System;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+
+namespace EasySave_Graphique.Models;
 
 public class state_m
 {
@@ -211,5 +211,22 @@ public class state_m
             ModifyJsonFile("../../../state.json", name, "State", status); // Modify the status of the save in the history
         }
         
+    }
+    
+    public void AbortPausedTasksOnStartup()
+    {
+        var tasks = GetBackupsFromStateFile();
+        foreach (var task in tasks)
+        {
+            if (task.State == "Paused" || task.State == "Active")
+            {
+                task.State = "Aborted";
+            }
+            if (task.IsPaused == true)
+            {
+                task.IsPaused = false;
+            }
+        }
+        ReplaceStateFile(tasks);
     }
 }

@@ -75,7 +75,7 @@ public class log_m //Model for the history
                         Date = jsonObject["Date"]?.ToString(),
                         FileName = jsonObject["FileName"]?.ToString(),
                         Size = $"{jsonObject["FileSize"]} MB",
-                        Time = $"{jsonObject["Time (ms)"]} ms"
+                        TimeMs = $"{double.Parse(jsonObject["TimeMs"]?.ToString() ?? "-1")/1000:F2} s"
                     });
                 }
             }
@@ -94,7 +94,7 @@ public class log_m //Model for the history
                         Date = element.Element("Date")?.Value.Trim(),
                         FileName = element.Element("FileName")?.Value.Trim(),
                         Size = $"{element.Element("FileSize")?.Value.Trim()} MB",
-                        Time = $"{element.Element("TimeMs")?.Value.Trim()} ms"
+                        TimeMs = $"{element.Element("TimeMs")?.Value.Trim()} ms"
                     });
                 }
             }

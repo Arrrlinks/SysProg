@@ -87,15 +87,25 @@
     <data name="AlreadyExistsTheBackupWasNotSaved" xml:space="preserve">
         <value>already exists. The backup was not saved.</value>
     </data>
-    <data name="Differential" xml:space="preserve">
-        <value>Differential</value>
-    </data>
     <data name="SaveMode" xml:space="preserve">
         <value>Save Mode</value>
     </data>
+    <data name="Differential" xml:space="preserve">
+        <value>Differential</value>
+    </data>
     <data name="Sequential" xml:space="preserve">
         <value>Sequential</value>
+    </data>
     <data name="State" xml:space="preserve">
         <value>Status</value>
+    </data>
+    <data name="YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning" xml:space="preserve">
+        <value>You can't launch a save while the business software is running</value>
+    </data>
+    <data name="TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused" xml:space="preserve">
+        <value>The business software is running, all running saves have been paused</value>
+    </data>
+    <data name="Complete" xml:space="preserve">
+        <value>Complete</value>
     </data>
 </root>

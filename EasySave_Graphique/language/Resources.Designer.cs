@@ -96,6 +96,15 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string Complete {
+            get {
+                return ResourceManager.GetString("Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -110,6 +119,15 @@ namespace EasySave_Graphique.language {
         public static string DeleteSelection {
             get {
                 return ResourceManager.GetString("DeleteSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Differential.
+        /// </summary>
+        public static string Differential {
+            get {
+                return ResourceManager.GetString("Differential", resourceCulture);
             }
         }
         
@@ -204,11 +222,29 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Mode.
+        /// </summary>
+        public static string SaveMode {
+            get {
+                return ResourceManager.GetString("SaveMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Name.
         /// </summary>
         public static string SaveName {
             get {
                 return ResourceManager.GetString("SaveName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequential.
+        /// </summary>
+        public static string Sequential {
+            get {
+                return ResourceManager.GetString("Sequential", resourceCulture);
             }
         }
         
@@ -267,11 +303,29 @@ namespace EasySave_Graphique.language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The business software is running, all running saves have been paused.
+        /// </summary>
+        public static string TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused {
+            get {
+                return ResourceManager.GetString("TheBusinessSoftwareIsRunningAllRunningSavesHaveBeenPaused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t launch a save while the business software is running.
+        /// </summary>
+        public static string YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning {
+            get {
+                return ResourceManager.GetString("YouCantLaunchASaveWhileTheBusinessSoftwareIsRunning", resourceCulture);
             }
         }
     }
