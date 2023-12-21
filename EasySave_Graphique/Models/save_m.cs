@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -375,7 +376,7 @@ public class save_m // Model for the saves
 
             if (totalSize > sizeLimit)
             {
-                MessageBox.Show("The saves are too big to be launched. Please reduce the size of the saves or increase the SizeLimit in the config.json file.");
+                MessageBox.Show(language.Resources.TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitInTheSettings, "EasySave", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             

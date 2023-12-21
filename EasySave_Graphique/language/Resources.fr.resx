@@ -114,4 +114,7 @@
     <data name="SizeLimit" xml:space="preserve">
         <value>Limite de taille (Mo)</value>
     </data>
+    <data name="TheSavesAreTooBigToBeLaunchedPleaseReduceTheSizeOfTheSavesOrIncreaseTheSizeLimitInTheSettings" xml:space="preserve">
+        <value>Les sauvegardes ont un volumes de données trop grand pour être lancées. Veuillez réduire la taille des sauvegardes ou augmenter la Limite de taill dans les paramètres</value>
+    </data>
 </root>
